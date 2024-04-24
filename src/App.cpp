@@ -66,7 +66,7 @@ App::App() {
     m_clock = sf::Clock();
 }
 
-void App::Loop() {
+void App::MainLoop() {
     while (m_window->isOpen())
     {
         for (auto event = sf::Event{}; m_window->pollEvent(event);)

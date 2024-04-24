@@ -19,7 +19,7 @@ public:
 
     void Init(unsigned int width, unsigned int height);
 
-    void Loop();
+    void MainLoop();
 
     void Render();
 

@@ -10,5 +10,5 @@ int main()
 {
     auto app = App();
     app.Init(WIDTH, HEIGHT);
-    app.Loop();
+    app.MainLoop();
 }
