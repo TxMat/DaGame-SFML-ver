@@ -15,7 +15,7 @@ public:
 
     [[nodiscard]] sf::Shape *getMShape() const;
 
-private:
+protected:
 
     sf::Shape* m_shape;
 

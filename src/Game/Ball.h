@@ -12,7 +12,7 @@
 class Ball: Object {
 
 public:
-	Ball(float speed);
+	Ball(float speed, float radius, sf::CircleShape *shape);
 	void Update();
 	void Collide(sf::Vector2f collisionNormal);
 
