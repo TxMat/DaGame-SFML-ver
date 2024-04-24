@@ -7,28 +7,29 @@
 #include "App.h"
 
 void App::Update() {
-    for (auto event = sf::Event{}; m_window->pollEvent(event);)
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            m_window->close();
-        }
-    }
 
-    m_window->clear();
     for (auto object : m_objectList) {
-//        object.getMShape()->move(5.f, 5.f);
-        object.getMShape()->rotate(5.0f);
-        m_window->draw(*object.getMShape());
+        object.Update();
     }
 
     m_currentTime = m_clock.getElapsedTime();
     double fps = 1.0f / (m_currentTime.asSeconds() - m_lastTime.asSeconds()); // the asSeconds returns a float
     m_fps.setString(std::string("Fps : " + std::to_string(floor(fps))));
     m_lastTime = m_currentTime;
+}
+
+void App::Render() {
+    m_window->clear();
+
+    for (auto object : m_objectList) {
+        m_window->draw(*object.getMShape());
+    }
+
     m_window->draw(m_fps);
+    m_window->draw(m_debug_text);
 
     m_window->display();
+
 }
 
 void App::Init(const unsigned int width, const unsigned int height) {
@@ -47,10 +48,15 @@ void App::Init(const unsigned int width, const unsigned int height) {
 
     m_fps = sf::Text();
     m_fps.setFont(m_font);
-    m_fps.setOrigin(0, 0);
     m_fps.setFillColor(sf::Color::Green);
     m_fps.setCharacterSize(20);
     m_window->draw(m_fps);
+
+    m_debug_text = sf::Text();
+    m_debug_text.setFont(m_font);
+    m_debug_text.setPosition(1060, 0);
+    m_debug_text.setFillColor(sf::Color::Red);
+    m_debug_text.setCharacterSize(20);
 
 
     m_objectList.push_back(shape);
@@ -60,15 +66,20 @@ App::App() {
     m_clock = sf::Clock();
 }
 
-void App::Loop() {
+void App::MainLoop() {
     while (m_window->isOpen())
     {
+        for (auto event = sf::Event{}; m_window->pollEvent(event);)
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                m_window->close();
+            }
+            m_debug_text.setString(std::to_string(event.type));
+        }
+
         this->Update();
         this->Render();
     }
-}
-
-void App::Render() {
-
 }
 
