@@ -19,8 +19,8 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Player.h
         src/App.cpp
         src/App.h
-        src/Network/NetworkTransform.cpp
-        src/Network/NetworkTransform.h
+        src/Network/NetworkTransformable.cpp
+        src/Network/NetworkTransformable.h
         src/Network/NetworkShape.cpp
         src/Network/NetworkShape.h)
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
