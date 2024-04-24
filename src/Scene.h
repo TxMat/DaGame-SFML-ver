@@ -4,7 +4,7 @@ class Scene
 {
 public:
 	Scene();
-	Scene(Grid* grid, Player* player1, Player* player2, RenderWindow* window);
+	Scene(Grid* grid, Player* player1, Player* player2, sf::RenderWindow* window);
 	~Scene();
 
 public:
@@ -25,7 +25,7 @@ private:
 	Grid* m_grid;
 	Player* m_player1;
 	Player* m_player2;
-	RenderWindow* m_window;
+	sf::RenderWindow* m_window;
 	bool m_isPlaying;
 
 };

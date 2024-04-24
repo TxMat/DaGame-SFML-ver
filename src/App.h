@@ -13,6 +13,7 @@ public:
 	void Init();
 	//void PrintDebug(/*String textDebug*/);
 	//void DrawDebug();
+	Scene* GetScene();
 
 	void StartMenu();
 	void CreateScene();

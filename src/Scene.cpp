@@ -2,7 +2,7 @@
 
 Scene::Scene() {}
 
-Scene::Scene(Grid* grid, Player* player1, Player* player2, RenderWindow* window)
+Scene::Scene(Grid* grid, Player* player1, Player* player2, sf::RenderWindow* window)
 {
 	m_grid = grid;
 	m_player1 = player1;
