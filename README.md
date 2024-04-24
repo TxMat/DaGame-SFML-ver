@@ -1,18 +1,9 @@
-# CMake SFML Project Template
+# DaGame (SFML)
 
-This repository template should allow for a fast and hassle-free kick start of your next SFML project using CMake.
-Thanks to [GitHub's nature of templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template), you can fork this repository without inheriting its Git history.
+[![CI](https://github.com/TxMat/DaGame-SFML-ver/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/TxMat/DaGame-SFML-ver/actions/workflows/ci.yml)
 
-The template starts out very basic, but might receive additional features over time:
+## Installation
 
-- Basic CMake script to build your project and link SFML on any operating system
-- Basic [GitHub Actions](https://github.com/features/actions) script for all major platforms
-
-## How to Use
-
-1. Follow the above instructions about how to use GitHub's project template feature to create your own project.
-1. Open [CMakeLists.txt](CMakeLists.txt). Rename the project and the executable to whatever name you want. The project and executable names don't have to match.
-1. If you want to add or remove any .cpp files, change the source files listed in the [`add_executable`](CMakeLists.txt#L10) call in CMakeLists.txt to match the source files your project requires. If you plan on keeping the default main.cpp file then no changes are required.
 1. If you use Linux, install SFML's dependencies using your system package manager. On Ubuntu and other Debian-based distributions you can use the following commands:
     ```
     sudo apt update
@@ -27,7 +18,7 @@ The template starts out very basic, but might receive additional features over t
         libgl1-mesa-dev \
         libegl1-mesa-dev
     ```
-1. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
+2. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
     - [VS Code](https://code.visualstudio.com) via the [CMake extension](https://code.visualstudio.com/docs/cpp/cmake-linux)
     - [Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170)
     - [CLion](https://www.jetbrains.com/clion/features/cmake-support.html)
@@ -46,38 +37,28 @@ The template starts out very basic, but might receive additional features over t
     cmake -S . -B build
     cmake --build build --config Release
     ```
-1. Enjoy!
+3. Enjoy!
 
-## Upgrading SFML
+## Development
 
-SFML is found via CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module.
-FetchContent automatically downloads SFML from GitHub and builds it alongside your own code.
-Beyond the convenience of not having to install SFML yourself, this ensures ABI compatability and simplifies things like specifying static versus shared libraries.
-
-Modifying what version of SFML you want is as easy as changing the [`GIT_TAG`](CMakeLists.txt#L7) argument.
-Currently it uses the latest in-development version of SFML 2 via the `2.6.x` tag.
-If you're feeling adventurous and want to give SFML 3 a try, use the `master` tag.
-Beware, this requires changing your code to suit the modified API!
-The nice folks in the [SFML community](https://github.com/SFML/SFML#community) can help you with that transition and the bugs you may encounter along the way.
-
-## But I want to...
+### But I want to...
 
 Modify CMake options by adding them as configuration parameters (with a `-D` flag) or by modifying the contents of CMakeCache.txt and rebuilding.
 
 ### Use Static Libraries
 
-By default SFML builds shared libraries and this default is inherited by your project.
+By default, SFML builds shared libraries and this default is inherited by your project.
 CMake's [`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html) option lets you pick static or shared libraries for the entire project.
 
 ### Change Compilers
 
 See the variety of [`CMAKE_<LANG>_COMPILER`](https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER.html) options.
-In particular you'll want to modify `CMAKE_CXX_COMPILER` to point to the C++ compiler you wish to use.
+In particular, you'll want to modify `CMAKE_CXX_COMPILER` to point to the C++ compiler you wish to use.
 
 ### Change Compiler Optimizations
 
 CMake abstracts away specific optimizer flags through the [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) option.
-By default this project recommends `Release` builds which enable optimizations.
+By default, this project recommends `Release` builds which enable optimizations.
 Other build types include `Debug` builds which enable debug symbols but disable optimizations.
 If you're using a multi-configuration generator (as is often the case on Windows), you can modify the [`CMAKE_CONFIGURATION_TYPES`](https://cmake.org/cmake/help/latest/variable/CMAKE_CONFIGURATION_TYPES.html#variable:CMAKE_CONFIGURATION_TYPES) option.
 
@@ -90,7 +71,7 @@ To modify the generator you're using you must reconfigure your project providing
 You can't simply modify an entry in the CMakeCache.txt file unlike the above options.
 Then you may rebuild your project with this new generator.
 
-## More Reading
+### More Reading
 
 Here are some useful resources if you want to learn more about CMake:
 
@@ -100,4 +81,4 @@ Here are some useful resources if you want to learn more about CMake:
 
 ## License
 
-The source code is dual licensed under Public Domain and MIT -- choose whichever you prefer.
+The source code licensed under GPL v3
