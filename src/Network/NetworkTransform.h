@@ -1,0 +1,14 @@
+//
+// Created by uranus on 4/24/24.
+//
+
+#ifndef CMAKESFMLPROJECT_NETWORKTRANSFORM_H
+#define CMAKESFMLPROJECT_NETWORKTRANSFORM_H
+
+
+class NetworkTransform {
+
+};
+
+
+#endif //CMAKESFMLPROJECT_NETWORKTRANSFORM_H

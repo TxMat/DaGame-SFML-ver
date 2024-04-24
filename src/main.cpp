@@ -24,7 +24,7 @@ int main()
 
         window.clear();
 //        shape.move(5.f, 5.f);
-        shape.rotate(.5f);
+        shape.rotate(5.0f);
         window.draw(shape);
         window.display();
     }
