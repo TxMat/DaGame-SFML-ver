@@ -5,7 +5,7 @@ const unsigned int HEIGHT = 1080u;
 
 int main()
 {
-    auto window = sf::RenderWindow{ { WIDTH, HEIGHT }, "Best Game Ever" };
+    auto window = sf::RenderWindow{ { WIDTH, HEIGHT }, "Best App Ever" };
     window.setFramerateLimit(144);
     sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(100.0f, 200.0f));
     shape.setFillColor(sf::Color::Red);
