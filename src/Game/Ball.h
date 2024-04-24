@@ -8,9 +8,11 @@
 #include "SFML/Graphics.hpp"
 #include "../Common/Object.h"
 
+
 class Ball: Object {
 
 public:
+	Ball(float speed);
 	void Update();
 	void Collide(sf::Vector2f collisionNormal);
 
