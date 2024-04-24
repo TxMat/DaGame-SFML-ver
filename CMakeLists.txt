@@ -13,6 +13,8 @@ FetchContent_MakeAvailable(SFML)
 add_executable(CMakeSFMLProject src/main.cpp
         src/Game/Ball.cpp
         src/Game/Ball.h
+        src/Game/MainScene.cpp
+        src/Game/MainScene.h
         src/Game/Paddle.cpp
         src/Game/Paddle.h
         src/Common/Player.cpp
