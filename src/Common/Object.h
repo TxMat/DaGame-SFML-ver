@@ -8,7 +8,7 @@
 #define CMAKESFMLPROJECT_NETWORKSHAPE_H
 
 
-class NetworkShape: public sf::Shape{
+class Object: public sf::Shape{
 
 
 
