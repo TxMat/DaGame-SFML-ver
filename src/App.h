@@ -1,3 +1,5 @@
+#include "framework.h"
+
 #pragma once
 class App
 {
@@ -7,7 +9,7 @@ public:
 
 public:
 	void Init();
-	void PrintDebug(String textDebug);
+	void PrintDebug(/*String textDebug*/ );
 	void DrawDebug();
 
 	void StartMenu();
@@ -36,8 +38,8 @@ private:
 	//Scene* m_scene;
 	//RenderWindow* m_window;
 	DWORD m_sysTime;
-	Text m_debugText;
-	Font m_font;
+	//Text m_debugText;
+	//Font m_font;
 	float m_elapsedTime;
 	float m_time;
 	int m_state;
