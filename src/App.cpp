@@ -17,35 +17,58 @@ void App::Update() {
 
     m_window->clear();
     for (auto object : m_objectList) {
-        object.getMShape()->move(5.f, 5.f);
+//        object.getMShape()->move(5.f, 5.f);
         object.getMShape()->rotate(5.0f);
         m_window->draw(*object.getMShape());
     }
-    m_window->display();
 
     m_currentTime = m_clock.getElapsedTime();
     double fps = 1.0f / (m_currentTime.asSeconds() - m_lastTime.asSeconds()); // the asSeconds returns a float
-    std::cout << "fps =" << floor(fps) << std::endl; // flooring it will make the frame rate a rounded number
+    m_fps.setString(std::string("Fps : " + std::to_string(floor(fps))));
     m_lastTime = m_currentTime;
+    m_window->draw(m_fps);
+
+    m_window->display();
 }
 
 void App::Init(const unsigned int width, const unsigned int height) {
     m_window = new sf::RenderWindow{ { width, height }, "Best App Ever" };
     m_window->setFramerateLimit(144);
 
-    auto shape = Object(sf::Vector2f(100.0f, 200.0f));
+    auto shape = Object(new sf::RectangleShape(sf::Vector2f(100.0f, 200.0f)));
     shape.getMShape()->setFillColor(sf::Color::Red);
     shape.getMShape()->setOrigin(50, 100);
+    shape.getMShape()->setPosition(width/2, height/2);
+
+    if (!m_font.loadFromFile("Montserrat-SemiBold.ttf"))
+    {
+
+    }
+
+    m_fps = sf::Text();
+    m_fps.setFont(m_font);
+    m_fps.setOrigin(0, 0);
+    m_fps.setFillColor(sf::Color::Green);
+    m_fps.setCharacterSize(20);
+    m_window->draw(m_fps);
+
 
     m_objectList.push_back(shape);
-
-    while (m_window->isOpen())
-    {
-        this->Update();
-    }
 }
 
 App::App() {
     m_clock = sf::Clock();
+}
+
+void App::Loop() {
+    while (m_window->isOpen())
+    {
+        this->Update();
+        this->Render();
+    }
+}
+
+void App::Render() {
+
 }
 

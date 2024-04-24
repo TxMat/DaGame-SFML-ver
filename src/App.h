@@ -19,9 +19,16 @@ public:
 
     void Init(unsigned int width, unsigned int height);
 
+    void Loop();
+
+    void Render();
+
 private:
 
     std::vector<Object> m_objectList;
+
+    sf::Text m_fps;
+    sf::Font m_font;
 
     sf::RenderWindow* m_window;
 
