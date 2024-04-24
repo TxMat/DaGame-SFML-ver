@@ -22,10 +22,6 @@ public:
 
 	Font GetFont();
 
-
-
-	Scene* GetScene();
-
 	void Start();
 
 	enum
@@ -37,9 +33,9 @@ public:
 private:
 	//Scene* m_scene;
 	//RenderWindow* m_window;
-	DWORD m_sysTime;
-	//Text m_debugText;
-	//Font m_font;
+	unsigned long m_sysTime;
+	Text m_debugText;
+	Font m_font;
 	float m_elapsedTime;
 	float m_time;
 	int m_state;
