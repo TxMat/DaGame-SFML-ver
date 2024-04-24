@@ -8,9 +8,11 @@
 #include "SFML/Graphics.hpp"
 #include "../Network/NetworkShape.h"
 
+
 class Ball: NetworkShape {
 
 public:
+	Ball(float speed);
 	void Update();
 	void Collide(sf::Vector2f collisionNormal);
 

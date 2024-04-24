@@ -4,6 +4,15 @@
 
 #include "Ball.h"
 
+Ball::Ball(float speed)
+{
+	m_speed = speed;
+	float x = (float)rand() / RAND_MAX;
+	float y = (float)rand() / RAND_MAX;
+	float magnitude = sqrt(x * x + y * y);
+	m_direction = sf::Vector2f(x / magnitude, y / magnitude);
+}
+
 void Ball::Update()
 {
 	move(m_speed * m_direction);
