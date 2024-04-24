@@ -1,16 +1,18 @@
-#include "framework.h"
-
 #pragma once
+
 class App
 {
+
 public:
 	App();
 	~App();
 
+	static App* GetApp();
+
 public:
 	void Init();
-	void PrintDebug(/*String textDebug*/ );
-	void DrawDebug();
+	//void PrintDebug(/*String textDebug*/);
+	//void DrawDebug();
 
 	void StartMenu();
 	void CreateScene();
@@ -34,13 +36,18 @@ public:
 		PLAY,
 	};
 
+protected:
+	static App* app_;
+
 private:
-	//Scene* m_scene;
-	//RenderWindow* m_window;
-	DWORD m_sysTime;
+	Scene* m_scene;
+	RenderWindow* m_window;
+	unsigned long m_sysTime;
 	//Text m_debugText;
 	//Font m_font;
 	float m_elapsedTime;
 	float m_time;
 	int m_state;
+
+	
 };
