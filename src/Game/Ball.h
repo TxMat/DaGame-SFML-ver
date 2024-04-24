@@ -5,9 +5,10 @@
 #ifndef CMAKESFMLPROJECT_BALL_H
 #define CMAKESFMLPROJECT_BALL_H
 
-#include "SFML/Graphics.hpp";
+#include "SFML/Graphics.hpp"
+#include "../Network/NetworkShape.h"
 
-class Ball {
+class Ball: NetworkShape {
 
 public:
 	void Update();

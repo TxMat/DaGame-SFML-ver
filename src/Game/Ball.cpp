@@ -6,7 +6,7 @@
 
 void Ball::Update()
 {
-	//shape.move(m_speed * m_direction);
+	move(m_speed * m_direction);
 }
 
 void Ball::Collide(sf::Vector2f collisionNormal)
