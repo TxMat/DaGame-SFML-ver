@@ -15,17 +15,17 @@ int main()
             }
         }
 
-        if (m_scene->IsPlaying())
+        if (/*m_scene->IsPlaying() */false)
         {
-            if (UpdateTime())
+            if (/*UpdateTime() */ false)
             {
-                m_scene->Update();
-                m_scene->Render();
+                //m_scene->Update();
+                //m_scene->Render();
             }
         }
         else
         {
-            m_window->close();
+            //m_window->close();
         }
 
         window.clear();
