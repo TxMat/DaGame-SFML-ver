@@ -6,9 +6,9 @@
 #define CMAKESFMLPROJECT_BALL_H
 
 #include "SFML/Graphics.hpp"
-#include "../Network/NetworkShape.h"
+#include "../Common/Object.h"
 
-class Ball: NetworkShape {
+class Ball: Object {
 
 public:
 	void Update();
