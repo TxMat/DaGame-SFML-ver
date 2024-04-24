@@ -23,8 +23,9 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/App.h
         src/Network/NetworkTransformable.cpp
         src/Network/NetworkTransformable.h
-        src/Network/NetworkShape.cpp
-        src/Network/NetworkShape.h)
+        src/Common/Object.cpp
+        src/Common/Object.h
+)
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 

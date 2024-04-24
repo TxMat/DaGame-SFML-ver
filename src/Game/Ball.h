@@ -5,11 +5,14 @@
 #ifndef CMAKESFMLPROJECT_BALL_H
 #define CMAKESFMLPROJECT_BALL_H
 
-#include "SFML/Graphics.hpp";
+#include "SFML/Graphics.hpp"
+#include "../Common/Object.h"
 
-class Ball {
+
+class Ball: Object {
 
 public:
+	Ball(float speed, float radius, sf::CircleShape *shape);
 	void Update();
 	void Collide(sf::Vector2f collisionNormal);
 

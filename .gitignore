@@ -5,4 +5,4 @@ out
 .vs
 .vscode
 CMakeSettings.json
-cmake-build-debug
+cmake-build*

@@ -2,11 +2,21 @@
 // Created by uranus on 4/24/24.
 //
 
+#include <cmath>
 #include "Ball.h"
+
+Ball::Ball(float speed, float radius, sf::CircleShape *shape) : Object(shape) {
+	shape->setRadius(radius);
+	m_speed = speed;
+	float x = (float)rand() / RAND_MAX;
+	float y = (float)rand() / RAND_MAX;
+	float magnitude = std::sqrt(x * x + y * y);
+	m_direction = sf::Vector2f(x / magnitude, y / magnitude);
+}
 
 void Ball::Update()
 {
-	//shape.move(m_speed * m_direction);
+	m_shape->move(m_speed * m_direction);
 }
 
 void Ball::Collide(sf::Vector2f collisionNormal)
