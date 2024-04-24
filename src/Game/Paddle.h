@@ -6,11 +6,13 @@
 #define CMAKESFMLPROJECT_PADDLE_H
 
 
-class Paddle {
+#include "../Common/Object.h"
+
+class Paddle : public Object{
 public:
 	Paddle();
 	~Paddle();
-	void Update();
+	void Update() override;
 
 };
 

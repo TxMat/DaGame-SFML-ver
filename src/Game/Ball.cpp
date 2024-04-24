@@ -16,6 +16,7 @@ Ball::Ball(float speed, float radius, sf::CircleShape *shape) : Object(shape) {
 
 void Ball::Update()
 {
+    Object::Update();
 	m_shape->move(m_speed * m_direction);
 }
 

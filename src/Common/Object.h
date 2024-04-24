@@ -15,7 +15,7 @@ public:
 
     [[nodiscard]] sf::Shape *getMShape() const;
 
-    void Update();
+    virtual void Update() ;
 
 protected:
 
