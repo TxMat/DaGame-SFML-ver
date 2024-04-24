@@ -15,7 +15,21 @@ int main()
             }
         }
 
+        if (m_scene->IsPlaying())
+        {
+            if (UpdateTime())
+            {
+                m_scene->Update();
+                m_scene->Render();
+            }
+        }
+        else
+        {
+            m_window->close();
+        }
+
         window.clear();
         window.display();
     }
+
 }
