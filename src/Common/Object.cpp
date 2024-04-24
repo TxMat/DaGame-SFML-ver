@@ -4,14 +4,10 @@
 
 #include "Object.h"
 
-sf::RectangleShape *Object::getMShape() const {
+Object::Object(sf::Shape *mShape) : m_shape(mShape) {
+
+}
+
+sf::Shape *Object::getMShape() const {
     return m_shape;
-}
-
-void Object::setMShape(sf::RectangleShape *mShape) {
-    m_shape = mShape;
-}
-
-Object::Object(sf::Vector2f vector) {
-    m_shape = new sf::RectangleShape(vector);
 }

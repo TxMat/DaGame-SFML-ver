@@ -11,15 +11,13 @@
 class Object {
 
 public:
-    explicit Object(sf::Vector2f vector);
+    explicit Object(sf::Shape *mShape);
 
-    [[nodiscard]] sf::RectangleShape *getMShape() const;
-
-    void setMShape(sf::RectangleShape *mShape);
+    [[nodiscard]] sf::Shape *getMShape() const;
 
 private:
 
-    sf::RectangleShape* m_shape;
+    sf::Shape* m_shape;
 
 };
 
