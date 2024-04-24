@@ -24,10 +24,6 @@ public:
 
 	Font GetFont();
 
-
-
-	Scene* GetScene();
-
 	void Start();
 
 	enum
