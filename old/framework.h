@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#ifdef WIN32             // Exclure les en-tetes Windows rarement utilises
+#include "SFML/Graphics.hpp"
+#ifdef WIN32
 // Fichiers d'en-tete Windows
 #include <windows.h>
 #include <tchar.h>
@@ -12,8 +12,8 @@ using namespace sf;
 using namespace std;
 
 //#include "main.cpp"
-#include "player.h"
-#include "grid.h"
-#include "scene.h"
-#include "app.h"
+#include "Player.h"
+#include "Grid.h"
+#include "Scene.h"
+#include "App.h"
 
