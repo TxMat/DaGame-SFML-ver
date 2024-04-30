@@ -15,7 +15,7 @@ class App {
 public:
     App();
 
-    void Update();
+    void Tick();
 
     void Init(unsigned int width, unsigned int height);
 
@@ -25,7 +25,7 @@ public:
 
 private:
 
-    std::vector<Object> m_objectList;
+    std::vector<Object*> m_objectList;
 
     sf::Text m_fps;
     sf::Text m_debug_text;

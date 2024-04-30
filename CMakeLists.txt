@@ -25,6 +25,8 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Network/NetworkTransformable.h
         src/Common/Object.cpp
         src/Common/Object.h
+        src/Common/Globals.h
+        src/Common/Globals.cpp
 )
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)

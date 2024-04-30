@@ -13,5 +13,5 @@ sf::Shape *Object::getMShape() const {
 }
 
 void Object::Update() {
-    m_shape->rotate(5.0f);
+//    m_shape->rotate(5.0f);
 }

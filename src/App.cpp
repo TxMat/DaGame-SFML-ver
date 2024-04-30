@@ -5,11 +5,13 @@
 #include <cmath>
 #include <iostream>
 #include "App.h"
+#include "Game/Ball.h"
+#include "Game/Paddle.h"
 
-void App::Update() {
+void App::Tick() {
 
     for (auto object : m_objectList) {
-        object.Update();
+        object->Update();
     }
 
     m_currentTime = m_clock.getElapsedTime();
@@ -21,8 +23,8 @@ void App::Update() {
 void App::Render() {
     m_window->clear();
 
-    for (auto object : m_objectList) {
-        m_window->draw(*object.getMShape());
+    for (const auto& object : m_objectList) {
+        m_window->draw(*object->getMShape());
     }
 
     m_window->draw(m_fps);
@@ -36,15 +38,22 @@ void App::Init(const unsigned int width, const unsigned int height) {
     m_window = new sf::RenderWindow{ { width, height }, "Best App Ever" };
     m_window->setFramerateLimit(144);
 
-    auto shape = Object(new sf::RectangleShape(sf::Vector2f(100.0f, 200.0f)));
-    shape.getMShape()->setFillColor(sf::Color::Red);
-    shape.getMShape()->setOrigin(50, 100);
-    shape.getMShape()->setPosition(width/2, height/2);
+    Object* playerOnePaddle = new Paddle(1);
+    m_objectList.push_back(playerOnePaddle);
+
+    Object* playerTwoPaddle = new Paddle(2);
+    m_objectList.push_back(playerTwoPaddle);
+
+    Object *ball = new Ball(1, 10);
+    ball->getMShape()->setPosition(width / 2, height / 2);
+    m_objectList.push_back(ball);
 
     if (!m_font.loadFromFile("Montserrat-SemiBold.ttf"))
     {
-
+        printf("failed");
     }
+
+    printf("OK");
 
     m_fps = sf::Text();
     m_fps.setFont(m_font);
@@ -58,8 +67,6 @@ void App::Init(const unsigned int width, const unsigned int height) {
     m_debug_text.setFillColor(sf::Color::Red);
     m_debug_text.setCharacterSize(20);
 
-
-    m_objectList.push_back(shape);
 }
 
 App::App() {
@@ -78,7 +85,9 @@ void App::MainLoop() {
             m_debug_text.setString(std::to_string(event.type));
         }
 
-        this->Update();
+        // todo somehow pass events to Tick
+
+        this->Tick();
         this->Render();
     }
 }

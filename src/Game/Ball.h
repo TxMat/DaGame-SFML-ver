@@ -9,10 +9,10 @@
 #include "../Common/Object.h"
 
 
-class Ball: Object {
+class Ball: public Object {
 
 public:
-	Ball(float speed, float radius, sf::CircleShape *shape);
+	Ball(float speed, float radius);
 	void Update() override;
 	void Collide(sf::Vector2f collisionNormal);
 

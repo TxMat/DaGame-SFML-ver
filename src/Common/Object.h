@@ -13,9 +13,10 @@ class Object {
 public:
     explicit Object(sf::Shape *mShape);
 
-    [[nodiscard]] sf::Shape *getMShape() const;
+    virtual ~Object() = default;
+    virtual void Update() = 0;
 
-    virtual void Update() ;
+    [[nodiscard]] sf::Shape *getMShape() const;
 
 protected:
 
