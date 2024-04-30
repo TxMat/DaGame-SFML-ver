@@ -6,7 +6,7 @@
 #include "../Common/Globals.h"
 
 // how
-Paddle::Paddle(unsigned int player_number) : Object(new sf::RectangleShape(sf::Vector2f(m_paddle_width, m_paddle_height))){
+Paddle::Paddle(unsigned int player_number) : Object(new sf::RectangleShape(sf::Vector2f(m_paddle_width, m_paddle_height))), m_player_number(player_number){
     m_shape->setFillColor(sf::Color::Red);
     m_shape->setOrigin(m_paddle_width/2, m_paddle_height/2);
     switch (player_number) {
@@ -23,5 +23,23 @@ Paddle::Paddle(unsigned int player_number) : Object(new sf::RectangleShape(sf::V
 }
 
 void Paddle::Update() {
-//    m_shape->rotate(5.0f);
+    switch (m_player_number) {
+        case 1:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+            {
+                m_shape->move(0.f, -5.f);
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+                m_shape->move(0.f, 5.f);
+            }
+            break;
+        case 2:
+        default:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            {
+                m_shape->move(0.f, -5.f);
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                m_shape->move(0.f, 5.f);
+            }
+            break;
+    }
 }

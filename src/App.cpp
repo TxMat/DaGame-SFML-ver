@@ -44,7 +44,7 @@ void App::Init(const unsigned int width, const unsigned int height) {
     Object* playerTwoPaddle = new Paddle(2);
     m_objectList.push_back(playerTwoPaddle);
 
-    Object *ball = new Ball(1, 10);
+    Object *ball = new Ball(5, 10);
     ball->getMShape()->setPosition(width / 2, height / 2);
     m_objectList.push_back(ball);
 

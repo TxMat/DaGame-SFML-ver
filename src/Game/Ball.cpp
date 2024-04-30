@@ -30,7 +30,6 @@ Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius)) {
 void Ball::Update()
 {
     Object::Update();
-    printf("x:%f, y:%f\n", m_shape->getPosition().x, m_shape->getPosition().y);
     if (m_shape->getPosition().x > WIDTH || m_shape->getPosition().x < 0) {
         m_direction.x = m_direction.x * -1;
     } else if (m_shape->getPosition().y > HEIGHT || m_shape->getPosition().y < 0) {

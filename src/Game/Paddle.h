@@ -21,6 +21,7 @@ private:
     static constexpr float m_paddle_width = 10;
     static constexpr float m_paddle_height = 100;
 
+    unsigned int m_player_number;
 };
 
 
