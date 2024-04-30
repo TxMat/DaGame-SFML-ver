@@ -22,6 +22,8 @@ private:
     static constexpr float m_paddle_height = 100;
 
     unsigned int m_player_number;
+
+    void MoveVerticallyClamped(float offsetY);
 };
 
 

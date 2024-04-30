@@ -27,19 +27,26 @@ void Paddle::Update() {
         case 1:
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
             {
-                m_shape->move(0.f, -5.f);
+                MoveVerticallyClamped(-5.f);
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                m_shape->move(0.f, 5.f);
+                MoveVerticallyClamped(5.f);
             }
             break;
         case 2:
         default:
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             {
-                m_shape->move(0.f, -5.f);
+                MoveVerticallyClamped(-5.f);
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                m_shape->move(0.f, 5.f);
+                MoveVerticallyClamped(5.f);
             }
             break;
+    }
+}
+
+void Paddle::MoveVerticallyClamped(float offsetY) {
+    auto y = m_shape->getPosition().y + offsetY;
+    if (y < HEIGHT && y > 0) {
+        m_shape->move(0.0, offsetY);
     }
 }
