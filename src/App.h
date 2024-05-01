@@ -16,28 +16,13 @@ class App {
 public:
     App();
 
-    void Tick();
-
     void Init();
 
     void MainLoop();
 
-    void Render();
-
 private:
 
     SceneManager m_sceneManager;
-
-    sf::Text m_fps;
-    sf::Text m_debug_text;
-    sf::Font m_font;
-
-//    sf::RenderWindow* m_window = nullptr;
-
-    sf::Clock m_clock;
-    sf::Time m_currentTime;
-    sf::Time m_lastTime;
-
 };
 
 

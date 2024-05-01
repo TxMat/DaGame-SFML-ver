@@ -11,10 +11,6 @@
 #include "Game/Objects/UI/FPSCounter.h"
 #include "Game/Objects/UI/DT.h"
 
-void App::Tick() {
-    m_sceneManager.Tick();
-}
-
 void App::Init() {
 
     // todo use smart ptr
@@ -34,18 +30,9 @@ void App::Init() {
     m_sceneManager.AddUIToScene(fps);
     m_sceneManager.AddUIToScene(DT);
 
-
-    m_debug_text = sf::Text();
-    m_debug_text.setFont(m_font);
-    m_debug_text.setPosition(1060, 0);
-    m_debug_text.setFillColor(sf::Color::Red);
-    m_debug_text.setCharacterSize(20);
-
 }
 
 App::App() : m_sceneManager(SceneManager()) {
-    m_clock = sf::Clock();
-
 }
 
 void App::MainLoop() {
