@@ -4,8 +4,7 @@
 #include "App.h"
 #include "Common/Globals.h"
 
-int main()
-{
+int main() {
     auto app = App();
     app.Init();
     app.MainLoop();

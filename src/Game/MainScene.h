@@ -1,15 +1,17 @@
 #pragma once
+
 #include "SFML/Graphics.hpp"
 
-class MainScene 
-{
+class MainScene {
 
 public:
-	MainScene();
-	~MainScene();
+    MainScene();
 
-	void CreateScene();
-	sf::RectangleShape GetSceneElements();
+    ~MainScene();
+
+    void CreateScene();
+
+    sf::RectangleShape GetSceneElements();
 
 private:
 

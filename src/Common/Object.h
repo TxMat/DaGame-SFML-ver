@@ -14,6 +14,7 @@ public:
     explicit Object(sf::Shape *mShape, std::string Name);
 
     virtual ~Object() = default;
+
     virtual void Update() = 0;
 
     [[nodiscard]] sf::Shape *getMShape() const;
@@ -24,7 +25,7 @@ public:
 
 protected:
 
-    sf::Shape* m_shape;
+    sf::Shape *m_shape;
 
     std::string m_name;
 };

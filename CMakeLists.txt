@@ -11,12 +11,12 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(CMakeSFMLProject src/main.cpp
-        src/Game/Ball.cpp
-        src/Game/Ball.h
+        src/Game/Objects/Ball.cpp
+        src/Game/Objects/Ball.h
         src/Game/MainScene.cpp
         src/Game/MainScene.h
-        src/Game/Paddle.cpp
-        src/Game/Paddle.h
+        src/Game/Objects/Paddle.cpp
+        src/Game/Objects/Paddle.h
         src/Common/Player.cpp
         src/Common/Player.h
         src/App.cpp

@@ -14,7 +14,7 @@ public:
 
     void Tick();
 
-    void AddToScene(Object* object);
+    void AddToScene(Object *object);
 
     void Destroy(Object *object);
 
@@ -24,17 +24,16 @@ public:
 
 private:
 
-    std::vector<Object*> m_globalObjectList = std::vector<Object*>();
+    std::vector<Object *> m_globalObjectList = std::vector<Object *>();
 
     PhysicsManager m_physicsManager;
     RenderManager m_renderManager;
 
-    sf::Window* m_window;
+    sf::Window *m_window;
 
     sf::Clock m_clock;
     sf::Time m_lastTime;
 };
-
 
 
 #endif //CMAKESFMLPROJECT_SCENEMANAGER_H

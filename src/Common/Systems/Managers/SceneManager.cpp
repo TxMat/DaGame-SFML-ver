@@ -4,7 +4,7 @@
 
 #include "SceneManager.h"
 
-SceneManager::SceneManager(): m_physicsManager(m_globalObjectList), m_renderManager(m_globalObjectList) {
+SceneManager::SceneManager() : m_physicsManager(m_globalObjectList), m_renderManager(m_globalObjectList) {
     m_clock = sf::Clock();
     // should work ?
     m_lastTime = m_clock.getElapsedTime();
@@ -23,6 +23,7 @@ void SceneManager::AddToScene(Object *object) {
 
 void SceneManager::Destroy(Object *object) {
     delete object;
-    m_globalObjectList.erase(std::remove(m_globalObjectList.begin(), m_globalObjectList.end(), object), m_globalObjectList.end());
+    m_globalObjectList.erase(std::remove(m_globalObjectList.begin(), m_globalObjectList.end(), object),
+                             m_globalObjectList.end());
 }
 

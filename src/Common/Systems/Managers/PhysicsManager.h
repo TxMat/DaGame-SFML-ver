@@ -10,7 +10,7 @@
 #include "../../Object.h"
 #include "Base/ObjectManager.h"
 
-class PhysicsManager : public ObjectManager{
+class PhysicsManager : public ObjectManager {
 
 public:
 

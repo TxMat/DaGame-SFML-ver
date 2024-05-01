@@ -8,7 +8,7 @@
 #define CMAKESFMLPROJECT_NETWORKTRANSFORM_H
 
 
-class NetworkTransformable: public sf::Transformable {
+class NetworkTransformable : public sf::Transformable {
 
 
 };

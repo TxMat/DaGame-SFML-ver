@@ -5,8 +5,8 @@
 #include <cmath>
 #include <iostream>
 #include "App.h"
-#include "Game/Ball.h"
-#include "Game/Paddle.h"
+#include "Game/Objects/Ball.h"
+#include "Game/Objects/Paddle.h"
 #include "Common/Globals.h"
 
 void App::Tick() {
@@ -22,18 +22,17 @@ void App::Tick() {
 void App::Init() {
 
     // todo use smart ptr
-    Object* playerOnePaddle = new Paddle(1);
+    Object *playerOnePaddle = new Paddle(1);
     m_sceneManager.AddToScene(playerOnePaddle);
 
-    Object* playerTwoPaddle = new Paddle(2);
+    Object *playerTwoPaddle = new Paddle(2);
     m_sceneManager.AddToScene(playerTwoPaddle);
 
     Object *ball = new Ball(5, 10);
     ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
     m_sceneManager.AddToScene(ball);
 
-    if (!m_font.loadFromFile("Montserrat-SemiBold.ttf"))
-    {
+    if (!m_font.loadFromFile("Montserrat-SemiBold.ttf")) {
         printf("failed");
     }
 
@@ -59,8 +58,7 @@ App::App() : m_sceneManager(SceneManager()) {
 }
 
 void App::MainLoop() {
-    while (m_sceneManager.isRunning)
-    {
+    while (m_sceneManager.isRunning) {
         m_sceneManager.Tick();
     }
 }

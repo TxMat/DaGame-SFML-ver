@@ -10,13 +10,13 @@
 #include "BaseManager.h"
 #include "../../../Object.h"
 
-class ObjectManager : public BaseManager{
+class ObjectManager : public BaseManager {
 
 public:
     explicit ObjectManager(std::vector<Object *> &mGlobalObjectList);
 
 protected:
-    std::vector<Object*>& m_globalObjectList;
+    std::vector<Object *> &m_globalObjectList;
 
 };
 
