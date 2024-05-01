@@ -23,7 +23,7 @@ void App::Init() {
     Object *playerTwoPaddle = new Paddle(2);
     m_sceneManager.AddObjectToScene(playerTwoPaddle);
 
-    Object *ball = new Ball(5, 10);
+    Object *ball = new Ball(1000, 10);
     ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
     m_sceneManager.AddObjectToScene(ball);
 

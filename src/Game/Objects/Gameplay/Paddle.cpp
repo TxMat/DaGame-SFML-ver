@@ -24,21 +24,22 @@ Paddle::Paddle(unsigned int player_number) : Object(
     }
 }
 
-void Paddle::Update(sf::Time deltaTime) {
+void Paddle::Update(float deltaTime) {
     switch (m_player_number) {
         case 1:
+            // todo refactor this
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-                MoveVerticallyClamped(-5.f);
+                MoveVerticallyClamped(-m_speed * deltaTime);
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                MoveVerticallyClamped(5.f);
+                MoveVerticallyClamped(m_speed * deltaTime);
             }
             break;
         case 2:
         default:
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                MoveVerticallyClamped(-5.f);
+                MoveVerticallyClamped(-m_speed * deltaTime);
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                MoveVerticallyClamped(5.f);
+                MoveVerticallyClamped(m_speed * deltaTime);
             }
             break;
     }

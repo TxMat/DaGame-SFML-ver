@@ -15,7 +15,7 @@ public:
 
     virtual ~Object() = default;
 
-    virtual void Update(sf::Time deltaTime) = 0;
+    virtual void Update(float deltaTime) = 0;
 
     [[nodiscard]] sf::Shape *getMShape() const;
 

@@ -14,7 +14,7 @@ class Ball : public Object {
 public:
     Ball(float speed, float radius);
 
-    void Update(sf::Time deltaTime) override;
+    void Update(float deltaTime) override;
 
 private:
     float m_speed;

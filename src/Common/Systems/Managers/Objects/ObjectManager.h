@@ -13,14 +13,21 @@
 class ObjectManager : public BaseManager {
 
 public:
-    explicit ObjectManager(std::vector<Object *> &mGlobalObjectList);
 
-    void Tick(sf::Time deltaTime) override;
+    void Tick(float deltaTime) override;
 
     void Render(sf::RenderWindow &window) override;
 
+    void AddObject(Object *object);
+
+//    void Destroy(Object *object) {
+//        delete object;
+//        m_globalObjectList.erase(std::remove(m_globalObjectList.begin(), m_globalObjectList.end(), object),
+//                                 m_globalObjectList.end());
+//    }
+
 protected:
-    std::vector<Object *> &m_globalObjectList;
+    std::vector<Object *> m_globalObjectList;
 
 };
 

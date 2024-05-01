@@ -10,7 +10,7 @@
 
 class BaseManager {
 public:
-    virtual void Tick(sf::Time deltaTime) = 0;
+    virtual void Tick(float deltaTime) = 0;
 
     virtual void Render(sf::RenderWindow& window) = 0;
 };

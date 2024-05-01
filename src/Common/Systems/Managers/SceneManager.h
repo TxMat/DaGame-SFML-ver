@@ -12,15 +12,13 @@
 class SceneManager {
 public:
 
+    SceneManager();
+
     void Tick();
 
     void AddObjectToScene(Object *object);
 
     void AddUIToScene(UITextElement *object);
-
-    void Destroy(Object *object);
-
-    SceneManager();
 
     bool isRunning = true;
 

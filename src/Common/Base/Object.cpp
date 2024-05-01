@@ -14,7 +14,7 @@ sf::Shape *Object::getMShape() const {
     return m_shape;
 }
 
-void Object::Update(sf::Time deltaTime) {
+void Object::Update(float deltaTime) {
 //    m_shape->rotate(5.0f);
 }
 

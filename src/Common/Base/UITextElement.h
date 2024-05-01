@@ -17,7 +17,7 @@ public:
 
     UITextElement() = default;
 
-    virtual void Update(sf::Time deltaTime) = 0;
+    virtual void Update(float deltaTime) = 0;
 
     virtual void Render(sf::RenderWindow &window) {
         window.draw(m_text);

@@ -13,7 +13,7 @@ public:
 
     Paddle(unsigned int player_number);
 
-    void Update(sf::Time deltaTime) override;
+    void Update(float deltaTime) override;
 
 private:
 
@@ -24,6 +24,7 @@ private:
     static constexpr float m_paddle_height = 100;
 
     unsigned int m_player_number;
+    float m_speed = 1000.0f;
 
     void MoveVerticallyClamped(float offsetY);
 };

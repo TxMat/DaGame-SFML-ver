@@ -6,7 +6,7 @@
 #include "../../Globals.h"
 
 SceneManager::SceneManager() :
-m_ObjectManager(m_globalObjectList),
+m_ObjectManager(),
 m_UIManager(),
 m_window(
         new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"})
@@ -14,7 +14,7 @@ m_window(
     m_clock = sf::Clock();
     // should work ?
     m_lastTime = m_clock.getElapsedTime();
-    m_window->setFramerateLimit(144);
+//    m_window->setFramerateLimit(144);
 }
 
 void SceneManager::Tick() {
@@ -28,7 +28,7 @@ void SceneManager::Tick() {
     }
 
     sf::Time currentTime = m_clock.getElapsedTime();
-    auto elapsedTime = currentTime - m_lastTime;
+    auto elapsedTime = (currentTime - m_lastTime).asSeconds();
     m_lastTime = currentTime;
 
     m_UIManager.Tick(elapsedTime);
@@ -40,17 +40,13 @@ void SceneManager::Tick() {
     m_window->display();
 }
 
-void SceneManager::AddObjectToScene(Object *object) {
-    m_globalObjectList.push_back(object);
-}
 
-void SceneManager::Destroy(Object *object) {
-    delete object;
-    m_globalObjectList.erase(std::remove(m_globalObjectList.begin(), m_globalObjectList.end(), object),
-                             m_globalObjectList.end());
-}
 
 void SceneManager::AddUIToScene(UITextElement *object) {
     m_UIManager.AddUIElement(object);
+}
+
+void SceneManager::AddObjectToScene(Object *object) {
+    m_ObjectManager.AddObject(object);
 }
 

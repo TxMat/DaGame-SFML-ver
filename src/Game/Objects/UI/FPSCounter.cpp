@@ -17,7 +17,7 @@ FPSCounter::FPSCounter() {
     m_text.setCharacterSize(20);
 }
 
-void FPSCounter::Update(sf::Time deltaTime) {
-    double fps = 1.0f / deltaTime.asSeconds(); // the asSeconds returns a float
+void FPSCounter::Update(float deltaTime) {
+    double fps = 1.0f / deltaTime; // the asSeconds returns a float
     m_text.setString(std::string("Fps : " + std::to_string(floor(fps))));
 }

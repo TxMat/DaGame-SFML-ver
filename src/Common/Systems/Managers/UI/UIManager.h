@@ -12,21 +12,11 @@
 
 class UIManager : public BaseManager{
 public:
-    void Tick(sf::Time deltaTime) override {
-        for (auto& element : m_uiElements) {
-            element->Update(deltaTime);
-        }
-    }
+    void Tick(float deltaTime) override;
 
-    void Render(sf::RenderWindow& window) {
-        for (auto& element : m_uiElements) {
-            element->Render(window);
-        }
-    }
+    void Render(sf::RenderWindow& window) override;
 
-    void AddUIElement(UITextElement* element) {
-        m_uiElements.push_back(element);
-    }
+    void AddUIElement(UITextElement* element);
 
 private:
     std::vector<UITextElement*> m_uiElements;

@@ -28,8 +28,8 @@ Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Bal
     m_direction = sf::Vector2f(x / magnitude, y / magnitude);
 }
 
-void Ball::Update(sf::Time deltaTime) {
-    Object::Update(sf::Time());
+void Ball::Update(float deltaTime) {
+    Object::Update(deltaTime);
     auto pos = m_shape->getPosition();
     if (pos.x > WIDTH || pos.x < 0) {
         m_direction.x = m_direction.x * -1;
@@ -41,5 +41,5 @@ void Ball::Update(sf::Time deltaTime) {
 //	float y = collisionNormal.y != 0.0 ? m_direction.y * collisionNormal.y : m_direction.y;
 //	m_direction = sf::Vector2f(x, y);
 
-    m_shape->move(m_speed * m_direction);
+    m_shape->move((m_speed * m_direction) * deltaTime);
 }
