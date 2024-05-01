@@ -18,8 +18,6 @@ public:
 
     void Tick(sf::Time deltaTime) override;
 
-    sf::RenderWindow *getWindow() const;
-
 protected:
     sf::RenderWindow *m_window;
 };

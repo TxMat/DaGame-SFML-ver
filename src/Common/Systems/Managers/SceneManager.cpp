@@ -8,21 +8,9 @@ SceneManager::SceneManager(): m_physicsManager(m_globalObjectList), m_renderMana
     m_clock = sf::Clock();
     // should work ?
     m_lastTime = m_clock.getElapsedTime();
-    m_window = m_renderManager.getWindow();
 }
 
 void SceneManager::Tick() {
-
-    // todo somehow pass events to Tick
-    for (auto event = sf::Event{}; m_window->pollEvent(event);)
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            m_window->close();
-        }
-//        m_debug_text.setString(std::to_string(event.type));
-    }
-
     sf::Time currentTime = m_clock.getElapsedTime();
     auto elapsedTime = currentTime - m_lastTime;
     m_physicsManager.Tick(elapsedTime);

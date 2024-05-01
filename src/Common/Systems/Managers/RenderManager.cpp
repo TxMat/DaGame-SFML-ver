@@ -10,6 +10,16 @@ RenderManager::RenderManager(std::vector<Object *> &mGlobalObjectList) : ObjectM
 }
 
 void RenderManager::Tick(sf::Time deltaTime) {
+
+    for (auto event = sf::Event{}; m_window->pollEvent(event);)
+    {
+        if (event.type == sf::Event::Closed)
+        {
+            m_window->close();
+        }
+//        m_debug_text.setString(std::to_string(event.type));
+    }
+
     m_window->clear();
 
     for (auto object : m_globalObjectList) {
@@ -17,8 +27,4 @@ void RenderManager::Tick(sf::Time deltaTime) {
     }
 
     m_window->display();
-}
-
-sf::RenderWindow *RenderManager::getWindow() const {
-    return m_window;
 }
