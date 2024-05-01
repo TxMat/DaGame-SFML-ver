@@ -15,7 +15,7 @@
 class UITextElement {
 public:
 
-    UITextElement() = default;
+    UITextElement();
 
     virtual void Update(float deltaTime) = 0;
 
@@ -23,8 +23,9 @@ public:
         window.draw(m_text);
     }
 
-public:
+protected:
     sf::Text m_text;
+    sf::Font m_font;
 };
 
 

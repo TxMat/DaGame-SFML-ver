@@ -15,8 +15,6 @@ public:
     explicit FPSCounter();
 
     void Update(float deltaTime) override;
-
-    sf::Font m_font;
 };
 
 
