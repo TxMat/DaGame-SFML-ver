@@ -12,5 +12,5 @@ DT::DT() : UITextElement() {
 }
 
 void DT::Update(float deltaTime) {
-    m_text.setString(std::string("Delta Time : " + std::to_string((deltaTime*1000)) + "ms"));
+    m_text.setString(std::string("Delta Time : " + std::to_string((deltaTime * 1000)) + "ms"));
 }
