@@ -5,6 +5,8 @@
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
 #include "Common/Object.h"
+#include "Common/Systems/PhysicsManager.h"
+#include "Common/Systems/RenderManager.h"
 
 #ifndef CMAKESFMLPROJECT_APP_H
 #define CMAKESFMLPROJECT_APP_H
@@ -25,7 +27,10 @@ public:
 
 private:
 
-    std::vector<Object*> m_objectList;
+    std::vector<Object*> m_globalObjectList;
+
+    PhysicsManager m_physicsManager;
+    RenderManager m_renderManager;
 
     sf::Text m_fps;
     sf::Text m_debug_text;

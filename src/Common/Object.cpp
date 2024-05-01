@@ -15,3 +15,13 @@ sf::Shape *Object::getMShape() const {
 void Object::Update() {
 //    m_shape->rotate(5.0f);
 }
+
+bool Object::CheckCollision(Object* other) {
+    // Implement narrow-phase collision detection between this object and another object
+    // Return true if collision detected, false otherwise
+    return m_shape->getGlobalBounds().intersects(other->m_shape->getGlobalBounds());
+}
+
+void Object::HandleCollision(Object* other) {
+    // Handle collision response between this object and another object
+}

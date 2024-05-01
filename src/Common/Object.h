@@ -18,10 +18,13 @@ public:
 
     [[nodiscard]] sf::Shape *getMShape() const;
 
+    virtual bool CheckCollision(Object *other);
+
+    virtual void HandleCollision(Object *other);
+
 protected:
 
     sf::Shape* m_shape;
-
 };
 
 

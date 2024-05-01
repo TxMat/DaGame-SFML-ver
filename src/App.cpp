@@ -10,9 +10,7 @@
 
 void App::Tick() {
 
-    for (auto object : m_objectList) {
-        object->Update();
-    }
+    m_physicsManager.Update();
 
     m_currentTime = m_clock.getElapsedTime();
     double fps = 1.0f / (m_currentTime.asSeconds() - m_lastTime.asSeconds()); // the asSeconds returns a float
@@ -23,7 +21,9 @@ void App::Tick() {
 void App::Render() {
     m_window->clear();
 
-    for (const auto& object : m_objectList) {
+//    m_renderManager.Update();
+
+    for (const auto& object : m_globalObjectList) {
         m_window->draw(*object->getMShape());
     }
 
@@ -39,14 +39,14 @@ void App::Init(const unsigned int width, const unsigned int height) {
     m_window->setFramerateLimit(144);
 
     Object* playerOnePaddle = new Paddle(1);
-    m_objectList.push_back(playerOnePaddle);
+    m_globalObjectList.push_back(playerOnePaddle);
 
     Object* playerTwoPaddle = new Paddle(2);
-    m_objectList.push_back(playerTwoPaddle);
+    m_globalObjectList.push_back(playerTwoPaddle);
 
     Object *ball = new Ball(5, 10);
     ball->getMShape()->setPosition(width / 2, height / 2);
-    m_objectList.push_back(ball);
+    m_globalObjectList.push_back(ball);
 
     if (!m_font.loadFromFile("Montserrat-SemiBold.ttf"))
     {
@@ -69,7 +69,7 @@ void App::Init(const unsigned int width, const unsigned int height) {
 
 }
 
-App::App() {
+App::App() : m_physicsManager(&m_globalObjectList), m_renderManager(&m_globalObjectList){
     m_clock = sf::Clock();
 }
 

@@ -27,6 +27,10 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Object.h
         src/Common/Globals.h
         src/Common/Globals.cpp
+        src/Common/Systems/PhysicsManager.cpp
+        src/Common/Systems/PhysicsManager.h
+        src/Common/Systems/RenderManager.cpp
+        src/Common/Systems/RenderManager.h
 )
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
