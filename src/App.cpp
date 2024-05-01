@@ -9,6 +9,7 @@
 #include "Game/Objects/Gameplay/Paddle.h"
 #include "Common/Globals.h"
 #include "Game/Objects/UI/FPSCounter.h"
+#include "Game/Objects/UI/DT.h"
 
 void App::Tick() {
     m_sceneManager.Tick();
@@ -28,7 +29,10 @@ void App::Init() {
     m_sceneManager.AddObjectToScene(ball);
 
     auto fps = new FPSCounter();
+    auto DT = new class DT();
+
     m_sceneManager.AddUIToScene(fps);
+    m_sceneManager.AddUIToScene(DT);
 
 
     m_debug_text = sf::Text();
