@@ -6,7 +6,8 @@
 #include "../Common/Globals.h"
 
 // how
-Paddle::Paddle(unsigned int player_number) : Object(new sf::RectangleShape(sf::Vector2f(m_paddle_width, m_paddle_height))), m_player_number(player_number){
+Paddle::Paddle(unsigned int player_number) : Object(
+        new sf::RectangleShape(sf::Vector2f(m_paddle_width, m_paddle_height)), "Paddle"), m_player_number(player_number){
     m_shape->setFillColor(sf::Color::Red);
     m_shape->setOrigin(m_paddle_width/2, m_paddle_height/2);
     switch (player_number) {

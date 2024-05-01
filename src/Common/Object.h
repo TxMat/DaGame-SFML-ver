@@ -11,7 +11,7 @@
 class Object {
 
 public:
-    explicit Object(sf::Shape *mShape);
+    explicit Object(sf::Shape *mShape, std::string Name);
 
     virtual ~Object() = default;
     virtual void Update() = 0;
@@ -25,6 +25,8 @@ public:
 protected:
 
     sf::Shape* m_shape;
+
+    std::string m_name;
 };
 
 

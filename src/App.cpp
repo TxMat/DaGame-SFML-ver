@@ -7,46 +7,30 @@
 #include "App.h"
 #include "Game/Ball.h"
 #include "Game/Paddle.h"
+#include "Common/Globals.h"
 
 void App::Tick() {
 
-    m_physicsManager.Update();
+    m_sceneManager.Tick();
 
-    m_currentTime = m_clock.getElapsedTime();
-    double fps = 1.0f / (m_currentTime.asSeconds() - m_lastTime.asSeconds()); // the asSeconds returns a float
-    m_fps.setString(std::string("Fps : " + std::to_string(floor(fps))));
-    m_lastTime = m_currentTime;
+//    m_currentTime = m_clock.getElapsedTime();
+//    double fps = 1.0f / (m_currentTime.asSeconds() - m_lastTime.asSeconds()); // the asSeconds returns a float
+//    m_fps.setString(std::string("Fps : " + std::to_string(floor(fps))));
+//    m_lastTime = m_currentTime;
 }
 
-void App::Render() {
-    m_window->clear();
+void App::Init() {
 
-//    m_renderManager.Update();
-
-    for (const auto& object : m_globalObjectList) {
-        m_window->draw(*object->getMShape());
-    }
-
-    m_window->draw(m_fps);
-    m_window->draw(m_debug_text);
-
-    m_window->display();
-
-}
-
-void App::Init(const unsigned int width, const unsigned int height) {
-    m_window = new sf::RenderWindow{ { width, height }, "Best App Ever" };
-    m_window->setFramerateLimit(144);
-
+    // todo use smart ptr
     Object* playerOnePaddle = new Paddle(1);
-    m_globalObjectList.push_back(playerOnePaddle);
+    m_sceneManager.AddToScene(playerOnePaddle);
 
     Object* playerTwoPaddle = new Paddle(2);
-    m_globalObjectList.push_back(playerTwoPaddle);
+    m_sceneManager.AddToScene(playerTwoPaddle);
 
     Object *ball = new Ball(5, 10);
-    ball->getMShape()->setPosition(width / 2, height / 2);
-    m_globalObjectList.push_back(ball);
+    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+    m_sceneManager.AddToScene(ball);
 
     if (!m_font.loadFromFile("Montserrat-SemiBold.ttf"))
     {
@@ -55,11 +39,11 @@ void App::Init(const unsigned int width, const unsigned int height) {
 
     printf("OK");
 
-    m_fps = sf::Text();
-    m_fps.setFont(m_font);
-    m_fps.setFillColor(sf::Color::Green);
-    m_fps.setCharacterSize(20);
-    m_window->draw(m_fps);
+//    m_fps = sf::Text();
+//    m_fps.setFont(m_font);
+//    m_fps.setFillColor(sf::Color::Green);
+//    m_fps.setCharacterSize(20);
+//    m_window->draw(m_fps);
 
     m_debug_text = sf::Text();
     m_debug_text.setFont(m_font);
@@ -69,26 +53,15 @@ void App::Init(const unsigned int width, const unsigned int height) {
 
 }
 
-App::App() : m_physicsManager(&m_globalObjectList), m_renderManager(&m_globalObjectList){
+App::App() : m_sceneManager(SceneManager()) {
     m_clock = sf::Clock();
+
 }
 
 void App::MainLoop() {
-    while (m_window->isOpen())
+    while (m_sceneManager.isRunning)
     {
-        for (auto event = sf::Event{}; m_window->pollEvent(event);)
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                m_window->close();
-            }
-            m_debug_text.setString(std::to_string(event.type));
-        }
-
-        // todo somehow pass events to Tick
-
-        this->Tick();
-        this->Render();
+        m_sceneManager.Tick();
     }
 }
 

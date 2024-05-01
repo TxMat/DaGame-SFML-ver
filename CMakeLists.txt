@@ -27,10 +27,16 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Object.h
         src/Common/Globals.h
         src/Common/Globals.cpp
-        src/Common/Systems/PhysicsManager.cpp
-        src/Common/Systems/PhysicsManager.h
-        src/Common/Systems/RenderManager.cpp
-        src/Common/Systems/RenderManager.h
+        src/Common/Systems/Managers/PhysicsManager.cpp
+        src/Common/Systems/Managers/PhysicsManager.h
+        src/Common/Systems/Managers/RenderManager.cpp
+        src/Common/Systems/Managers/RenderManager.h
+        src/Common/Systems/Managers/SceneManager.cpp
+        src/Common/Systems/Managers/SceneManager.h
+        src/Common/Systems/Managers/Base/BaseManager.cpp
+        src/Common/Systems/Managers/Base/BaseManager.h
+        src/Common/Systems/Managers/Base/ObjectManager.cpp
+        src/Common/Systems/Managers/Base/ObjectManager.h
 )
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)

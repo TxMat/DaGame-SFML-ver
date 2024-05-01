@@ -7,6 +7,6 @@
 int main()
 {
     auto app = App();
-    app.Init(WIDTH, HEIGHT);
+    app.Init();
     app.MainLoop();
 }

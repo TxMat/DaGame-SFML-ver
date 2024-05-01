@@ -5,8 +5,9 @@
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
 #include "Common/Object.h"
-#include "Common/Systems/PhysicsManager.h"
-#include "Common/Systems/RenderManager.h"
+#include "Common/Systems/Managers/PhysicsManager.h"
+#include "Common/Systems/Managers/RenderManager.h"
+#include "Common/Systems/Managers/SceneManager.h"
 
 #ifndef CMAKESFMLPROJECT_APP_H
 #define CMAKESFMLPROJECT_APP_H
@@ -19,7 +20,7 @@ public:
 
     void Tick();
 
-    void Init(unsigned int width, unsigned int height);
+    void Init();
 
     void MainLoop();
 
@@ -27,16 +28,13 @@ public:
 
 private:
 
-    std::vector<Object*> m_globalObjectList;
-
-    PhysicsManager m_physicsManager;
-    RenderManager m_renderManager;
+    SceneManager m_sceneManager;
 
     sf::Text m_fps;
     sf::Text m_debug_text;
     sf::Font m_font;
 
-    sf::RenderWindow* m_window;
+//    sf::RenderWindow* m_window = nullptr;
 
     sf::Clock m_clock;
     sf::Time m_currentTime;

@@ -7,7 +7,7 @@
 #include "Ball.h"
 #include "../Common/Globals.h"
 
-Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius)) {
+Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Ball") {
     m_shape->setFillColor(sf::Color::White);
     m_shape->setOrigin(radius, radius);
 	m_speed = speed;

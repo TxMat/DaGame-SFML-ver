@@ -4,7 +4,9 @@
 
 #include "Object.h"
 
-Object::Object(sf::Shape *mShape) : m_shape(mShape) {
+#include <utility>
+
+Object::Object(sf::Shape *mShape, std::string Name) : m_shape(mShape), m_name(std::move(Name)) {
 
 }
 
