@@ -11,8 +11,6 @@ SceneManager::SceneManager() :
         m_window(
                 new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"}) {
     m_clock = sf::Clock();
-    // should work ?
-    m_lastTime = m_clock.getElapsedTime();
 //    m_window->setFramerateLimit(144);
 }
 
@@ -24,9 +22,7 @@ void SceneManager::Tick() {
         }
     }
 
-    sf::Time currentTime = m_clock.getElapsedTime();
-    auto elapsedTime = (currentTime - m_lastTime).asSeconds();
-    m_lastTime = currentTime;
+    float elapsedTime = m_clock.restart().asSeconds();
 
     m_UIManager.Tick(elapsedTime);
     m_ObjectManager.Tick(elapsedTime);
