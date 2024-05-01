@@ -11,20 +11,20 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(CMakeSFMLProject src/main.cpp
-        src/Game/Objects/Ball.cpp
-        src/Game/Objects/Ball.h
+        src/Game/Objects/Gameplay/Ball.cpp
+        src/Game/Objects/Gameplay/Ball.h
         src/Game/MainScene.cpp
         src/Game/MainScene.h
-        src/Game/Objects/Paddle.cpp
-        src/Game/Objects/Paddle.h
+        src/Game/Objects/Gameplay/Paddle.cpp
+        src/Game/Objects/Gameplay/Paddle.h
         src/Common/Player.cpp
         src/Common/Player.h
         src/App.cpp
         src/App.h
         src/Network/NetworkTransformable.cpp
         src/Network/NetworkTransformable.h
-        src/Common/Object.cpp
-        src/Common/Object.h
+        src/Common/Base/Object.cpp
+        src/Common/Base/Object.h
         src/Common/Globals.h
         src/Common/Globals.cpp
         src/Common/Systems/Managers/PhysicsManager.cpp
@@ -37,6 +37,12 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Systems/Managers/Base/BaseManager.h
         src/Common/Systems/Managers/Base/ObjectManager.cpp
         src/Common/Systems/Managers/Base/ObjectManager.h
+        src/Game/Objects/UI/FPSCounter.cpp
+        src/Game/Objects/UI/FPSCounter.h
+        src/Common/Base/UITextElement.cpp
+        src/Common/Base/UITextElement.h
+        src/Common/Systems/Managers/UIManager.cpp
+        src/Common/Systems/Managers/UIManager.h
 )
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)

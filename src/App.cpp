@@ -5,44 +5,31 @@
 #include <cmath>
 #include <iostream>
 #include "App.h"
-#include "Game/Objects/Ball.h"
-#include "Game/Objects/Paddle.h"
+#include "Game/Objects/Gameplay/Ball.h"
+#include "Game/Objects/Gameplay/Paddle.h"
 #include "Common/Globals.h"
+#include "Game/Objects/UI/FPSCounter.h"
 
 void App::Tick() {
-
     m_sceneManager.Tick();
-
-//    m_currentTime = m_clock.getElapsedTime();
-//    double fps = 1.0f / (m_currentTime.asSeconds() - m_lastTime.asSeconds()); // the asSeconds returns a float
-//    m_fps.setString(std::string("Fps : " + std::to_string(floor(fps))));
-//    m_lastTime = m_currentTime;
 }
 
 void App::Init() {
 
     // todo use smart ptr
     Object *playerOnePaddle = new Paddle(1);
-    m_sceneManager.AddToScene(playerOnePaddle);
+    m_sceneManager.AddObjectToScene(playerOnePaddle);
 
     Object *playerTwoPaddle = new Paddle(2);
-    m_sceneManager.AddToScene(playerTwoPaddle);
+    m_sceneManager.AddObjectToScene(playerTwoPaddle);
 
     Object *ball = new Ball(5, 10);
     ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
-    m_sceneManager.AddToScene(ball);
+    m_sceneManager.AddObjectToScene(ball);
 
-    if (!m_font.loadFromFile("Montserrat-SemiBold.ttf")) {
-        printf("failed");
-    }
+    auto fps = new FPSCounter();
+    m_sceneManager.AddUIToScene(fps);
 
-    printf("OK");
-
-//    m_fps = sf::Text();
-//    m_fps.setFont(m_font);
-//    m_fps.setFillColor(sf::Color::Green);
-//    m_fps.setCharacterSize(20);
-//    m_window->draw(m_fps);
 
     m_debug_text = sf::Text();
     m_debug_text.setFont(m_font);

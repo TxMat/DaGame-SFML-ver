@@ -19,11 +19,11 @@ void RenderManager::Tick(sf::Time deltaTime) {
 //        m_debug_text.setString(std::to_string(event.type));
     }
 
-    m_window->clear();
-
     for (auto object: m_globalObjectList) {
         m_window->draw(*object->getMShape());
     }
+}
 
-    m_window->display();
+sf::RenderWindow *RenderManager::getWindow() const {
+    return m_window;
 }

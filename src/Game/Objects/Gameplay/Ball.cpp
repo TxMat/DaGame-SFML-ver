@@ -5,12 +5,13 @@
 #include <cmath>
 #include <random>
 #include "Ball.h"
-#include "../../Common/Globals.h"
+#include "../../../Common/Globals.h"
 
 Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Ball") {
     m_shape->setFillColor(sf::Color::White);
     m_shape->setOrigin(radius, radius);
     m_speed = speed;
+    b_shouldSimulatePhysics = true;
 
     std::random_device rd;
     std::mt19937 gen(rd()); // Mersenne Twister 19937 generator
@@ -27,8 +28,8 @@ Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Bal
     m_direction = sf::Vector2f(x / magnitude, y / magnitude);
 }
 
-void Ball::Update() {
-    Object::Update();
+void Ball::Update(sf::Time deltaTime) {
+    Object::Update(sf::Time());
     auto pos = m_shape->getPosition();
     if (pos.x > WIDTH || pos.x < 0) {
         m_direction.x = m_direction.x * -1;

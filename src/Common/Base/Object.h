@@ -15,7 +15,7 @@ public:
 
     virtual ~Object() = default;
 
-    virtual void Update() = 0;
+    virtual void Update(sf::Time deltaTime) = 0;
 
     [[nodiscard]] sf::Shape *getMShape() const;
 
@@ -23,10 +23,11 @@ public:
 
     virtual void HandleCollision(Object *other);
 
+    bool b_shouldSimulatePhysics = false;
+
 protected:
 
     sf::Shape *m_shape;
-
     std::string m_name;
 };
 

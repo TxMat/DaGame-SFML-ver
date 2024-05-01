@@ -7,7 +7,7 @@
 
 
 #include <vector>
-#include "../../Object.h"
+#include "../../Base/Object.h"
 #include "Base/ObjectManager.h"
 
 class RenderManager : public ObjectManager {
@@ -17,6 +17,8 @@ public:
     explicit RenderManager(std::vector<Object *> &mGlobalObjectList);
 
     void Tick(sf::Time deltaTime) override;
+
+    [[nodiscard]] sf::RenderWindow *getWindow() const;
 
 protected:
     sf::RenderWindow *m_window;

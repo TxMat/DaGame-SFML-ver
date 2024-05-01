@@ -4,7 +4,7 @@
 
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
-#include "Common/Object.h"
+#include "Common/Base/Object.h"
 #include "Common/Systems/Managers/PhysicsManager.h"
 #include "Common/Systems/Managers/RenderManager.h"
 #include "Common/Systems/Managers/SceneManager.h"

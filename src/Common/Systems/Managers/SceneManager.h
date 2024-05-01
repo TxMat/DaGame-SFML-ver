@@ -8,13 +8,16 @@
 
 #include "RenderManager.h"
 #include "PhysicsManager.h"
+#include "UIManager.h"
 
 class SceneManager {
 public:
 
     void Tick();
 
-    void AddToScene(Object *object);
+    void AddObjectToScene(Object *object);
+
+    void AddUIToScene(UITextElement *object);
 
     void Destroy(Object *object);
 
@@ -28,8 +31,9 @@ private:
 
     PhysicsManager m_physicsManager;
     RenderManager m_renderManager;
+    UIManager m_UIManager;
 
-    sf::Window *m_window;
+    sf::RenderWindow *m_window;
 
     sf::Clock m_clock;
     sf::Time m_lastTime;

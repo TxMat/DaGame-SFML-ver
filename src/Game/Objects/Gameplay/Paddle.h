@@ -6,14 +6,14 @@
 #define CMAKESFMLPROJECT_PADDLE_H
 
 #include "SFML/Graphics.hpp"
-#include "../../Common/Object.h"
+#include "../../../Common/Base/Object.h"
 
 class Paddle : public Object {
 public:
 
     Paddle(unsigned int player_number);
 
-    void Update() override;
+    void Update(sf::Time deltaTime) override;
 
 private:
 

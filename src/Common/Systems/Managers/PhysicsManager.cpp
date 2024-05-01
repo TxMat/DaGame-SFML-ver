@@ -10,6 +10,6 @@ PhysicsManager::PhysicsManager(std::vector<Object *> &mGlobalObjectList) : Objec
 
 void PhysicsManager::Tick(sf::Time deltaTime) {
     for (auto object: m_globalObjectList) {
-        object->Update();
+        object->Update(deltaTime);
     }
 }
