@@ -6,9 +6,9 @@
 #define CMAKESFMLPROJECT_UIMANAGER_H
 
 
-#include "Base/BaseManager.h"
+#include "../Base/BaseManager.h"
 #include "SFML/Graphics/RenderWindow.hpp"
-#include "../../Base/UITextElement.h"
+#include "../../../Base/UITextElement.h"
 
 class UIManager : public BaseManager{
 public:

@@ -27,22 +27,18 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Base/Object.h
         src/Common/Globals.h
         src/Common/Globals.cpp
-        src/Common/Systems/Managers/PhysicsManager.cpp
-        src/Common/Systems/Managers/PhysicsManager.h
-        src/Common/Systems/Managers/RenderManager.cpp
-        src/Common/Systems/Managers/RenderManager.h
         src/Common/Systems/Managers/SceneManager.cpp
         src/Common/Systems/Managers/SceneManager.h
         src/Common/Systems/Managers/Base/BaseManager.cpp
         src/Common/Systems/Managers/Base/BaseManager.h
-        src/Common/Systems/Managers/Base/ObjectManager.cpp
-        src/Common/Systems/Managers/Base/ObjectManager.h
+        src/Common/Systems/Managers/Objects/ObjectManager.cpp
+        src/Common/Systems/Managers/Objects/ObjectManager.h
         src/Game/Objects/UI/FPSCounter.cpp
         src/Game/Objects/UI/FPSCounter.h
         src/Common/Base/UITextElement.cpp
         src/Common/Base/UITextElement.h
-        src/Common/Systems/Managers/UIManager.cpp
-        src/Common/Systems/Managers/UIManager.h
+        src/Common/Systems/Managers/UI/UIManager.cpp
+        src/Common/Systems/Managers/UI/UIManager.h
 )
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)

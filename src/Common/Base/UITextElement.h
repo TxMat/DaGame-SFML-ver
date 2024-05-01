@@ -23,7 +23,7 @@ public:
         window.draw(m_text);
     }
 
-protected:
+public:
     sf::Text m_text;
 };
 

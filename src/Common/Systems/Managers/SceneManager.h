@@ -6,9 +6,8 @@
 #define CMAKESFMLPROJECT_SCENEMANAGER_H
 
 
-#include "RenderManager.h"
-#include "PhysicsManager.h"
-#include "UIManager.h"
+#include "UI/UIManager.h"
+#include "Objects/ObjectManager.h"
 
 class SceneManager {
 public:
@@ -29,8 +28,7 @@ private:
 
     std::vector<Object *> m_globalObjectList = std::vector<Object *>();
 
-    PhysicsManager m_physicsManager;
-    RenderManager m_renderManager;
+    ObjectManager m_ObjectManager;
     UIManager m_UIManager;
 
     sf::RenderWindow *m_window;

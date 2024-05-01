@@ -7,13 +7,17 @@
 
 
 #include <vector>
-#include "BaseManager.h"
+#include "../Base/BaseManager.h"
 #include "../../../Base/Object.h"
 
 class ObjectManager : public BaseManager {
 
 public:
     explicit ObjectManager(std::vector<Object *> &mGlobalObjectList);
+
+    void Tick(sf::Time deltaTime) override;
+
+    void Render(sf::RenderWindow &window) override;
 
 protected:
     std::vector<Object *> &m_globalObjectList;
