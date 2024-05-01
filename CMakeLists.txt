@@ -39,6 +39,8 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Base/UITextElement.h
         src/Common/Systems/Managers/UI/UIManager.cpp
         src/Common/Systems/Managers/UI/UIManager.h
+        src/Game/Objects/UI/DT.cpp
+        src/Game/Objects/UI/DT.h
 )
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)

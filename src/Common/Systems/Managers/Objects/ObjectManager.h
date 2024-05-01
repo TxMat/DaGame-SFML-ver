@@ -14,11 +14,15 @@ class ObjectManager : public BaseManager {
 
 public:
 
+    ObjectManager();
+
     void Tick(float deltaTime) override;
 
     void Render(sf::RenderWindow &window) override;
 
     void AddObject(Object *object);
+
+    [[noreturn]] void AutoTick();
 
 //    void Destroy(Object *object) {
 //        delete object;
@@ -29,6 +33,8 @@ public:
 protected:
     std::vector<Object *> m_globalObjectList;
 
+    sf::Clock inner;
+    sf::Time m_tickFramerate = sf::seconds(1.f / 144);
 };
 
 
