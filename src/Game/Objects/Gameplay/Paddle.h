@@ -11,7 +11,7 @@
 class Paddle : public Object {
 public:
 
-    Paddle(unsigned int player_number);
+    explicit Paddle(unsigned int player_number);
 
     void Update(float deltaTime) override;
 

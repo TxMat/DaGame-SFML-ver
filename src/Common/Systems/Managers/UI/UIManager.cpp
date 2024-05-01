@@ -5,7 +5,7 @@
 #include "UIManager.h"
 
 void UIManager::Render(sf::RenderWindow &window) {
-    for (auto& element : m_uiElements) {
+    for (auto &element: m_uiElements) {
         element->Render(window);
     }
 }
@@ -15,7 +15,7 @@ void UIManager::AddUIElement(UITextElement *element) {
 }
 
 void UIManager::Tick(float deltaTime) {
-    for (auto& element : m_uiElements) {
+    for (auto &element: m_uiElements) {
         element->Update(deltaTime);
     }
 }

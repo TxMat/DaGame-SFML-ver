@@ -6,11 +6,10 @@
 #include "../../Globals.h"
 
 SceneManager::SceneManager() :
-m_ObjectManager(),
-m_UIManager(),
-m_window(
-        new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"})
-{
+        m_ObjectManager(),
+        m_UIManager(),
+        m_window(
+                new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"}) {
     m_clock = sf::Clock();
     // should work ?
     m_lastTime = m_clock.getElapsedTime();
@@ -19,10 +18,8 @@ m_window(
 
 void SceneManager::Tick() {
 
-    for (auto event = sf::Event{}; m_window->pollEvent(event);)
-    {
-        if (event.type == sf::Event::Closed)
-        {
+    for (auto event = sf::Event{}; m_window->pollEvent(event);) {
+        if (event.type == sf::Event::Closed) {
             m_window->close();
         }
     }
@@ -39,7 +36,6 @@ void SceneManager::Tick() {
     m_UIManager.Render(*m_window);
     m_window->display();
 }
-
 
 
 void SceneManager::AddUIToScene(UITextElement *object) {
