@@ -41,5 +41,5 @@ void Ball::Update(float deltaTime) {
 //	float y = collisionNormal.y != 0.0 ? m_direction.y * collisionNormal.y : m_direction.y;
 //	m_direction = sf::Vector2f(x, y);
 
-    m_shape->move((m_speed * m_direction) * deltaTime);
+    m_shape->move(((m_speed * deltaTime) * m_direction));
 }
