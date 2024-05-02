@@ -27,8 +27,8 @@ void App::Init() {
     auto fps = new FPSCounter();
     auto DT = new class DT();
 
-    m_sceneManager.AddUIToScene(fps);
-    m_sceneManager.AddUIToScene(DT);
+    m_sceneManager.AddUIToScene(fps, true);
+    m_sceneManager.AddUIToScene(DT, true);
 
 }
 
@@ -37,7 +37,7 @@ App::App() : m_sceneManager(SceneManager()) {
 
 void App::MainLoop() {
     while (m_sceneManager.isRunning) {
-        m_sceneManager.Tick();
+        m_sceneManager.UnrestrictedTick();
     }
 }
 

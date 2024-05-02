@@ -8,6 +8,7 @@
 
 #include "UI/UIManager.h"
 #include "Objects/ObjectManager.h"
+#include <thread>
 
 class SceneManager {
 public:
@@ -16,9 +17,11 @@ public:
 
     void Tick();
 
+    void UnrestrictedTick();
+
     void AddObjectToScene(Object *object);
 
-    void AddUIToScene(UITextElement *object);
+    void AddUIToScene(UITextElement *object, bool shouldFastTick);
 
     bool isRunning = true;
 
@@ -31,7 +34,11 @@ private:
 
     sf::RenderWindow *m_window;
 
-    sf::Clock m_clock;
+    sf::Time m_tickFramerate = sf::seconds(1.f / 144);
+
+    sf::Clock m_fixedClock;
+    sf::Clock m_fastClock;
+    std::thread::native_handle_type m_h;
 };
 
 

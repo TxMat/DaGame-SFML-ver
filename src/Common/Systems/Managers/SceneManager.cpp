@@ -11,43 +11,55 @@ SceneManager::SceneManager() :
         m_UIManager(),
         m_window(
                 new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"}) {
-    m_clock = sf::Clock();
+    m_fixedClock = sf::Clock();
+    m_fastClock = sf::Clock();
 
 //    m_window->setFramerateLimit(144);
 
-//    MAX FPS MODE --> uncomment the following and comment m_ObjectManager.Tick(elapsedTime);
-//    Note : No sync as of now might crash 1/2 times
+    // todo manage this thread properly
+    std::thread RM(&SceneManager::Tick, this);
+    m_h = RM.native_handle();
+    RM.detach();
 
-//    std::thread objectManagerThread(&ObjectManager::AutoTick, &m_ObjectManager);
-//    objectManagerThread.detach();
 }
 
 void SceneManager::Tick() {
-
-    for (auto event = sf::Event{}; m_window->pollEvent(event);) {
-        if (event.type == sf::Event::Closed) {
-            isRunning = false;
-            m_window->close();
+    while (isRunning) {
+        for (auto event = sf::Event{}; m_window->pollEvent(event);) {
+            if (event.type == sf::Event::Closed) {
+                isRunning = false;
+                pthread_cancel(m_h); // todo lag when closing
+                m_window->close();
+            }
         }
+
+        float elapsedTime = m_fixedClock.restart().asSeconds();
+
+        m_UIManager.FixedTick(elapsedTime);
+        m_ObjectManager.FixedTick(elapsedTime);
+
+        sleep(m_tickFramerate - m_fixedClock.getElapsedTime());
     }
+}
 
-    float elapsedTime = m_clock.restart().asSeconds();
 
-    m_UIManager.Tick(elapsedTime);
-    m_ObjectManager.Tick(elapsedTime);
+void SceneManager::AddUIToScene(UITextElement *object, bool shouldFastTick) {
+    m_UIManager.AddUIElement(object, shouldFastTick);
+}
+
+void SceneManager::AddObjectToScene(Object *object) {
+    m_ObjectManager.AddObject(object);
+}
+
+void SceneManager::UnrestrictedTick() {
+    float elapsedTime = m_fastClock.restart().asSeconds();
+
+    m_UIManager.UnrestrictedTick(elapsedTime);
+    m_ObjectManager.UnrestrictedTick(elapsedTime);
 
     m_window->clear();
     m_ObjectManager.Render(*m_window);
     m_UIManager.Render(*m_window);
     m_window->display();
-}
-
-
-void SceneManager::AddUIToScene(UITextElement *object) {
-    m_UIManager.AddUIElement(object);
-}
-
-void SceneManager::AddObjectToScene(Object *object) {
-    m_ObjectManager.AddObject(object);
 }
 

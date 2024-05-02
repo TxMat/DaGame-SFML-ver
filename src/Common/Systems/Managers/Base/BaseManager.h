@@ -10,7 +10,10 @@
 
 class BaseManager {
 public:
-    virtual void Tick(float deltaTime) = 0;
+    virtual void FixedTick(float deltaTime) = 0;
+
+    virtual void UnrestrictedTick(float deltaTime) = 0;
+
 
     virtual void Render(sf::RenderWindow &window) = 0;
 };

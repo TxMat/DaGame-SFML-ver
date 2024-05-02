@@ -16,11 +16,13 @@ public:
 
     ObjectManager();
 
-    void Tick(float deltaTime) override;
+    void FixedTick(float deltaTime) override;
 
     void Render(sf::RenderWindow &window) override;
 
     void AddObject(Object *object);
+
+    void UnrestrictedTick(float deltaTime) override;
 
     [[noreturn]] void AutoTick();
 
@@ -32,6 +34,7 @@ public:
 
 protected:
     std::vector<Object *> m_globalObjectList;
+    std::vector<Object *> m_fastGlobalObjectList;
 
     sf::Clock inner;
     sf::Time m_tickFramerate = sf::seconds(1.f / 144);

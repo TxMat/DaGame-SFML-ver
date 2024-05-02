@@ -6,7 +6,7 @@
 
 ObjectManager::ObjectManager() = default;
 
-void ObjectManager::Tick(float deltaTime) {
+void ObjectManager::FixedTick(float deltaTime) {
     for (auto object: m_globalObjectList) {
         object->Update(deltaTime);
     }
@@ -25,7 +25,13 @@ void ObjectManager::AddObject(Object *object) {
 // todo do this better
 [[noreturn]] void ObjectManager::AutoTick() {
     while (true) {
-        Tick(inner.restart().asSeconds());
+        FixedTick(inner.restart().asSeconds());
         sleep(m_tickFramerate - inner.getElapsedTime());
+    }
+}
+
+void ObjectManager::UnrestrictedTick(float deltaTime) {
+    for (auto object: m_fastGlobalObjectList) {
+        object->Update(deltaTime);
     }
 }

@@ -12,14 +12,17 @@
 
 class UIManager : public BaseManager {
 public:
-    void Tick(float deltaTime) override;
+    void FixedTick(float deltaTime) override;
+
+    void UnrestrictedTick(float deltaTime) override;
 
     void Render(sf::RenderWindow &window) override;
 
-    void AddUIElement(UITextElement *element);
+    void AddUIElement(UITextElement *element, bool shouldFastTick);
 
 private:
     std::vector<UITextElement *> m_uiElements;
+    std::vector<UITextElement *> m_fastUiElements;
 };
 
 
