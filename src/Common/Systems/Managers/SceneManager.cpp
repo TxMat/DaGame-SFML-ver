@@ -28,7 +28,7 @@ void SceneManager::Tick() {
         for (auto event = sf::Event{}; m_window->pollEvent(event);) {
             if (event.type == sf::Event::Closed) {
                 isRunning = false;
-                pthread_cancel(m_h); // todo lag when closing
+//                pthread_cancel(m_h); // todo lag when closing
                 m_window->close();
             }
         }
