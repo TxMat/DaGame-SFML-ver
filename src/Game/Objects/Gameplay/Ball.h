@@ -16,6 +16,10 @@ public:
 
     void Update(float deltaTime) override;
 
+    bool CheckCollision(Object *other) override;
+
+    void HandleCollision(Object *other) override;
+
 private:
     float m_speed;
     sf::Vector2f m_direction;

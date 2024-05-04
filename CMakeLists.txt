@@ -33,14 +33,16 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Systems/Managers/Base/BaseManager.h
         src/Common/Systems/Managers/Objects/ObjectManager.cpp
         src/Common/Systems/Managers/Objects/ObjectManager.h
-        src/Game/Objects/UI/FPSCounter.cpp
-        src/Game/Objects/UI/FPSCounter.h
+        src/Game/Objects/UI/Debug/FPSCounter.cpp
+        src/Game/Objects/UI/Debug/FPSCounter.h
         src/Common/Base/UITextElement.cpp
         src/Common/Base/UITextElement.h
         src/Common/Systems/Managers/UI/UIManager.cpp
         src/Common/Systems/Managers/UI/UIManager.h
-        src/Game/Objects/UI/DT.cpp
-        src/Game/Objects/UI/DT.h
+        src/Game/Objects/UI/Debug/DT.cpp
+        src/Game/Objects/UI/Debug/DT.h
+        src/Game/Objects/UI/Score/ScoreUi.cpp
+        src/Game/Objects/UI/Score/ScoreUi.h
 )
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)

@@ -6,8 +6,8 @@
 #define CMAKESFMLPROJECT_DT_H
 
 
-#include "../../../Common/Base/Object.h"
-#include "../../../Common/Base/UITextElement.h"
+#include "../../../../Common/Base/Object.h"
+#include "../../../../Common/Base/UITextElement.h"
 
 class DT : public UITextElement {
 public:

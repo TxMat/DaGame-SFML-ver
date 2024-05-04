@@ -8,8 +8,8 @@
 #include "Game/Objects/Gameplay/Ball.h"
 #include "Game/Objects/Gameplay/Paddle.h"
 #include "Common/Globals.h"
-#include "Game/Objects/UI/FPSCounter.h"
-#include "Game/Objects/UI/DT.h"
+#include "Game/Objects/UI/Debug/FPSCounter.h"
+#include "Game/Objects/UI/Debug/DT.h"
 
 void App::Init() {
 

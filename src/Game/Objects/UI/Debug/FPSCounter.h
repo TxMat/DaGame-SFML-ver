@@ -6,8 +6,8 @@
 #define CMAKESFMLPROJECT_FPSCOUNTER_H
 
 
-#include "../../../Common/Base/Object.h"
-#include "../../../Common/Base/UITextElement.h"
+#include "../../../../Common/Base/Object.h"
+#include "../../../../Common/Base/UITextElement.h"
 
 class FPSCounter : public UITextElement {
 public:

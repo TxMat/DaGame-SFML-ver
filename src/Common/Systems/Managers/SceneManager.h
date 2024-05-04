@@ -34,7 +34,7 @@ private:
 
     sf::RenderWindow *m_window;
 
-    sf::Time m_tickFramerate = sf::seconds(1.f / 144);
+    sf::Time m_tickFramerate;
 
     sf::Clock m_fixedClock;
     sf::Clock m_fastClock;

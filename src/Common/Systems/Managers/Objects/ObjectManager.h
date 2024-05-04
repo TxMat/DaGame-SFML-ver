@@ -24,8 +24,6 @@ public:
 
     void UnrestrictedTick(float deltaTime) override;
 
-    [[noreturn]] void AutoTick();
-
 //    void Destroy(Object *object) {
 //        delete object;
 //        m_globalObjectList.erase(std::remove(m_globalObjectList.begin(), m_globalObjectList.end(), object),
@@ -36,8 +34,12 @@ protected:
     std::vector<Object *> m_globalObjectList;
     std::vector<Object *> m_fastGlobalObjectList;
 
+    // todo store a physics object list or better perf and increased ram usage
+
     sf::Clock inner;
     sf::Time m_tickFramerate = sf::seconds(1.f / 144);
+
+    static void TickInternal(float deltaTime, const std::vector<Object *> &objectList);
 };
 
 

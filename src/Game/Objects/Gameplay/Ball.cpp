@@ -11,9 +11,11 @@ Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Bal
     m_shape->setFillColor(sf::Color::White);
     m_shape->setOrigin(radius, radius);
     m_speed = speed;
-    b_shouldSimulatePhysics = true;
+    b_collides = true;
+    b_shouldHandleCollision = true;
 
     std::random_device rd;
+
     std::mt19937 gen(rd()); // Mersenne Twister 19937 generator
 
     // Random distribution for x and y coordinates
@@ -42,4 +44,26 @@ void Ball::Update(float deltaTime) {
 //	m_direction = sf::Vector2f(x, y);
 
     m_shape->move(((m_speed * deltaTime) * m_direction));
+}
+
+bool Ball::CheckCollision(Object *other) {
+    return m_shape->getGlobalBounds().intersects(other->getMShape()->getGlobalBounds());
+}
+
+void Ball::HandleCollision(Object *other) {
+
+    std::random_device rd;
+
+    std::mt19937 gen(rd()); // Mersenne Twister 19937 generator
+
+    // Random distribution for x and y coordinates
+    std::uniform_real_distribution<float> dis_x(-1.1f, -1.0f);
+    std::uniform_real_distribution<float> dis_y(2.0f, 0.5f);
+
+    // Generate random x
+    float x = dis_x(gen);
+    float y = dis_y(gen);
+
+    m_direction.x = m_direction.x * -1; // acceleration
+//    m_direction.y = std::clamp(m_direction.y * y, -1.0f, 1.0f) ; // random
 }

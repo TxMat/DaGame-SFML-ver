@@ -23,7 +23,9 @@ public:
 
     virtual void HandleCollision(Object *other);
 
-    bool b_shouldSimulatePhysics = false;
+    bool b_collides = false;
+
+    bool b_shouldHandleCollision = false;
 
 protected:
 

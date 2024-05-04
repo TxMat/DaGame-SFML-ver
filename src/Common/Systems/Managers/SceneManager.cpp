@@ -16,6 +16,9 @@ SceneManager::SceneManager() :
 
 //    m_window->setFramerateLimit(144);
 
+    float objectsTickFps = 200; // keep it at a round number for better performance
+    m_tickFramerate = sf::seconds(1.f / objectsTickFps);
+
     // todo manage this thread properly
     std::thread RM(&SceneManager::Tick, this);
     m_h = RM.native_handle();
