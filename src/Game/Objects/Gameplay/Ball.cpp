@@ -58,7 +58,7 @@ void Ball::HandleCollision(Object *other) {
 
     // Random distribution for x and y coordinates
     std::uniform_real_distribution<float> dis_x(-1.1f, -1.0f);
-    std::uniform_real_distribution<float> dis_y(2.0f, 0.5f);
+    std::uniform_real_distribution<float> dis_y(0.5f, 2.0f);
 
     // Generate random x
     float x = dis_x(gen);
