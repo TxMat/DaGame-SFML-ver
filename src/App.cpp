@@ -10,6 +10,7 @@
 #include "Common/Globals.h"
 #include "Game/Objects/UI/Debug/FPSCounter.h"
 #include "Game/Objects/UI/Debug/DT.h"
+#include "Game/Objects/UI/Debug/DTFixedTime.h"
 
 void App::Init() {
 
@@ -26,9 +27,11 @@ void App::Init() {
 
     auto fps = new FPSCounter();
     auto DT = new class DT();
+    auto DT_FixedUpdate = new DTFixedTime();
 
     m_sceneManager.AddUIToScene(fps, true);
     m_sceneManager.AddUIToScene(DT, true);
+    m_sceneManager.AddUIToScene(DT_FixedUpdate, false);
 
 }
 
