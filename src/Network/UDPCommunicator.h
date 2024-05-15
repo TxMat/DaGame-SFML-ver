@@ -3,7 +3,7 @@
 
 #include <string>
 
-// Définition des includes et des types pour Windows et Unix/Linux
+// Definition des includes et des types pour Windows et Unix/Linux
 #ifdef _WIN32
 #include <winsock2.h>
 #include <ws2tcpip.h>

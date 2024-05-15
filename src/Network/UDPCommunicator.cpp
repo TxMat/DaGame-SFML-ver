@@ -29,7 +29,7 @@ UDPCommunicator::~UDPCommunicator() {
 bool UDPCommunicator::initSocket() {
     sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if (sockfd < 0) {
-        std::cerr << "Erreur lors de la création du socket" << std::endl;
+        std::cerr << "Erreur lors de la creation du socket" << std::endl;
         return false;
     }
     return true;
@@ -77,7 +77,7 @@ bool UDPCommunicator::receiveMessage(std::string& message, int bufferSize) {
 
     int n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
     if (n < 0) {
-        std::cerr << "Erreur lors de la réception du message" << std::endl;
+        std::cerr << "Erreur lors de la reception du message" << std::endl;
         return false;
     }
 
