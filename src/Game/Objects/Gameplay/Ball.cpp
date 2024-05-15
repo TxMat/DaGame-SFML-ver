@@ -56,20 +56,20 @@ void Ball::HandleCollision(Object *other) {
     sf::Vector2f otherPosition = other->getMShape()->getPosition();
     sf::Vector2f ownPosition = m_shape->getPosition();
 
-    float size = 5.0;
+    float size = 50.0;
     float offset;
 
     if (otherForwardVector.x != 0)
     {
-        m_normalized_speed_vector.x *= otherForwardVector.x;
+        m_normalized_speed_vector.x *= -1;
         offset = std::abs(otherPosition.y - ownPosition.y) / size;
-        m_normalized_speed_vector.y *= offset;
+        m_normalized_speed_vector.y += m_normalized_speed_vector.y >= 0 ? offset : - offset;
     }
     else if (otherForwardVector.y != 0)
     {
-        m_normalized_speed_vector.y *= otherForwardVector.y;
+        m_normalized_speed_vector.y *= -1;
         offset = std::abs(otherPosition.x - ownPosition.x) / size;
-        m_normalized_speed_vector.x *= offset;
+        m_normalized_speed_vector.x += m_normalized_speed_vector.x >= 0 ? offset : -offset;
     }
 
     float magnitude = std::sqrt(m_normalized_speed_vector.x * m_normalized_speed_vector.x + m_normalized_speed_vector.y + m_normalized_speed_vector.y);
