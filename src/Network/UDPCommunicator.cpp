@@ -71,7 +71,7 @@ bool UDPCommunicator::sendMessage(const std::string& message, const std::string&
 }
 
 bool UDPCommunicator::receiveMessage(std::string& message, int bufferSize) {
-    char buffer[bufferSize];
+    char buffer[2];
     sockaddr_in cliaddr;
     socklen_t len = sizeof(cliaddr);
 
