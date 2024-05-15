@@ -21,6 +21,8 @@ public:
 
     void AddObjectToScene(Object *object);
 
+    void ListenEvent();
+
     void AddUIToScene(UITextElement *object, bool shouldFastTick);
 
     bool isRunning = true;

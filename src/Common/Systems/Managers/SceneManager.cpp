@@ -28,14 +28,10 @@ SceneManager::SceneManager() :
 
 void SceneManager::Tick() {
     while (isRunning) {
-        for (auto event = sf::Event{}; m_window->pollEvent(event);) {
-            if (event.type == sf::Event::Closed) {
-                isRunning = false;
-//                pthread_cancel(m_h); // todo lag when closing
-                m_window->close();
-            }
-        }
 
+#if __linux__
+        ListenEvent();
+#endif
         float elapsedTime = m_fixedClock.restart().asSeconds();
 
         m_UIManager.FixedTick(elapsedTime);
@@ -57,6 +53,10 @@ void SceneManager::AddObjectToScene(Object *object) {
 void SceneManager::UnrestrictedTick() {
     float elapsedTime = m_fastClock.restart().asSeconds();
 
+#if _WIN32
+    ListenEvent();
+#endif
+
     m_UIManager.UnrestrictedTick(elapsedTime);
     m_ObjectManager.UnrestrictedTick(elapsedTime);
 
@@ -64,5 +64,15 @@ void SceneManager::UnrestrictedTick() {
     m_ObjectManager.Render(*m_window);
     m_UIManager.Render(*m_window);
     m_window->display();
+}
+
+void SceneManager::ListenEvent() {
+    for (auto event = sf::Event{}; m_window->pollEvent(event);) {
+        if (event.type == sf::Event::Closed) {
+            isRunning = false;
+//                pthread_cancel(m_h); // todo lag when closing
+            m_window->close();
+        }
+    }
 }
 
