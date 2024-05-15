@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <random>
+#include <iostream>
 #include "Ball.h"
 #include "../../../Common/Globals.h"
 
@@ -11,7 +12,7 @@ Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Bal
     m_shape->setFillColor(sf::Color::White);
     m_shape->setOrigin(radius, radius);
     m_speed = speed;
-    b_collides = true;
+    b_shouldGenerateHits = true;
     b_shouldHandleCollision = true;
 
     std::random_device rd;
@@ -52,18 +53,27 @@ bool Ball::CheckCollision(Object *other) {
 
 void Ball::HandleCollision(Object *other) {
 
-    std::random_device rd;
+    sf::Vector2f otherForwardVector = other->m_forward_vector;
+    sf::Vector2f otherPosition = other->getMShape()->getPosition();
+    sf::Vector2f ownPosition = m_shape->getPosition();
 
-    std::mt19937 gen(rd()); // Mersenne Twister 19937 generator
+    float size = 50.0;
+    float offset;
 
-    // Random distribution for x and y coordinates
-    std::uniform_real_distribution<float> dis_x(-1.1f, -1.0f);
-    std::uniform_real_distribution<float> dis_y(0.5f, 2.0f);
-
-    // Generate random x
-    float x = dis_x(gen);
-    float y = dis_y(gen);
-
-    m_normalized_speed_vector.x = m_normalized_speed_vector.x * -1; // acceleration
-//    m_normalized_speed_vector.y = std::clamp(m_normalized_speed_vector.y * y, -1.0f, 1.0f) ; // random
+    if (otherForwardVector.x != 0)
+    {
+        m_normalized_speed_vector.x *= -1;
+        offset = std::clamp(std::abs(otherPosition.y - ownPosition.y) / size, 0.1f, 1.0f);
+        m_normalized_speed_vector.y = (m_normalized_speed_vector.y >= 0 ? offset : -offset);
+    }
+    else if (otherForwardVector.y != 0)
+    {
+        m_normalized_speed_vector.y *= -1;
+        offset = std::clamp(std::abs(otherPosition.x - ownPosition.x) / size, 0.1f, 1.0f);
+        m_normalized_speed_vector.x = (m_normalized_speed_vector.x >= 0 ? offset : -offset);
+    }
+    
+    float magnitude = std::sqrt(m_normalized_speed_vector.x * m_normalized_speed_vector.x + m_normalized_speed_vector.y * m_normalized_speed_vector.y);
+    m_normalized_speed_vector.x /= magnitude;
+    m_normalized_speed_vector.y /= magnitude;
 }
