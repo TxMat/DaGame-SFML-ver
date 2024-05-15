@@ -46,7 +46,7 @@ add_executable(CMakeSFMLProject src/main.cpp
  "src/Network/UDPCommunicator.cpp" "src/Network/UDPCommunicator.h"
         src/Game/Objects/UI/Debug/DTFixedTime.cpp
         src/Game/Objects/UI/Debug/DTFixedTime.h
-)
+ "src/Network/MainNetwork.h" "src/Network/MainNetwork.cpp")
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 
