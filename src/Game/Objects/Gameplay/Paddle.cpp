@@ -5,8 +5,8 @@
 #include "Paddle.h"
 #include "../../../Common/Globals.h"
 
-Paddle::Paddle(unsigned int player_number) : Object(
-        new sf::RectangleShape(sf::Vector2f(m_paddle_width, m_paddle_height)),
+Paddle::Paddle(unsigned int player_number, int width, int height): Object(
+        new sf::RectangleShape(sf::Vector2f(width, height)),
         "Paddle_P" + std::to_string(player_number)), m_player_number(player_number) {
     m_shape->setFillColor(sf::Color::Red);
     m_shape->setOrigin(m_paddle_width / 2, m_paddle_height / 2);
@@ -19,6 +19,14 @@ Paddle::Paddle(unsigned int player_number) : Object(
         case 2:
             m_shape->setPosition(WIDTH - 100, HEIGHT / 2);
             m_forward_vector = sf::Vector2f(-1.0f, 0.0f);
+            break;
+        case 3:
+            m_shape->setPosition(WIDTH / 2, HEIGHT);
+            m_forward_vector = sf::Vector2f(0.0f, 1.0f);
+            break;
+        case 4:
+            m_shape->setPosition(WIDTH / 2, 100);
+            m_forward_vector = sf::Vector2f(0.0f, -1.0f);
             break;
         default:
             m_shape->setPosition(WIDTH / 2, HEIGHT / 2);
@@ -44,6 +52,22 @@ void Paddle::Update(float deltaTime) {
                 MoveVerticallyClamped(m_speed * deltaTime);
             }
             break;
+        case 3:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                MoveHorizontallyClamped(-m_speed * deltaTime);
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                MoveHorizontallyClamped(m_speed * deltaTime);
+            }
+            break;
+        case 4:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+                MoveHorizontallyClamped(-m_speed * deltaTime);
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+                MoveHorizontallyClamped(m_speed * deltaTime);
+            }
+            break;
     }
 }
 
@@ -51,5 +75,13 @@ void Paddle::MoveVerticallyClamped(float offsetY) {
     auto y = m_shape->getPosition().y + offsetY;
     if (y < HEIGHT && y > 0) {
         m_shape->move(0.0, offsetY);
+    }
+}
+
+void Paddle::MoveHorizontallyClamped(float offsetX)
+{
+    auto x = m_shape->getPosition().x + offsetX;
+    if (x < WIDTH && x > 0) {
+        m_shape->move(offsetX,0.0);
     }
 }

@@ -20,6 +20,8 @@ public:
 
     void HandleCollision(Object *other) override;
 
+    
+
 private:
     float m_speed;
 
