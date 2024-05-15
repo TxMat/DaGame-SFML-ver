@@ -4,8 +4,6 @@
 
 #include "ObjectManager.h"
 
-ObjectManager::ObjectManager() = default;
-
 void ObjectManager::FixedTick(float deltaTime) {
     ObjectManager::TickInternal(deltaTime, m_globalObjectList);
 }

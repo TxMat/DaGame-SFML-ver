@@ -7,8 +7,8 @@
 #include "../../Globals.h"
 
 SceneManager::SceneManager() :
-        m_ObjectManager(),
-        m_UIManager(),
+        m_ObjectManager(this),
+        m_UIManager(this),
         m_window(
                 new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"}) {
     m_fixedClock = sf::Clock();

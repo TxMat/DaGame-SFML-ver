@@ -1,22 +1,31 @@
-//
-// Created by uranus on 01/05/24.
-//
+    //
+    // Created by uranus on 01/05/24.
+    //
 
-#ifndef CMAKESFMLPROJECT_BASEMANAGER_H
-#define CMAKESFMLPROJECT_BASEMANAGER_H
+    #ifndef CMAKESFMLPROJECT_BASEMANAGER_H
+    #define CMAKESFMLPROJECT_BASEMANAGER_H
 
-#include "SFML/System/Time.hpp"
-#include "SFML/Graphics/RenderWindow.hpp"
+    #include "SFML/System/Time.hpp"
+    #include "SFML/Graphics/RenderWindow.hpp"
 
-class BaseManager {
-public:
-    virtual void FixedTick(float deltaTime) = 0;
+    // Forward declaration
+    class SceneManager;
 
-    virtual void UnrestrictedTick(float deltaTime) = 0;
+    class BaseManager {
+    public:
+
+        explicit BaseManager(SceneManager *Sm) : m_sm(Sm) {};
+
+        virtual void FixedTick(float deltaTime) = 0;
+
+        virtual void UnrestrictedTick(float deltaTime) = 0;
+
+        virtual void Render(sf::RenderWindow &window) = 0;
+
+    protected:
+        SceneManager* m_sm;
+
+    };
 
 
-    virtual void Render(sf::RenderWindow &window) = 0;
-};
-
-
-#endif //CMAKESFMLPROJECT_BASEMANAGER_H
+    #endif //CMAKESFMLPROJECT_BASEMANAGER_H

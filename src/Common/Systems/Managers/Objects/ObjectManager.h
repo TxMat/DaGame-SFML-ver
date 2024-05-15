@@ -14,7 +14,7 @@ class ObjectManager : public BaseManager {
 
 public:
 
-    ObjectManager();
+    explicit ObjectManager(SceneManager* mSm) : BaseManager(mSm) {}
 
     void FixedTick(float deltaTime) override;
 
@@ -31,10 +31,10 @@ public:
 //    }
 
 protected:
-    std::vector<Object *> m_globalObjectList;
-    std::vector<Object *> m_fastGlobalObjectList;
+    std::vector<Object *> m_globalObjectList = std::vector<Object *>();
+    std::vector<Object *> m_fastGlobalObjectList = std::vector<Object *>();
 
-    // todo store a physics object list or better perf and increased ram usage
+    // todo store a physics object list for better perf and increased ram usage
 
     sf::Clock inner;
     sf::Time m_tickFramerate = sf::seconds(1.f / 144);
