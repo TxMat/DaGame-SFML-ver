@@ -31,7 +31,7 @@ public:
 
         if (bind(sockfd, (const struct sockaddr*)&servaddr, sizeof(servaddr)) < 0) {
             std::cerr << "Erreur lors de la liaison du socket" << std::endl;
-            close(sockfd);
+            //close(sockfd);
             return false;
         }
         return true;
@@ -53,7 +53,7 @@ public:
     }
 
     bool receiveMessage(std::string& message, int bufferSize = 1024) {
-        char buffer[bufferSize];
+        char buffer[2];
         sockaddr_in cliaddr;
         socklen_t len = sizeof(cliaddr);
 
