@@ -27,23 +27,23 @@ Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Bal
 
     // Normalize the direction vector
     float magnitude = std::sqrt(x * x + y * y);
-    m_direction = sf::Vector2f(x / magnitude, y / magnitude);
+    m_normalized_speed_vector = sf::Vector2f(x / magnitude, y / magnitude);
 }
 
 void Ball::Update(float deltaTime) {
     Object::Update(deltaTime);
     auto pos = m_shape->getPosition();
     if (pos.x > WIDTH || pos.x < 0) {
-        m_direction.x = m_direction.x * -1;
+        m_normalized_speed_vector.x = m_normalized_speed_vector.x * -1;
     } else if (pos.y > HEIGHT || pos.y < 0) {
-        m_direction.y = m_direction.y * -1;
+        m_normalized_speed_vector.y = m_normalized_speed_vector.y * -1;
     }
 
-    //	float x = collisionNormal.x != 0.0 ? m_direction.x * collisionNormal.x : m_direction.x;
-//	float y = collisionNormal.y != 0.0 ? m_direction.y * collisionNormal.y : m_direction.y;
-//	m_direction = sf::Vector2f(x, y);
+    //	float x = collisionNormal.x != 0.0 ? m_normalized_speed_vector.x * collisionNormal.x : m_normalized_speed_vector.x;
+//	float y = collisionNormal.y != 0.0 ? m_normalized_speed_vector.y * collisionNormal.y : m_normalized_speed_vector.y;
+//	m_normalized_speed_vector = sf::Vector2f(x, y);
 
-    m_shape->move(((m_speed * deltaTime) * m_direction));
+    m_shape->move(((m_speed * deltaTime) * m_normalized_speed_vector));
 }
 
 bool Ball::CheckCollision(Object *other) {
@@ -64,6 +64,6 @@ void Ball::HandleCollision(Object *other) {
     float x = dis_x(gen);
     float y = dis_y(gen);
 
-    m_direction.x = m_direction.x * -1; // acceleration
-//    m_direction.y = std::clamp(m_direction.y * y, -1.0f, 1.0f) ; // random
+    m_normalized_speed_vector.x = m_normalized_speed_vector.x * -1; // acceleration
+//    m_normalized_speed_vector.y = std::clamp(m_normalized_speed_vector.y * y, -1.0f, 1.0f) ; // random
 }

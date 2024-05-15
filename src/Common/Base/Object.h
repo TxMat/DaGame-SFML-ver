@@ -27,6 +27,9 @@ public:
 
     bool b_shouldHandleCollision = false;
 
+    sf::Vector2f m_normalized_speed_vector = sf::Vector2f(0.0f, 0.0f);
+    sf::Vector2f m_forward_vector = sf::Vector2f(0.0f, 0.0f);
+
 protected:
 
     sf::Shape *m_shape;
