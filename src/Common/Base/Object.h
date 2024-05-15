@@ -23,7 +23,11 @@ public:
 
     virtual void HandleCollision(Object *other);
 
-    bool b_collides = false;
+    bool b_shouldGenerateHits = false;
+
+    bool b_isColliding = false;
+
+    std::vector<Object *> m_HitList;
 
     bool b_shouldHandleCollision = false;
 

@@ -4,15 +4,15 @@
 
 #include <cmath>
 #include <random>
+#include <iostream>
 #include "Ball.h"
 #include "../../../Common/Globals.h"
-#include <iostream>
 
 Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Ball") {
     m_shape->setFillColor(sf::Color::White);
     m_shape->setOrigin(radius, radius);
     m_speed = speed;
-    b_collides = true;
+    b_shouldGenerateHits = true;
     b_shouldHandleCollision = true;
 
     std::random_device rd;

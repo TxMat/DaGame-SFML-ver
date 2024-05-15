@@ -31,9 +31,16 @@ void ObjectManager::TickInternal(float deltaTime, const std::vector<Object*>& ob
                 if (p_object == object) {
                     continue;
                 }
-                if (p_object->b_collides) {
-                    if (object->CheckCollision(p_object)) {
+                // todo refactor lmao
+                if (p_object->b_shouldGenerateHits) {
+                    if (object->CheckCollision(p_object) && std::find(object->m_HitList.begin(), object->m_HitList.end(), p_object) == object->m_HitList.end()) {
+                        object->m_HitList.push_back(p_object);
                         object->HandleCollision(p_object);
+                    }
+                    if (std::find(object->m_HitList.begin(), object->m_HitList.end(), p_object) != object->m_HitList.end()) {
+                        if (!object->CheckCollision(p_object)) {
+                            object->m_HitList.erase(std::remove(object->m_HitList.begin(), object->m_HitList.end(), p_object), object->m_HitList.end());
+                        }
                     }
                 }
             }
