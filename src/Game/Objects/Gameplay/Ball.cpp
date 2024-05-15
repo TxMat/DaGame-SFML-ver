@@ -63,14 +63,14 @@ void Ball::HandleCollision(Object *other) {
     if (otherForwardVector.x != 0)
     {
         m_normalized_speed_vector.x *= -1;
-        offset = std::clamp(std::abs(otherPosition.y - ownPosition.y) / size, 0.0f, 1.0f);
-        m_normalized_speed_vector.y = (m_normalized_speed_vector.y >= 0 ? offset : (offset * -1));
+        offset = std::clamp(std::abs(otherPosition.y - ownPosition.y) / size, 0.1f, 1.0f);
+        m_normalized_speed_vector.y = (m_normalized_speed_vector.y >= 0 ? offset : -offset);
     }
     else if (otherForwardVector.y != 0)
     {
         m_normalized_speed_vector.y *= -1;
-        offset = std::abs(otherPosition.x - ownPosition.x) / size;
-        m_normalized_speed_vector.x += m_normalized_speed_vector.x >= 0 ? offset : -offset;
+        offset = std::clamp(std::abs(otherPosition.x - ownPosition.x) / size, 0.1f, 1.0f);
+        m_normalized_speed_vector.x = (m_normalized_speed_vector.x >= 0 ? offset : -offset);
     }
     
     float magnitude = std::sqrt(m_normalized_speed_vector.x * m_normalized_speed_vector.x + m_normalized_speed_vector.y * m_normalized_speed_vector.y);
