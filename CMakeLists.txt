@@ -43,7 +43,7 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Game/Objects/UI/Debug/DT.h
         src/Game/Objects/UI/Score/ScoreUi.cpp
         src/Game/Objects/UI/Score/ScoreUi.h
-)
+ "src/Network/UDPCommunicator.cpp" "src/Network/UDPCommunicator.h")
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 
