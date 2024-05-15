@@ -13,6 +13,10 @@ class ScoreUi : UITextElement {
 public:
     ScoreUi();
 
+    void AddPointsToPlayers();
+    void ResetScore();
+    void UpdateScores();
+
 private:
 
     void Update(float deltaTime) override;

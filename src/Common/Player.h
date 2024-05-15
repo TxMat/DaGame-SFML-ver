@@ -7,6 +7,12 @@
 
 
 class Player {
+public:
+	int playerScore = 0;
+
+	Player();
+
+
 
 };
 

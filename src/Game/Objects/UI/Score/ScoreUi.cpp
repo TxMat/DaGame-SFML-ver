@@ -8,6 +8,20 @@ ScoreUi::ScoreUi() : UITextElement() {
 
 }
 
+void ScoreUi::AddPointsToPlayers()
+{
+	//Get playerScore++
+}
+
+void ScoreUi::ResetScore()
+{
+}
+
+void ScoreUi::UpdateScores()
+{
+
+}
+
 void ScoreUi::Update(float deltaTime) {
 
 }
