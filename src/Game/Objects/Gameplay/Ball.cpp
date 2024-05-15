@@ -52,18 +52,27 @@ bool Ball::CheckCollision(Object *other) {
 
 void Ball::HandleCollision(Object *other) {
 
-    std::random_device rd;
+    sf::Vector2f otherForwardVector = other->m_forward_vector;
+    sf::Vector2f otherPosition = other->getMShape()->getPosition();
+    sf::Vector2f ownPosition = m_shape->getPosition();
 
-    std::mt19937 gen(rd()); // Mersenne Twister 19937 generator
+    float size = 5.0;
+    float offset;
 
-    // Random distribution for x and y coordinates
-    std::uniform_real_distribution<float> dis_x(-1.1f, -1.0f);
-    std::uniform_real_distribution<float> dis_y(0.5f, 2.0f);
+    if (otherForwardVector.x != 0)
+    {
+        m_normalized_speed_vector.x *= otherForwardVector.x;
+        offset = std::abs(otherPosition.y - ownPosition.y) / size;
+        m_normalized_speed_vector.y *= offset;
+    }
+    else if (otherForwardVector.y != 0)
+    {
+        m_normalized_speed_vector.y *= otherForwardVector.y;
+        offset = std::abs(otherPosition.x - ownPosition.x) / size;
+        m_normalized_speed_vector.x *= offset;
+    }
 
-    // Generate random x
-    float x = dis_x(gen);
-    float y = dis_y(gen);
-
-    m_normalized_speed_vector.x = m_normalized_speed_vector.x * -1; // acceleration
-//    m_normalized_speed_vector.y = std::clamp(m_normalized_speed_vector.y * y, -1.0f, 1.0f) ; // random
+    float magnitude = std::sqrt(m_normalized_speed_vector.x * m_normalized_speed_vector.x + m_normalized_speed_vector.y + m_normalized_speed_vector.y);
+    m_normalized_speed_vector.x /= magnitude;
+    m_normalized_speed_vector.y /= magnitude;
 }
