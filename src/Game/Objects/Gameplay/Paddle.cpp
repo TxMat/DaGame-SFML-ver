@@ -14,9 +14,11 @@ Paddle::Paddle(unsigned int player_number) : Object(
     switch (player_number) {
         case 1:
             m_shape->setPosition(100, HEIGHT / 2);
+            m_forward_vector = sf::Vector2f(1.0f, 0.0f);
             break;
         case 2:
             m_shape->setPosition(WIDTH - 100, HEIGHT / 2);
+            m_forward_vector = sf::Vector2f(-1.0f, 0.0f);
             break;
         default:
             m_shape->setPosition(WIDTH / 2, HEIGHT / 2);

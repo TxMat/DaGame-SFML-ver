@@ -22,7 +22,6 @@ public:
 
 private:
     float m_speed;
-    sf::Vector2f m_direction;
 
 };
 
