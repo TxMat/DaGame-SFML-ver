@@ -3,6 +3,12 @@
 //
 
 #include "AppClient.h"
+#include "Game/Objects/Gameplay/Paddle.h"
+#include "Game/Objects/Gameplay/Ball.h"
+#include "Common/Globals.h"
+#include "Game/Objects/UI/Debug/FPSCounter.h"
+#include "Game/Objects/UI/Debug/DTFixedTime.h"
+#include "Game/Objects/UI/Debug/DT.h"
 
 AppClient::AppClient() = default;
 
@@ -27,7 +33,7 @@ void AppClient::Init() {
     Object* ball = new Ball(1000, 10);
     ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
     m_sceneManager.AddObjectToScene(ball);
-    m_sceneManager.AddObjectToReplicate(ball, "Ball");
+    m_sceneManager.AddObjectToReplicate(ball, (std::string &) "Ball");
 
     //    Object *ball2 = new Ball(1000, 10);
     //    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
