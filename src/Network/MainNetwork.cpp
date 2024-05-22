@@ -1,6 +1,7 @@
 #include "MainNetwork.h"
 
-MainNetwork::MainNetwork() {
+MainNetwork::MainNetwork(SceneManager *sm) : m_sm(sm) {
+
     // Initialisation du socket
     if (!udpComm.initSocket()) {
         std::cerr << "Erreur lors de l'initialisation du socket" << std::endl;
