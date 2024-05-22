@@ -13,7 +13,7 @@ MainNetwork::MainNetwork() {
 }
 
 MainNetwork::~MainNetwork() {
-    // Arr�t du thread de r�ception
+    // Arret du thread de reception
     if (receiveThread.joinable()) {
         receiveThread.join();
     }
@@ -49,10 +49,10 @@ void MainNetwork::receiveMessages() {
     while (true) {
         std::string receivedMessage;
         if (udpComm.receiveMessage(receivedMessage)) {
-            std::cout << "Message re�u: " << receivedMessage << std::endl;
+            std::cout << "Message recu: " << receivedMessage << std::endl;
         }
         else {
-            std::cerr << "Erreur lors de la r�ception du message" << std::endl;
+            std::cerr << "Erreur lors de la reception du message" << std::endl;
         }
     }
 }
