@@ -28,13 +28,19 @@ void App::Init() {
     Object* playerFourPaddle = new Paddle(4, 100, 10);
     m_sceneManager.AddObjectToScene(playerFourPaddle);
 
-    Object *ball = new Ball(1000, 10);
-    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
-    m_sceneManager.AddObjectToScene(ball);
-    
-    Object *ball2 = new Ball(1000, 10);
-    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
-    m_sceneManager.AddObjectToScene(ball2);
+//    Object *ball = new Ball(1000, 10);
+//    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+//    m_sceneManager.AddObjectToScene(ball);
+
+    for (int i = 0; i < 300; ++i) {
+        Object *ball = new Ball(1000, 10);
+        ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+        m_sceneManager.AddObjectToScene(ball);
+    }
+
+//    Object *ball2 = new Ball(1000, 10);
+//    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+//    m_sceneManager.AddObjectToScene(ball2);
 
     auto fps = new FPSCounter();
     auto DT = new class DT();
