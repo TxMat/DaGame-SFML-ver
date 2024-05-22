@@ -59,6 +59,11 @@ void SceneManager::AddObjectToReplicate(Object *object, std::string& name) {
     m_ReplicatedObjectList[name] = object;
 }
 
+Object* SceneManager::GetObjectToReplicate(std::string& name)
+{
+    return m_ReplicatedObjectList[name];
+}
+
 void SceneManager::UnrestrictedTick() {
     float elapsedTime = m_fastClock.restart().asSeconds();
 

@@ -28,6 +28,8 @@ public:
 
     void AddObjectToReplicate(Object *object, std::string &name);
 
+    Object* SceneManager::GetObjectToReplicate(std::string& name);
+
     bool isRunning = true;
 
     bool m_isServer = true;
