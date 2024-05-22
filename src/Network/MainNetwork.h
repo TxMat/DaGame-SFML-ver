@@ -3,6 +3,7 @@
 #define MAINNETWORK_H
 
 #include "UDPCommunicator.h"
+#include "SFML/System/Vector2.hpp"
 #include <thread>
 #include <iostream>
 
@@ -24,6 +25,8 @@ private:
 
     void receiveMessages();
     void sendMessages(const std::string &msg, const std::string &addr);
+
+    void ParseMessage(const std::string &msg, std::string &objectName, sf::Vector2<float> &position);
 };
 
 #endif // MAINNETWORK_H

@@ -1,4 +1,6 @@
 #include "MainNetwork.h"
+#include "SFML/System/Vector2.hpp"
+#include "../Common/Systems/Managers/SceneManager.h"
 
 MainNetwork::MainNetwork(SceneManager *sm) : m_sm(sm) {
 
@@ -55,7 +57,7 @@ void MainNetwork::receiveMessages() {
             std::string objectName;
             sf::Vector2f position;
             ParseMessage(receivedMessage, objectName, position);
-            sm->GetObjectToReplicate(objectName)->setPosition(position);
+            m_sm->GetObjectToReplicate(objectName)->getMShape()->setPosition(position);
         }
         else {
             std::cerr << "Erreur lors de la reception du message" << std::endl;
