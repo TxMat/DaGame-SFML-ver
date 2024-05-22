@@ -54,7 +54,7 @@ void AppServer::Init() {
 
 }
 
-AppServer::AppServer() : m_sceneManager(SceneManager()) {
+AppServer::AppServer() : m_sceneManager(SceneManager(true)) {
 }
 
 void AppServer::MainLoop() {

@@ -6,6 +6,8 @@
 #define CMAKESFMLPROJECT_APPCLIENT_H
 
 
+#include "Common/Systems/Managers/SceneManager.h"
+
 class AppClient {
 
 public:
@@ -15,6 +17,11 @@ public:
     void Init();
 
     void MainLoop();
+
+private:
+
+    SceneManager m_sceneManager = SceneManager(false);
+
 };
 
 

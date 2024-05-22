@@ -14,7 +14,7 @@
 class SceneManager {
 public:
 
-    SceneManager();
+    SceneManager(bool isServer );
 
     void Tick();
 

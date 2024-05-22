@@ -7,7 +7,7 @@
 #include "../../Globals.h"
 #include "../../../Network/MainNetwork.h"
 
-SceneManager::SceneManager() :
+SceneManager::SceneManager(bool isServer) :
         m_ObjectManager(this),
         m_UIManager(this),
         m_net(MainNetwork()),
