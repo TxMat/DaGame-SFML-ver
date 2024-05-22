@@ -4,17 +4,20 @@
 
 #include "ScoreUi.h"
 
+
 ScoreUi::ScoreUi() : UITextElement() {
 
 }
 
 void ScoreUi::AddPointsToPlayers()
 {
-	//Get playerScore++
+	player_.playerScore++;
 }
 
 void ScoreUi::ResetScore()
+
 {
+	player_.playerScore = 0;
 }
 
 void ScoreUi::UpdateScores()

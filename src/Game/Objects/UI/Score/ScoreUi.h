@@ -7,10 +7,13 @@
 
 
 #include "../../../../Common/Base/UITextElement.h"
+#include "../../../../Common/Player.h"
 
 class ScoreUi : UITextElement {
 
 public:
+    Player player_;
+
     ScoreUi();
 
     void AddPointsToPlayers();
@@ -18,7 +21,6 @@ public:
     void UpdateScores();
 
 private:
-
     void Update(float deltaTime) override;
 
 };
