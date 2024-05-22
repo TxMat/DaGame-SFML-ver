@@ -18,6 +18,7 @@ private:
     std::thread receiveThread;
 
     void receiveMessages();
+    void sendMessages(std::string msg);
 };
 
 #endif // MAINNETWORK_H

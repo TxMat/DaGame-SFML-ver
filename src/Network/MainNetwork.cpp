@@ -56,3 +56,8 @@ void MainNetwork::receiveMessages() {
         }
     }
 }
+
+void  MainNetwork::sendMessages(std::string msg)
+{
+
+}
