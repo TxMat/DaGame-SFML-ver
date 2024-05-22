@@ -31,6 +31,10 @@ void App::Init() {
     Object *ball = new Ball(1000, 10);
     ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
     m_sceneManager.AddObjectToScene(ball);
+    
+    Object *ball2 = new Ball(1000, 10);
+    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+    m_sceneManager.AddObjectToScene(ball2);
 
     auto fps = new FPSCounter();
     auto DT = new class DT();
