@@ -13,7 +13,7 @@ MainNetwork::MainNetwork() {
 }
 
 MainNetwork::~MainNetwork() {
-    // Arrêt du thread de réception
+    // Arrï¿½t du thread de rï¿½ception
     if (receiveThread.joinable()) {
         receiveThread.join();
     }
@@ -37,7 +37,7 @@ void MainNetwork::start() {
 
     std::cout << "En attente de messages UDP sur le port 8080..." << std::endl;
 
-    // Lancement du thread pour la réception de messages
+    // Lancement du thread pour la reception de messages
     receiveThread = std::thread(&MainNetwork::receiveMessages, this);
 
     // Attend que le thread se termine
@@ -49,10 +49,10 @@ void MainNetwork::receiveMessages() {
     while (true) {
         std::string receivedMessage;
         if (udpComm.receiveMessage(receivedMessage)) {
-            std::cout << "Message reçu: " << receivedMessage << std::endl;
+            std::cout << "Message reï¿½u: " << receivedMessage << std::endl;
         }
         else {
-            std::cerr << "Erreur lors de la réception du message" << std::endl;
+            std::cerr << "Erreur lors de la rï¿½ception du message" << std::endl;
         }
     }
 }
