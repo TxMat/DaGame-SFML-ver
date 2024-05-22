@@ -8,6 +8,7 @@
 #include "../../../Network/MainNetwork.h"
 
 SceneManager::SceneManager(bool isServer) :
+        m_isServer(isServer),
         m_ObjectManager(this),
         m_UIManager(this),
         m_net(MainNetwork()),

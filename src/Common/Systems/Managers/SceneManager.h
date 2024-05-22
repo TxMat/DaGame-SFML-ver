@@ -28,6 +28,8 @@ public:
 
     bool isRunning = true;
 
+    bool m_isServer = true;
+
 private:
 
     std::vector<Object *> m_globalObjectList = std::vector<Object *>();
