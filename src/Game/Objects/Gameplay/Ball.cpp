@@ -9,7 +9,6 @@
 #include "../../../Common/Globals.h"
 
 Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Ball") {
-    m_shape->setFillColor(sf::Color::White);
     m_shape->setOrigin(radius, radius);
     m_speed = speed;
     b_shouldGenerateHits = true;
@@ -25,6 +24,17 @@ Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Bal
     // Generate random x and y coordinates
     float x = dis(gen);
     float y = dis(gen);
+
+    if (x < -.5f) {
+        m_shape->setFillColor(sf::Color::Cyan);
+    } else if (x < 0) {
+        m_shape->setFillColor(sf::Color::Green);
+    } else if (x < .5f) {
+        m_shape->setFillColor(sf::Color::Magenta);
+    }
+    else {
+        m_shape->setFillColor(sf::Color::Yellow);
+    }
 
     // Normalize the direction vector
     float magnitude = std::sqrt(x * x + y * y);

@@ -33,7 +33,7 @@ void AppServer::Init() {
 //    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
 //    m_sceneManager.AddObjectToScene(ball);
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 10; ++i) {
         Object *ball = new Ball(1000, 10);
         ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
         m_sceneManager.AddObjectToScene(ball);
