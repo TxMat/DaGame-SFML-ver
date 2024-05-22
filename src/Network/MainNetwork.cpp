@@ -41,7 +41,7 @@ void MainNetwork::start() {
     receiveThread = std::thread(&MainNetwork::receiveMessages, this);
 
     // Attend que le thread se termine
-    receiveThread.join();
+//    receiveThread.join();
 
 }
 

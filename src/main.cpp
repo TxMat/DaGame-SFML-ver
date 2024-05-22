@@ -10,8 +10,8 @@ int main() {
     auto net = MainNetwork();
     net.start();
 
-    //auto app = App();
-    //app.Init();
-    //app.MainLoop();
+    auto app = App();
+    app.Init();
+    app.MainLoop();
     
 }
