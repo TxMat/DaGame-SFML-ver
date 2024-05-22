@@ -28,7 +28,7 @@ public:
 
     void AddObjectToReplicate(Object *object, std::string &name);
 
-    Object* SceneManager::GetObjectToReplicate(std::string& name);
+    Object* GetObjectToReplicate(std::string& name);
 
     bool isRunning = true;
 
