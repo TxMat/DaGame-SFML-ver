@@ -1,16 +1,8 @@
-#include "SFML/Graphics.hpp"
-#include "Game/MainScene.h"
-
-#include "App.h"
-#include "Common/Globals.h"
+#include "AppServer.h"
 #include "Network/MainNetwork.h"
 
 int main() {
-
-    auto net = MainNetwork();
-    net.start();
-
-    auto app = App();
+    auto app = AppServer();
     app.Init();
     app.MainLoop();
     

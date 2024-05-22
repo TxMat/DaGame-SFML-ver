@@ -18,7 +18,7 @@ private:
     std::thread receiveThread;
 
     void receiveMessages();
-    void sendMessages(const std::string& msg);
+    void sendMessages(const std::string &msg, const std::string &addr);
 };
 
 #endif // MAINNETWORK_H

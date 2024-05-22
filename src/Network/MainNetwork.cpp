@@ -14,6 +14,7 @@ MainNetwork::MainNetwork() {
 
 MainNetwork::~MainNetwork() {
     // Arret du thread de reception
+    // todo do not do this
     if (receiveThread.joinable()) {
         receiveThread.join();
     }
@@ -57,7 +58,7 @@ void MainNetwork::receiveMessages() {
     }
 }
 
-void MainNetwork::sendMessages(const std::string& msg)
+void MainNetwork::sendMessages(const std::string& msg, const std::string& addr)
 {
-    //udpComm.sendMessage(msg, , 8080);
+    udpComm.sendMessage(msg, addr, 8080);
 }

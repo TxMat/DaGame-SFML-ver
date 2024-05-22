@@ -4,7 +4,7 @@
 
 #include <cmath>
 #include <iostream>
-#include "App.h"
+#include "AppServer.h"
 #include "Game/Objects/Gameplay/Ball.h"
 #include "Game/Objects/Gameplay/Paddle.h"
 #include "Common/Globals.h"
@@ -12,8 +12,9 @@
 #include "Game/Objects/UI/Debug/DT.h"
 #include "Game/Objects/UI/Debug/DTFixedTime.h"
 #include "Game/Objects/UI/Score/ScoreUi.h"
+#include "Network/MainNetwork.h"
 
-void App::Init() {
+void AppServer::Init() {
 
     // todo use smart ptr
     Object *playerOnePaddle = new Paddle(1, 10, 100);
@@ -32,7 +33,7 @@ void App::Init() {
 //    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
 //    m_sceneManager.AddObjectToScene(ball);
 
-    for (int i = 0; i < 300; ++i) {
+    for (int i = 0; i < 100; ++i) {
         Object *ball = new Ball(1000, 10);
         ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
         m_sceneManager.AddObjectToScene(ball);
@@ -53,10 +54,10 @@ void App::Init() {
 
 }
 
-App::App() : m_sceneManager(SceneManager()) {
+AppServer::AppServer() : m_sceneManager(SceneManager()) {
 }
 
-void App::MainLoop() {
+void AppServer::MainLoop() {
     while (m_sceneManager.isRunning) {
         m_sceneManager.UnrestrictedTick();
     }

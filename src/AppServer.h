@@ -6,15 +6,16 @@
 #include "SFML/Graphics.hpp"
 #include "Common/Base/Object.h"
 #include "Common/Systems/Managers/SceneManager.h"
+#include "Network/MainNetwork.h"
 
 #ifndef CMAKESFMLPROJECT_APP_H
 #define CMAKESFMLPROJECT_APP_H
 
 
-class App {
+class AppServer {
 
 public:
-    App();
+    AppServer();
 
     void Init();
 

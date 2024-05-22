@@ -5,10 +5,12 @@
 #include <thread>
 #include "SceneManager.h"
 #include "../../Globals.h"
+#include "../../../Network/MainNetwork.h"
 
 SceneManager::SceneManager() :
         m_ObjectManager(this),
         m_UIManager(this),
+        m_net(MainNetwork()),
         m_window(
                 new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"}) {
     m_fixedClock = sf::Clock();
@@ -23,6 +25,8 @@ SceneManager::SceneManager() :
     std::thread RM(&SceneManager::Tick, this);
     m_h = RM.native_handle();
     RM.detach();
+
+    m_net.start();
 
 }
 
