@@ -26,6 +26,8 @@ public:
 
     void AddUIToScene(UITextElement *object, bool shouldFastTick);
 
+    void AddObjectToReplicate(Object *object, std::string &name);
+
     bool isRunning = true;
 
     bool m_isServer = true;
@@ -33,6 +35,8 @@ public:
 private:
 
     std::vector<Object *> m_globalObjectList = std::vector<Object *>();
+
+    std::map<std::string, Object *> m_ReplicatedObjectList = std::map<std::string , Object *>();
 
     ObjectManager m_ObjectManager;
     UIManager m_UIManager;

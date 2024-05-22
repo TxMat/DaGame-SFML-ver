@@ -83,5 +83,6 @@ bool UDPCommunicator::receiveMessage(std::string& message, int bufferSize) {
 
     buffer[n] = '\0';
     message = std::string(buffer);
+    std::cout << message << std::endl;
     return true;
 }
