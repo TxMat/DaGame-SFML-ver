@@ -57,7 +57,7 @@ void MainNetwork::receiveMessages() {
     }
 }
 
-void  MainNetwork::sendMessages(std::string msg)
+void MainNetwork::sendMessages(const std::string& msg)
 {
-
+    //udpComm.sendMessage(msg, , 8080);
 }
