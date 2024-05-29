@@ -33,6 +33,10 @@ protected:
 
     MainNetwork m_net;
 
+private:
+
+    std::chrono::nanoseconds m_last_packet_ts;
+
 };
 
 

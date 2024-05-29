@@ -9,6 +9,7 @@
 
 NetworkManager::NetworkManager(SceneManager *sm) :
 	m_net(this),
+    m_last_packet_ts(0),
 	BaseManager(sm) {
 
 	m_net.start();
@@ -45,6 +46,15 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes) {
     {
         // Skip the message type and timestamp
         int index = 1 + sizeof(std::chrono::nanoseconds);
+        std::chrono::nanoseconds ts;
+        std::memcpy(&ts, &bytes[1], sizeof(std::chrono::nanoseconds));
+
+        if (ts < m_last_packet_ts) {
+            return;
+        }
+
+        m_last_packet_ts = ts;
+
         size_t uintSize = sizeof(unsigned int);
 
         // Extract ID

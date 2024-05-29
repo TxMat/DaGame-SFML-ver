@@ -38,6 +38,7 @@ void SceneManager::Tick() {
 
         m_UIManager.FixedTick(elapsedTime);
         m_ObjectManager.FixedTick(elapsedTime);
+        m_NetworkManager.FixedTick(elapsedTime);
 
         sleep(m_tickFramerate - m_fixedClock.getElapsedTime());
     }
