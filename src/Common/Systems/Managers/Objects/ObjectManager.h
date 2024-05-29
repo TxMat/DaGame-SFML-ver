@@ -36,9 +36,6 @@ protected:
 
     // todo store a physics object list for better perf and increased ram usage
 
-    sf::Clock inner;
-    sf::Time m_tickFramerate = sf::seconds(1.f / 144);
-
     static void TickInternal(float deltaTime, const std::vector<Object *> &objectList);
 };
 
