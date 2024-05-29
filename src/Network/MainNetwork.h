@@ -27,6 +27,8 @@ private:
     void sendMessages(const std::string &msg, const std::string &addr);
 
     void ParseMessage(const std::string &msg, std::string &objectName, sf::Vector2<float> &position);
+
+    std::thread::native_handle_type m_h;
 };
 
 #endif // MAINNETWORK_H

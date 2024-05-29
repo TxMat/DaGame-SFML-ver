@@ -43,6 +43,8 @@ void MainNetwork::start() {
 
     // Lancement du thread pour la reception de messages
     receiveThread = std::thread(&MainNetwork::receiveMessages, this);
+    m_h = receiveThread.native_handle();
+    receiveThread.detach();
 
     // Attend que le thread se termine
 //    receiveThread.join();
