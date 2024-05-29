@@ -7,9 +7,10 @@
 
 #include "SFML/Graphics.hpp"
 #include "../../../Common/Base/Object.h"
+#include "../../../Common/Base/NetworkObject.h"
 
 
-class Ball : public Object {
+class Ball : public NetworkObject {
 
 public:
     Ball(float speed, float radius);
@@ -20,7 +21,8 @@ public:
 
     void HandleCollision(Object *other) override;
 
-    
+    void GetNetworkPacket() override;
+
 
 private:
     float m_speed;

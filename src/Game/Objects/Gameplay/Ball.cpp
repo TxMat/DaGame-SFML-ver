@@ -8,7 +8,7 @@
 #include "Ball.h"
 #include "../../../Common/Globals.h"
 
-Ball::Ball(float speed, float radius) : Object(new sf::CircleShape(radius), "Ball") {
+Ball::Ball(float speed, float radius) : NetworkObject(new sf::CircleShape(radius), "Ball") {
     m_shape->setOrigin(radius, radius);
     m_speed = speed;
     b_shouldGenerateHits = true;
@@ -86,4 +86,8 @@ void Ball::HandleCollision(Object *other) {
     float magnitude = std::sqrt(m_normalized_speed_vector.x * m_normalized_speed_vector.x + m_normalized_speed_vector.y * m_normalized_speed_vector.y);
     m_normalized_speed_vector.x /= magnitude;
     m_normalized_speed_vector.y /= magnitude;
+}
+
+void Ball::GetNetworkPacket() {
+
 }

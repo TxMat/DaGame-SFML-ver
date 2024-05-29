@@ -7,13 +7,16 @@
 
 #include "SFML/Graphics.hpp"
 #include "../../../Common/Base/Object.h"
+#include "../../../Common/Base/NetworkObject.h"
 
-class Paddle : public Object {
+class Paddle : public NetworkObject {
 public:
 
     explicit Paddle(unsigned int player_number, int width, int height);
 
     void Update(float deltaTime) override;
+
+    void GetNetworkPacket() override;
 
 private:
 

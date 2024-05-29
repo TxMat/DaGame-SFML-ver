@@ -17,16 +17,16 @@
 void AppServer::Init() {
 
     // todo use smart ptr
-    Object *playerOnePaddle = new Paddle(1, 10, 100);
+    NetworkObject *playerOnePaddle = new Paddle(1, 10, 100);
     m_sceneManager.AddObjectToScene(playerOnePaddle);
 
-    Object *playerTwoPaddle = new Paddle(2, 10, 100);
+    NetworkObject *playerTwoPaddle = new Paddle(2, 10, 100);
     m_sceneManager.AddObjectToScene(playerTwoPaddle);
 
-    Object* playerThreePaddle = new Paddle(3, 100, 10);
+    NetworkObject* playerThreePaddle = new Paddle(3, 100, 10);
     m_sceneManager.AddObjectToScene(playerThreePaddle);
 
-    Object* playerFourPaddle = new Paddle(4, 100, 10);
+    NetworkObject* playerFourPaddle = new Paddle(4, 100, 10);
     m_sceneManager.AddObjectToScene(playerFourPaddle);
 
 //    Object *ball = new Ball(1000, 10);
@@ -34,7 +34,7 @@ void AppServer::Init() {
 //    m_sceneManager.AddObjectToScene(ball);
 
     for (int i = 0; i < 10; ++i) {
-        Object* ball = new Ball(1000, 10);
+        NetworkObject* ball = new Ball(1000, 10);
         ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
         m_sceneManager.AddObjectToScene(ball);
     }

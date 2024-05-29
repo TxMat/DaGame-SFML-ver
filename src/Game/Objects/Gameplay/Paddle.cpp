@@ -5,7 +5,7 @@
 #include "Paddle.h"
 #include "../../../Common/Globals.h"
 
-Paddle::Paddle(unsigned int player_number, int width, int height): Object(
+Paddle::Paddle(unsigned int player_number, int width, int height): NetworkObject(
         new sf::RectangleShape(sf::Vector2f(width, height)),
         "Paddle_P" + std::to_string(player_number)), m_player_number(player_number) {
     m_shape->setFillColor(sf::Color::Red);
@@ -84,4 +84,8 @@ void Paddle::MoveHorizontallyClamped(float offsetX)
     if (x < WIDTH && x > 0) {
         m_shape->move(offsetX,0.0);
     }
+}
+
+void Paddle::GetNetworkPacket() {
+
 }
