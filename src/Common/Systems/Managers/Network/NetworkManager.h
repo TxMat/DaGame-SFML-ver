@@ -25,6 +25,8 @@ public:
 
     void Render(sf::RenderWindow &window) override;
 
+    void ReceiveMessage(std::vector<char>& bytes);
+
 protected:
 
     std::map<unsigned int, NetworkObject *> m_replicatedObjectMap = std::map<unsigned int, NetworkObject *>();

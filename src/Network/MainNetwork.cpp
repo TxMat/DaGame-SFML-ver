@@ -56,7 +56,9 @@ void MainNetwork::receiveMessages() {
         std::string receivedMessage;
         if (udpComm.receiveMessage(receivedMessage)) {
             std::cout << "Message recu: " << receivedMessage << std::endl;
-            // TODO
+            std::vector<char> bytes(receivedMessage.begin(), receivedMessage.end());
+            bytes.push_back('\0');
+            m_nm->ReceiveMessage(bytes);
         }
         else {
             std::cerr << "Erreur lors de la reception du message" << std::endl;
@@ -67,9 +69,4 @@ void MainNetwork::receiveMessages() {
 void MainNetwork::sendMessages(const std::string& msg, const std::string& addr)
 {
     udpComm.sendMessage(msg, addr, 8080);
-}
-
-void MainNetwork::ParseMessage(const std::string& msg, std::string& objectName, sf::Vector2f& position)
-{
-
 }

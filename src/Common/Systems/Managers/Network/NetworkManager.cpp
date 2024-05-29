@@ -32,3 +32,7 @@ void NetworkManager::AddObjectToReplicate(NetworkObject *object) {
 NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 	return m_replicatedObjectMap[id];
 }
+
+void NetworkManager::ReceiveMessage(std::vector<char>& bytes) {
+
+}
