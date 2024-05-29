@@ -90,5 +90,10 @@ void Ball::HandleCollision(Object *other) {
 
 NetworkPacket Ball::GetNetworkPacket() {
     std::vector<uint8_t> p = {};
+
     return NetworkPacket(PosSync, p);
+}
+
+void Ball::DeserializePayload(std::vector<uint8_t>& payload) {
+
 }

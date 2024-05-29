@@ -22,6 +22,7 @@ public:
     void HandleCollision(Object *other) override;
 
     NetworkPacket GetNetworkPacket() override;
+    void DeserializePayload(std::vector<uint8_t>& payload) override;
 
 
 private:

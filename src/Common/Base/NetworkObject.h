@@ -15,7 +15,7 @@ public:
     NetworkObject(sf::Shape *mShape, const std::string &name);
 
     virtual NetworkPacket GetNetworkPacket() = 0;
-
+    virtual void DeserializePayload(std::vector<uint8_t> &payload) = 0;
 };
 
 
