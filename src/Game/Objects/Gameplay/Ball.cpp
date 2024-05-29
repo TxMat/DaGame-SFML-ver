@@ -5,6 +5,7 @@
 #include <cmath>
 #include <random>
 #include <iostream>
+#include <cstring>
 #include "Ball.h"
 #include "../../../Common/Globals.h"
 
