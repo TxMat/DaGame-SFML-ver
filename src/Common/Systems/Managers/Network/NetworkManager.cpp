@@ -30,5 +30,5 @@ void NetworkManager::AddObjectToReplicate(NetworkObject *object) {
 }
 
 NetworkObject* NetworkManager::GetObjectToReplicate(std::string& name){
-    return new Ball(10 ,10);
+	return m_replicatedObjectMap[name];
 }

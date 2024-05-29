@@ -27,7 +27,7 @@ public:
 
 protected:
 
-    std::vector<NetworkObject *> m_replicatedObjectList = std::vector<NetworkObject *>();
+    std::map<std::string, NetworkObject *> m_replicatedObjectMap = std::map<std::string, NetworkObject *>();
 
     MainNetwork m_net;
 
