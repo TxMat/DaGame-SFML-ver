@@ -34,5 +34,11 @@ NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 }
 
 void NetworkManager::ReceiveMessage(std::vector<char>& bytes) {
+	int index = 1 + sizeof(std::chrono::nanoseconds);
+	size_t uintSize = sizeof(unsigned int);
 
+	unsigned int id;
+	std::memcpy(&id, &bytes[index], uintSize);
+
+	GetObjectToReplicate(id)->DeserializePayload(bytes[index + uintSize])
 }
