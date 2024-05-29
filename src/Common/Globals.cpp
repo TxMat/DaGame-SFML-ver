@@ -5,7 +5,7 @@
 #include "Globals.h"
 
 // god i hate cpp
-unsigned int WIDTH = 1920u;
-unsigned int HEIGHT = 1080u;
+unsigned int WIDTH = 900u;
+unsigned int HEIGHT = 900u;
 
 bool IS_SERVER = true;
