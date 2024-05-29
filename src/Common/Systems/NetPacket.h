@@ -30,6 +30,14 @@ struct NetworkPacket {
         // Serialize ts
         const auto* tst = reinterpret_cast<const uint8_t*>(&ts);
         p.insert(p.end(), tst, tst + sizeof(ts));
+
+        // insert payload
+        p.insert(p.end(), payload.begin(), payload.end());
+        
+        std::string str(p.begin(), p.end());
+        //std::string str = reinterpret_cast<char*>(p.data());
+
+        return str;
     }
 };
 
