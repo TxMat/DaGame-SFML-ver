@@ -6,7 +6,7 @@
 
 #include <utility>
 
-Object::Object(sf::Shape *mShape, std::string Name) : m_shape(mShape), m_name(std::move(Name)) {
+Object::Object(sf::Shape *mShape, std::string Name, unsigned int id) : m_shape(mShape), m_name(std::move(Name)), m_id(id) {
 
 }
 

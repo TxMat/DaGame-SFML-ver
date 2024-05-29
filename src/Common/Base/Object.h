@@ -11,7 +11,7 @@
 class Object {
 
 public:
-    explicit Object(sf::Shape *mShape, std::string Name);
+    explicit Object(sf::Shape *mShape, std::string Name, unsigned int id);
 
     virtual ~Object() = default;
 
@@ -38,7 +38,7 @@ protected:
 
     sf::Shape *m_shape;
     std::string m_name;
-    std::uuid m_id;
+    unsigned int m_id;
 };
 
 

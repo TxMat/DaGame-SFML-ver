@@ -10,40 +10,6 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-# Fetch Boost
-FetchContent_Declare(
-        boost
-        GIT_REPOSITORY https://github.com/boostorg/boost.git
-        GIT_TAG boost-1.85.0
-)
-FetchContent_MakeAvailable(boost)
-
-# Add Boost modules
-FetchContent_Declare(
-        boost_uuid
-        GIT_REPOSITORY https://github.com/boostorg/uuid.git
-        GIT_TAG boost-1.85.0
-)
-FetchContent_MakeAvailable(boost_uuid)
-
-FetchContent_Declare(
-        boost_system
-        GIT_REPOSITORY https://github.com/boostorg/system.git
-        GIT_TAG boost-1.85.0
-)
-FetchContent_MakeAvailable(boost_system)
-
-# Add Boost include directories
-include_directories(${boost_SOURCE_DIR})
-include_directories(${boost_uuid_SOURCE_DIR}/include)
-include_directories(${boost_system_SOURCE_DIR}/include)
-
-# Add Boost libraries
-add_library(boost_uuid INTERFACE)
-add_library(boost_system INTERFACE)
-add_library(boost INTERFACE)
-target_link_libraries(boost INTERFACE boost_uuid boost_system)
-
 add_executable(CMakeSFMLProject src/main.cpp
         src/Game/Objects/Gameplay/Ball.cpp
         src/Game/Objects/Gameplay/Ball.h
@@ -88,10 +54,9 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Base/NetworkObject.cpp
         src/Common/Base/NetworkObject.h
         src/Common/Systems/NetPacket.h
-        src/Common/Systems/PacketType.h)
-
-# Link SFML and Boost libraries
-target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics boost)
+        src/Common/Systems/PacketType.h
+)
+target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 
 if(WIN32)

@@ -4,6 +4,6 @@
 
 #include "NetworkObject.h"
 
-NetworkObject::NetworkObject(sf::Shape *mShape, const std::string &name) : Object(mShape, name) {
+NetworkObject::NetworkObject(sf::Shape *mShape, const std::string &name) : Object(mShape, name, 0) {
 
 }
