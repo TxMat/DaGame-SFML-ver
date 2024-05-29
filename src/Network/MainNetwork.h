@@ -7,12 +7,11 @@
 #include <thread>
 #include <iostream>
 
-// fw decl
-class SceneManager;
+class NetworkManager;
 
 class MainNetwork {
 public:
-    explicit MainNetwork(SceneManager* sm);
+    explicit MainNetwork(NetworkManager* nm);
     ~MainNetwork();
 
     void start();
@@ -21,7 +20,7 @@ private:
     UDPCommunicator udpComm;
     std::thread receiveThread;
 
-    SceneManager* m_sm;
+    NetworkManager* m_nm;
 
     void receiveMessages();
     void sendMessages(const std::string &msg, const std::string &addr);

@@ -5,9 +5,9 @@
 #ifndef CMAKESFMLPROJECT_NETWORKMANAGER_H
 #define CMAKESFMLPROJECT_NETWORKMANAGER_H
 
-
 #include "../Base/BaseManager.h"
 #include "../../../Base/Object.h"
+#include "../../../../Network/MainNetwork.h"
 
 class NetworkManager : public BaseManager {
 
@@ -18,6 +18,7 @@ public:
     void FixedTick(float deltaTime) override;
 
     void AddObjectToReplicate(Object *object);
+    Object* GetObjectToReplicate(std::string& name);
 
     void UnrestrictedTick(float deltaTime) override;
 
@@ -26,6 +27,8 @@ public:
 protected:
 
     std::vector<Object *> m_replicatedObjectList = std::vector<Object *>();
+
+    MainNetwork m_net;
 
 };
 

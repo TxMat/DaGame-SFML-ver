@@ -52,7 +52,6 @@ private:
     sf::Clock m_fixedClock;
     sf::Clock m_fastClock;
     std::thread::native_handle_type m_h;
-    MainNetwork m_net;
 };
 
 
