@@ -19,7 +19,7 @@ public:
     void FixedTick(float deltaTime) override;
 
     void AddObjectToReplicate(NetworkObject *object);
-    NetworkObject* GetObjectToReplicate(std::string& name);
+    NetworkObject* GetObjectToReplicate(unsigned int id);
 
     void UnrestrictedTick(float deltaTime) override;
 
@@ -27,7 +27,7 @@ public:
 
 protected:
 
-    std::map<std::string, NetworkObject *> m_replicatedObjectMap = std::map<std::string, NetworkObject *>();
+    std::map<unsigned int, NetworkObject *> m_replicatedObjectMap = std::map<unsigned int, NetworkObject *>();
 
     MainNetwork m_net;
 

@@ -29,6 +29,6 @@ void NetworkManager::AddObjectToReplicate(NetworkObject *object) {
 
 }
 
-NetworkObject* NetworkManager::GetObjectToReplicate(std::string& name){
-	return m_replicatedObjectMap[name];
+NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
+	return m_replicatedObjectMap[id];
 }

@@ -56,10 +56,7 @@ void MainNetwork::receiveMessages() {
         std::string receivedMessage;
         if (udpComm.receiveMessage(receivedMessage)) {
             std::cout << "Message recu: " << receivedMessage << std::endl;
-            std::string objectName;
-            sf::Vector2f position;
-            ParseMessage(receivedMessage, objectName, position);
-            m_nm->GetObjectToReplicate(objectName)->getMShape()->setPosition(position);
+            // TODO
         }
         else {
             std::cerr << "Erreur lors de la reception du message" << std::endl;
