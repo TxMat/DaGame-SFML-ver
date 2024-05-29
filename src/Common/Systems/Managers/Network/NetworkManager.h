@@ -8,6 +8,7 @@
 #include "../Base/BaseManager.h"
 #include "../../../Base/Object.h"
 #include "../../../../Network/MainNetwork.h"
+#include "../../../Base/NetworkObject.h"
 
 class NetworkManager : public BaseManager {
 
@@ -17,8 +18,8 @@ public:
 
     void FixedTick(float deltaTime) override;
 
-    void AddObjectToReplicate(Object *object);
-    Object* GetObjectToReplicate(std::string& name);
+    void AddObjectToReplicate(NetworkObject *object);
+    NetworkObject* GetObjectToReplicate(std::string& name);
 
     void UnrestrictedTick(float deltaTime) override;
 
@@ -26,7 +27,7 @@ public:
 
 protected:
 
-    std::vector<Object *> m_replicatedObjectList = std::vector<Object *>();
+    std::vector<NetworkObject *> m_replicatedObjectList = std::vector<NetworkObject *>();
 
     MainNetwork m_net;
 

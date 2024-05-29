@@ -3,6 +3,7 @@
 //
 
 #include "NetworkManager.h"
+#include "../../../Base/NetworkObject.h"
 
 NetworkManager::NetworkManager(SceneManager *sm) :
 	m_net(this),
@@ -23,10 +24,10 @@ void NetworkManager::Render(sf::RenderWindow &window) {
 
 }
 
-void NetworkManager::AddObjectToReplicate(Object *object) {
+void NetworkManager::AddObjectToReplicate(NetworkObject *object) {
 
 }
 
-Object* NetworkManager::GetObjectToReplicate(std::string& name){
+NetworkObject* NetworkManager::GetObjectToReplicate(std::string& name){
 
 }
