@@ -14,6 +14,8 @@ public:
     explicit MainNetwork(NetworkManager* nm);
     ~MainNetwork();
 
+    void sendMessages(const std::string& msg, const std::string& addr);
+
     void start();
 
 private:
@@ -23,7 +25,6 @@ private:
     NetworkManager* m_nm;
 
     void receiveMessages();
-    void sendMessages(const std::string &msg, const std::string &addr);
 
     std::thread::native_handle_type m_h;
 };

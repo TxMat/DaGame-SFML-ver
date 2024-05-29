@@ -19,6 +19,18 @@ struct NetworkPacket {
         ts = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch());
     }
 
+    const std::string ToString()
+    {
+        std::vector<uint8_t> p;
+
+        // Serialize pt
+        const auto* ptt = reinterpret_cast<const uint8_t*>(&pt);
+        p.insert(p.end(), ptt, ptt + sizeof(pt));
+        
+        // Serialize ts
+        const auto* tst = reinterpret_cast<const uint8_t*>(&ts);
+        p.insert(p.end(), tst, tst + sizeof(ts));
+    }
 };
 
 #endif //CMAKESFMLPROJECT_NETPACKET_H

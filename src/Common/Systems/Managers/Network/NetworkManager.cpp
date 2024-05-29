@@ -16,7 +16,10 @@ NetworkManager::NetworkManager(SceneManager *sm) :
 }
 
 void NetworkManager::FixedTick(float deltaTime) {
-
+    for (const auto& kv : m_replicatedObjectMap)
+    {
+        //m_net.sendMessages(kv.second->GetNetworkPacket(), );
+    }
 }
 
 void NetworkManager::UnrestrictedTick(float deltaTime) {
