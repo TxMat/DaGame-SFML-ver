@@ -5,10 +5,10 @@
 #ifndef CMAKESFMLPROJECT_PACKETTYPE_H
 #define CMAKESFMLPROJECT_PACKETTYPE_H
 
-enum PacketType {
-    Conn,
-    ConnAck,
-    PosSync,
+enum PacketType : char {
+    Conn = 0,
+    ConnAck = 1,
+    PosSync = 2,
 };
 
 #endif //CMAKESFMLPROJECT_PACKETTYPE_H
