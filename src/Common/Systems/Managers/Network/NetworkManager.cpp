@@ -35,17 +35,26 @@ NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 }
 
 void NetworkManager::ReceiveMessage(std::vector<char>& bytes) {
-    // Skip the message type and timestamp
-    int index = 1 + sizeof(std::chrono::nanoseconds);
-    size_t uintSize = sizeof(unsigned int);
+    const auto t = reinterpret_cast<const PacketType*>(bytes[0]);
+    
+    if (*t == PacketType::Conn)
+    {
 
-    // Extract ID
-    unsigned int id;
-    std::memcpy(&id, &bytes[index], uintSize);
-    index += uintSize;
+    }
+    else if (*t == PacketType::PosSync)
+    {
+        // Skip the message type and timestamp
+        int index = 1 + sizeof(std::chrono::nanoseconds);
+        size_t uintSize = sizeof(unsigned int);
 
-    // Prepare wtf
-    std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
+        // Extract ID
+        unsigned int id;
+        std::memcpy(&id, &bytes[index], uintSize);
+        index += uintSize;
 
-    GetObjectToReplicate(id)->DeserializePayload(payload);
+        // Prepare wtf
+        std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
+
+        GetObjectToReplicate(id)->DeserializePayload(payload);
+    }
 }
