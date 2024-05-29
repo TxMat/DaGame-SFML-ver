@@ -4,8 +4,11 @@
 
 #include "NetworkManager.h"
 
-NetworkManager::NetworkManager(SceneManager *sm) : BaseManager(sm) {
+NetworkManager::NetworkManager(SceneManager *sm) :
+	m_net(sm),
+	BaseManager(sm) {
 
+	m_net.start();
 }
 
 void NetworkManager::FixedTick(float deltaTime) {
@@ -21,5 +24,9 @@ void NetworkManager::Render(sf::RenderWindow &window) {
 }
 
 void NetworkManager::AddObjectToReplicate(Object *object) {
+
+}
+
+Object* NetworkManager::GetObjectToReplicate(std::string& name){
 
 }

@@ -12,7 +12,6 @@ SceneManager::SceneManager(bool isServer) :
         m_ObjectManager(this),
         m_UIManager(this),
         m_NetworkManager(this),
-        m_net(MainNetwork(this)),
         m_window(
                 new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"}) {
     m_fixedClock = sf::Clock();
@@ -27,9 +26,6 @@ SceneManager::SceneManager(bool isServer) :
     std::thread RM(&SceneManager::Tick, this);
     m_h = RM.native_handle();
     RM.detach();
-
-    m_net.start();
-
 }
 
 void SceneManager::Tick() {
