@@ -5,7 +5,7 @@
 #include "NetworkManager.h"
 
 NetworkManager::NetworkManager(SceneManager *sm) :
-	m_net(sm),
+	m_net(this),
 	BaseManager(sm) {
 
 	m_net.start();
