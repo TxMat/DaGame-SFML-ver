@@ -88,6 +88,7 @@ void Ball::HandleCollision(Object *other) {
     m_normalized_speed_vector.y /= magnitude;
 }
 
-void Ball::GetNetworkPacket() {
-
+NetworkPacket Ball::GetNetworkPacket() {
+    std::vector<uint8_t> p = {};
+    return NetworkPacket(PosSync, p);
 }

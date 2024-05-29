@@ -7,13 +7,14 @@
 
 
 #include "Object.h"
+#include "../Systems/NetPacket.h"
 
 class NetworkObject : public Object {
 
 public:
     NetworkObject(sf::Shape *mShape, const std::string &name);
 
-    virtual void GetNetworkPacket() = 0;
+    virtual NetworkPacket GetNetworkPacket() = 0;
 
 };
 

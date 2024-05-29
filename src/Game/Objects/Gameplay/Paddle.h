@@ -16,7 +16,7 @@ public:
 
     void Update(float deltaTime) override;
 
-    void GetNetworkPacket() override;
+    NetworkPacket GetNetworkPacket() override;
 
 private:
 

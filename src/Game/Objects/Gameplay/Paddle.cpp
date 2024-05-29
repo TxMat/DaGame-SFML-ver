@@ -86,6 +86,7 @@ void Paddle::MoveHorizontallyClamped(float offsetX)
     }
 }
 
-void Paddle::GetNetworkPacket() {
-
+NetworkPacket Paddle::GetNetworkPacket() {
+    std::vector<uint8_t> p = {};
+    return NetworkPacket(PosSync, p);
 }

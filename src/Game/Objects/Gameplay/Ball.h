@@ -21,7 +21,7 @@ public:
 
     void HandleCollision(Object *other) override;
 
-    void GetNetworkPacket() override;
+    NetworkPacket GetNetworkPacket() override;
 
 
 private:

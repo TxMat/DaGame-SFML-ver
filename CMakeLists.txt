@@ -52,7 +52,9 @@ add_executable(CMakeSFMLProject src/main.cpp
         src/Common/Systems/Managers/Network/NetworkManager.cpp
         src/Common/Systems/Managers/Network/NetworkManager.h
         src/Common/Base/NetworkObject.cpp
-        src/Common/Base/NetworkObject.h)
+        src/Common/Base/NetworkObject.h
+        src/Common/Systems/NetPacket.h
+        src/Common/Systems/PacketType.h)
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 
