@@ -4,6 +4,7 @@
 
 #include "NetworkManager.h"
 #include "../../../Base/NetworkObject.h"
+#include "../../../../Game/Objects/Gameplay/Ball.h"
 
 NetworkManager::NetworkManager(SceneManager *sm) :
 	m_net(this),
@@ -29,5 +30,5 @@ void NetworkManager::AddObjectToReplicate(NetworkObject *object) {
 }
 
 NetworkObject* NetworkManager::GetObjectToReplicate(std::string& name){
-
+    return new Ball(10 ,10);
 }
