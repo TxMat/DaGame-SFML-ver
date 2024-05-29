@@ -12,7 +12,7 @@
 struct NetworkPacket {
 
     PacketType pt;
-    std::chrono::system_clock::duration ts{};
+    std::chrono::nanoseconds ts{};
     std::vector<uint8_t> payload;
 
     NetworkPacket(PacketType pt, const std::vector<uint8_t> &payload) : pt(pt), payload(payload) {
