@@ -105,5 +105,9 @@ NetworkPacket Ball::GetNetworkPacket() {
 }
 
 void Ball::DeserializePayload(std::vector<uint8_t>& payload) {
-
+    float x, y;
+    size_t floatSize = sizeof(float);
+    std::memcpy(&x, &payload[0], floatSize);
+    std::memcpy(&y, &payload[floatSize], floatSize);
+    sf::Vector2f newPos = sf::Vector2f(x, y);
 }
