@@ -38,6 +38,7 @@ protected:
 
     sf::Shape *m_shape;
     std::string m_name;
+    std::uuid m_id;
 };
 
 

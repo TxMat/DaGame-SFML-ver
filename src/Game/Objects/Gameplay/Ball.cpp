@@ -89,9 +89,19 @@ void Ball::HandleCollision(Object *other) {
 }
 
 NetworkPacket Ball::GetNetworkPacket() {
-    std::vector<uint8_t> p = {};
+    auto pos = m_shape->getPosition();
 
-    return NetworkPacket(PosSync, p);
+    std::vector<uint8_t> p;
+
+    // Serialize pos.x
+    const auto* px = reinterpret_cast<const uint8_t*>(&pos.x);
+    p.insert(p.end(), px, px + sizeof(pos.x));
+
+    // Serialize pos.y
+    const auto* py = reinterpret_cast<const uint8_t*>(&pos.y);
+    p.insert(p.end(), py, py + sizeof(pos.y));
+
+    return NetworkPacket{PosSync, p};
 }
 
 void Ball::DeserializePayload(std::vector<uint8_t>& payload) {
