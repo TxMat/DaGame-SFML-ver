@@ -2,6 +2,7 @@
 // Created by uranus on 29/05/24.
 //
 
+#include <cstring>
 #include "NetworkManager.h"
 #include "../../../Base/NetworkObject.h"
 #include "../../../../Game/Objects/Gameplay/Ball.h"
@@ -34,11 +35,17 @@ NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 }
 
 void NetworkManager::ReceiveMessage(std::vector<char>& bytes) {
-	int index = 1 + sizeof(std::chrono::nanoseconds);
-	size_t uintSize = sizeof(unsigned int);
+    // Skip the message type and timestamp
+    int index = 1 + sizeof(std::chrono::nanoseconds);
+    size_t uintSize = sizeof(unsigned int);
 
-	unsigned int id;
-	std::memcpy(&id, &bytes[index], uintSize);
+    // Extract ID
+    unsigned int id;
+    std::memcpy(&id, &bytes[index], uintSize);
+    index += uintSize;
 
-	GetObjectToReplicate(id)->DeserializePayload(bytes[index + uintSize])
+    // Prepare wtf
+    std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
+
+    GetObjectToReplicate(id)->DeserializePayload(payload);
 }
