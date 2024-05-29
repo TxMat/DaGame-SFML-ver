@@ -9,6 +9,7 @@
 #include "UI/UIManager.h"
 #include "Objects/ObjectManager.h"
 #include "../../../Network/MainNetwork.h"
+#include "Network/NetworkManager.h"
 #include <thread>
 
 class SceneManager {
@@ -42,6 +43,7 @@ private:
 
     ObjectManager m_ObjectManager;
     UIManager m_UIManager;
+    NetworkManager m_NetworkManager;
 
     sf::RenderWindow *m_window;
 

@@ -11,6 +11,7 @@ SceneManager::SceneManager(bool isServer) :
         m_isServer(isServer),
         m_ObjectManager(this),
         m_UIManager(this),
+        m_NetworkManager(this),
         m_net(MainNetwork(this)),
         m_window(
                 new sf::RenderWindow{{WIDTH, HEIGHT}, "Best App Ever"}) {
