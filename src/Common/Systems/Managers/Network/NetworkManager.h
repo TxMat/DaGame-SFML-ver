@@ -29,6 +29,8 @@ public:
 
 protected:
 
+    int m_playerCount;
+    std::map<std::pair<char*, int>, int> m_playerMap = std::map<std::pair<char*, int>, int>();
     std::map<unsigned int, NetworkObject *> m_replicatedObjectMap = std::map<unsigned int, NetworkObject *>();
 
     MainNetwork m_net;

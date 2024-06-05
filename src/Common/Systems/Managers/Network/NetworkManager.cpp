@@ -6,6 +6,7 @@
 #include "NetworkManager.h"
 #include "../../../Base/NetworkObject.h"
 #include "../../../../Game/Objects/Gameplay/Ball.h"
+#include "../../../../Common/Globals.h"
 
 NetworkManager::NetworkManager(SceneManager *sm) :
 	m_net(this),
@@ -13,12 +14,16 @@ NetworkManager::NetworkManager(SceneManager *sm) :
 	BaseManager(sm) {
 
 	m_net.start();
+    m_playerCount = 0;
 }
 
 void NetworkManager::FixedTick(float deltaTime) {
-    for (const auto& kv : m_replicatedObjectMap)
+    for each (auto player in m_playerMap)
     {
-        //m_net.sendMessages(kv.second->GetNetworkPacket().ToString(), );
+        for (const auto& kv : m_replicatedObjectMap)
+        {
+            m_net.sendMessages(kv.second->GetNetworkPacket().ToString(), player.first.first, player.first.second);
+        }
     }
 }
 
@@ -41,33 +46,53 @@ NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* port) {
     const auto t = reinterpret_cast<const PacketType*>(bytes[0]);
     
-    if (*t == PacketType::Conn)
+    if (IS_CLIENT)
     {
+        if (*t == PacketType::PosSync)
+        {
+            // Skip the message type and timestamp
+            int index = 1 + sizeof(std::chrono::nanoseconds);
+            std::chrono::nanoseconds ts;
+            std::memcpy(&ts, &bytes[1], sizeof(std::chrono::nanoseconds));
 
-    }
-    else if (*t == PacketType::PosSync)
-    {
-        // Skip the message type and timestamp
-        int index = 1 + sizeof(std::chrono::nanoseconds);
-        std::chrono::nanoseconds ts;
-        std::memcpy(&ts, &bytes[1], sizeof(std::chrono::nanoseconds));
+            if (ts < m_last_packet_ts) {
+                return;
+            }
 
-        if (ts < m_last_packet_ts) {
-            return;
+            m_last_packet_ts = ts;
+
+            size_t uintSize = sizeof(unsigned int);
+
+            // Extract ID
+            unsigned int id;
+            std::memcpy(&id, &bytes[index], uintSize);
+            index += uintSize;
+
+            // Prepare
+            std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
+
+            GetObjectToReplicate(id)->DeserializePayload(payload);
         }
-
-        m_last_packet_ts = ts;
-
-        size_t uintSize = sizeof(unsigned int);
-
-        // Extract ID
-        unsigned int id;
-        std::memcpy(&id, &bytes[index], uintSize);
-        index += uintSize;
-
-        // Prepare
-        std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
-
-        GetObjectToReplicate(id)->DeserializePayload(payload);
     }
+    else
+    {
+        std::pair<char*, int> pair = std::pair<char*, int>(ip, *port);
+        auto iter = m_playerMap.find(pair);
+        if (iter == m_playerMap.end())
+        {
+            if (m_playerCount == 4) return;
+
+            m_playerMap[pair] = m_playerCount;
+            m_playerCount++;
+        }
+        
+        for each (auto var in m_playerMap)
+        {
+            if (var.first != pair)
+            {
+                //m_net.sendMessages(, var.first.first, var.first.second);
+            }
+        }
+    }
+    
 }
