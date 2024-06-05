@@ -19,7 +19,12 @@ struct NetworkPacket {
         ts = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch());
     }
 
-    const std::string ToString()
+    std::vector<char> ToVec() {
+        std::vector<char> a{};
+        return a;
+    }
+
+    std::string ToString()
     {
         std::vector<uint8_t> p;
 

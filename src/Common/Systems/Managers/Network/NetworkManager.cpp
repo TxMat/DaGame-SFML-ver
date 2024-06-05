@@ -6,7 +6,7 @@
 #include "NetworkManager.h"
 #include "../../../Base/NetworkObject.h"
 #include "../../../../Game/Objects/Gameplay/Ball.h"
-#include "../../../../Common/Globals.h"
+#include "../../../Globals.h"
 
 NetworkManager::NetworkManager(SceneManager *sm) :
 	m_net(this),
@@ -17,12 +17,13 @@ NetworkManager::NetworkManager(SceneManager *sm) :
     m_playerCount = 0;
 }
 
+
 void NetworkManager::FixedTick(float deltaTime) {
-    for each (auto player in m_playerMap)
+    for (auto player : m_playerMap)
     {
         for (const auto& kv : m_replicatedObjectMap)
         {
-            m_net.sendMessages(kv.second->GetNetworkPacket().ToString(), player.first.first, player.first.second);
+            m_net.sendMessages(kv.second->GetNetworkPacket().ToVec(), player.first.first, player.first.second);
         }
     }
 }
@@ -86,7 +87,7 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* por
             m_playerCount++;
         }
         
-        for each (auto var in m_playerMap)
+        for (auto var : m_playerMap)
         {
             if (var.first != pair)
             {

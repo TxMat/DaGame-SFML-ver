@@ -8,4 +8,4 @@
 unsigned int WIDTH = 1080u;
 unsigned int HEIGHT = 1080u;
 
-bool IS_SERVER = true;
+bool IS_CLIENT = true;

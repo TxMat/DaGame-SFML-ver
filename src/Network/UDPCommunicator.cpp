@@ -78,7 +78,7 @@ bool UDPCommunicator::receiveMessage(std::vector<char>& message, char* ip, int* 
     socklen_t len = sizeof(cliaddr);
 
     // Receive the message
-    ssize_t n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
+    size_t n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
 
     inet_ntop(AF_INET, &cliaddr.sin_addr, ip, INET_ADDRSTRLEN);
     *port = ntohs(cliaddr.sin_port);
