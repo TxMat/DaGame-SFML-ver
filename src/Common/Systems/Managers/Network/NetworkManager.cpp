@@ -19,11 +19,21 @@ NetworkManager::NetworkManager(SceneManager *sm) :
 
 
 void NetworkManager::FixedTick(float deltaTime) {
-    for (auto& player : m_playerMap)
+    if (IS_CLIENT)
     {
         for (const auto& kv : m_replicatedObjectMap)
         {
-            m_net.sendMessages(kv.second->GetNetworkPacket().ToVec(), player.first.first, player.first.second);
+            m_net.sendMessages(kv.second->GetNetworkPacket().ToVec(), "127.0.0.1", 8080);
+        }
+    }
+    else
+    {
+        for (auto& player : m_playerMap)
+        {
+            for (const auto& kv : m_replicatedObjectMap)
+            {
+                m_net.sendMessages(kv.second->GetNetworkPacket().ToVec(), player.first.first, player.first.second);
+            }
         }
     }
 }
