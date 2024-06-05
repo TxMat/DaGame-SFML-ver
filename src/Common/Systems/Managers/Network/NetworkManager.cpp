@@ -96,7 +96,7 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* por
             index += uintSize;
 
             // Prepare
-            std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
+            std::vector<uint8_t> payload(bytes.begin() + index + 4, bytes.end());
 
             auto pObject = GetObjectToListen(id);
 
