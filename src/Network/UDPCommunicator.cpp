@@ -70,12 +70,14 @@ bool UDPCommunicator::sendMessage(const std::string& message, const std::string&
     return true;
 }
 
-bool UDPCommunicator::receiveMessage(std::string& message, int bufferSize) {
+bool UDPCommunicator::receiveMessage(std::string& message, int bufferSize, PSTR ip, int* port) {
     char buffer[1400];
     sockaddr_in cliaddr;
     socklen_t len = sizeof(cliaddr);
 
     int n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
+    inet_ntop(AF_INET, &cliaddr.sin_addr, ip, INET_ADDRSTRLEN);
+    *port = htons(cliaddr.sin_port);
     if (n < 0) {
         std::cerr << "Erreur lors de la reception du message" << std::endl;
         return false;

@@ -23,7 +23,7 @@ public:
     bool initSocket();
     bool bindSocket(int port);
     bool sendMessage(const std::string& message, const std::string& address, int port);
-    bool receiveMessage(std::string& message, int bufferSize = 1024);
+    bool receiveMessage(std::string& message, int bufferSize = 1024, PSTR ip, int* port);
 
 private:
     socket_t sockfd;
