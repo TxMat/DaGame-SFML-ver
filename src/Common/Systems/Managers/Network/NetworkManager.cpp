@@ -19,7 +19,7 @@ NetworkManager::NetworkManager(SceneManager *sm) :
 
 
 void NetworkManager::FixedTick(float deltaTime) {
-    for (auto player : m_playerMap)
+    for (auto& player : m_playerMap)
     {
         for (const auto& kv : m_replicatedObjectMap)
         {
@@ -87,11 +87,11 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* por
             m_playerCount++;
         }
         
-        for (auto var : m_playerMap)
+        for (auto& var : m_playerMap)
         {
             if (var.first != pair)
             {
-                //m_net.sendMessages(, var.first.first, var.first.second);
+                m_net.sendMessages(bytes, var.first.first, var.first.second);
             }
         }
     }
