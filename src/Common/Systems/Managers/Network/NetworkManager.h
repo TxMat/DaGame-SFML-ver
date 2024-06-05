@@ -19,7 +19,11 @@ public:
     void FixedTick(float deltaTime) override;
 
     void AddObjectToReplicate(unsigned int id, NetworkObject *object);
+    void AddObjectToListen(unsigned int id, NetworkObject *object);
+
     NetworkObject* GetObjectToReplicate(unsigned int id);
+
+    NetworkObject *GetObjectToListen(unsigned int id);
 
     void UnrestrictedTick(float deltaTime) override;
 
@@ -32,13 +36,13 @@ protected:
     int m_playerCount;
     std::map<std::pair<char*, int>, int> m_playerMap = std::map<std::pair<char*, int>, int>();
     std::map<unsigned int, NetworkObject *> m_replicatedObjectMap = std::map<unsigned int, NetworkObject *>();
+    std::map<unsigned int, NetworkObject *> m_listenObjectMap = std::map<unsigned int, NetworkObject *>();
 
     MainNetwork m_net;
 
 private:
 
     std::chrono::nanoseconds m_last_packet_ts;
-
 };
 
 

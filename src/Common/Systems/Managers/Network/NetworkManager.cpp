@@ -58,8 +58,16 @@ void NetworkManager::AddObjectToReplicate(unsigned int id, NetworkObject *object
     m_replicatedObjectMap[id] = object;
 }
 
+void NetworkManager::AddObjectToListen(unsigned int id, NetworkObject *object) {
+    m_listenObjectMap[id] = object;
+}
+
 NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 	return m_replicatedObjectMap[id];
+}
+
+NetworkObject* NetworkManager::GetObjectToListen(unsigned int id){
+    return m_listenObjectMap[id];
 }
 
 void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* port) {
