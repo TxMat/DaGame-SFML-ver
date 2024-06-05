@@ -65,7 +65,7 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes, PSTR ip, int* port
         std::memcpy(&id, &bytes[index], uintSize);
         index += uintSize;
 
-        // Prepare wtf
+        // Prepare
         std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
 
         GetObjectToReplicate(id)->DeserializePayload(payload);
