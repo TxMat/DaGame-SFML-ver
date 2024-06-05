@@ -44,36 +44,49 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* por
     
     if (IS_CLIENT)
     {
+        if (*t == PacketType::PosSync)
+        {
+            // Skip the message type and timestamp
+            int index = 1 + sizeof(std::chrono::nanoseconds);
+            std::chrono::nanoseconds ts;
+            std::memcpy(&ts, &bytes[1], sizeof(std::chrono::nanoseconds));
 
+            if (ts < m_last_packet_ts) {
+                return;
+            }
+
+            m_last_packet_ts = ts;
+
+            size_t uintSize = sizeof(unsigned int);
+
+            // Extract ID
+            unsigned int id;
+            std::memcpy(&id, &bytes[index], uintSize);
+            index += uintSize;
+
+            // Prepare
+            std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
+
+            GetObjectToReplicate(id)->DeserializePayload(payload);
+        }
     }
     else
     {
-
-    }
-
-    if (*t == PacketType::PosSync)
-    {
-        // Skip the message type and timestamp
-        int index = 1 + sizeof(std::chrono::nanoseconds);
-        std::chrono::nanoseconds ts;
-        std::memcpy(&ts, &bytes[1], sizeof(std::chrono::nanoseconds));
-
-        if (ts < m_last_packet_ts) {
-            return;
+        std::pair<char*, int> pair = std::pair<char*, int>(ip, *port);
+        auto iter = m_playerMap.find(pair);
+        if (iter == m_playerMap.end())
+        {
+            m_playerMap[pair] = m_playerCount;
+            m_playerCount++;
         }
-
-        m_last_packet_ts = ts;
-
-        size_t uintSize = sizeof(unsigned int);
-
-        // Extract ID
-        unsigned int id;
-        std::memcpy(&id, &bytes[index], uintSize);
-        index += uintSize;
-
-        // Prepare
-        std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
-
-        GetObjectToReplicate(id)->DeserializePayload(payload);
+        
+        for each (auto var in m_playerMap)
+        {
+            if (var.first != pair)
+            {
+                //m_net.sendMessages();
+            }
+        }
     }
+    
 }
