@@ -20,8 +20,20 @@ struct NetworkPacket {
     }
 
     std::vector<char> ToVec() {
-        std::vector<char> a{};
-        return a;
+        std::vector<char> p;
+
+        // Serialize pt
+        const auto* ptt = reinterpret_cast<const char*>(&pt);
+        p.insert(p.end(), ptt, ptt + sizeof(pt));
+
+        // Serialize ts
+        const auto* tst = reinterpret_cast<const char*>(&ts);
+        p.insert(p.end(), tst, tst + sizeof(ts));
+
+        // insert payload
+        p.insert(p.end(), payload.begin(), payload.end());
+
+        return p;
     }
 
     std::string ToString()
