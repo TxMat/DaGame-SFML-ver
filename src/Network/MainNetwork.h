@@ -14,7 +14,7 @@ public:
     explicit MainNetwork(NetworkManager* nm);
     ~MainNetwork();
 
-    void sendMessages(const std::string& msg, const std::string& addr);
+    void sendMessages(const std::string& msg, const std::string& addr, int port);
 
     void start();
 
