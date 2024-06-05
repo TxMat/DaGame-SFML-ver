@@ -10,34 +10,37 @@
 #include "Game/Objects/UI/Debug/DTFixedTime.h"
 #include "Game/Objects/UI/Debug/DT.h"
 
-AppClient::AppClient() = default;
+AppClient::AppClient() : m_sceneManager(SceneManager(false)) {
+
+}
 
 void AppClient::Init() {
     // todo use smart ptr
-    Object* playerOnePaddle = new Paddle(1, 10, 100);
+    NetworkObject *playerOnePaddle = new Paddle(1, 10, 100);
     m_sceneManager.AddObjectToScene(playerOnePaddle);
 
-    Object* playerTwoPaddle = new Paddle(2, 10, 100);
+    NetworkObject *playerTwoPaddle = new Paddle(2, 10, 100);
     m_sceneManager.AddObjectToScene(playerTwoPaddle);
 
-    Object* playerThreePaddle = new Paddle(3, 100, 10);
+    NetworkObject* playerThreePaddle = new Paddle(3, 100, 10);
     m_sceneManager.AddObjectToScene(playerThreePaddle);
 
-    Object* playerFourPaddle = new Paddle(4, 100, 10);
+    NetworkObject* playerFourPaddle = new Paddle(4, 100, 10);
     m_sceneManager.AddObjectToScene(playerFourPaddle);
 
-    //    Object *ball = new Ball(1000, 10);
-    //    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
-    //    m_sceneManager.AddObjectToScene(ball);
+//    Object *ball = new Ball(1000, 10);
+//    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+//    m_sceneManager.AddObjectToScene(ball);
 
-    Object* ball = new Ball(1000, 10);
-    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
-    m_sceneManager.AddObjectToScene(ball);
-    m_sceneManager.AddObjectToReplicate(ball, (std::string &) "Ball");
+    for (int i = 0; i < 10; ++i) {
+        NetworkObject* ball = new Ball(1000, 10);
+        ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+        m_sceneManager.AddObjectToScene(ball);
+    }
 
-    //    Object *ball2 = new Ball(1000, 10);
-    //    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
-    //    m_sceneManager.AddObjectToScene(ball2);
+//    Object *ball2 = new Ball(1000, 10);
+//    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
+//    m_sceneManager.AddObjectToScene(ball2);
 
     auto fps = new FPSCounter();
     auto DT = new class DT();
@@ -50,7 +53,9 @@ void AppClient::Init() {
 }
 
 void AppClient::MainLoop() {
-
+    while (m_sceneManager.isRunning) {
+        m_sceneManager.UnrestrictedTick();
+    }
 }
 
 
