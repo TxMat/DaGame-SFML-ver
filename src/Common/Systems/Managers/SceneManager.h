@@ -27,7 +27,7 @@ public:
 
     void AddUIToScene(UITextElement *object, bool shouldFastTick);
 
-    void AddObjectToReplicate(Object *object, std::string &name);
+    void AddObjectToReplicate(Object *object, std::basic_string<char> name);
 
     Object* GetObjectToReplicate(std::string& name);
 

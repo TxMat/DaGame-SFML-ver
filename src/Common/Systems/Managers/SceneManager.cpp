@@ -53,7 +53,7 @@ void SceneManager::AddObjectToScene(Object *object) {
     m_ObjectManager.AddObject(object);
 }
 
-void SceneManager::AddObjectToReplicate(Object *object, std::string& name) {
+void SceneManager::AddObjectToReplicate(Object *object, std::basic_string<char> name) {
     m_ReplicatedObjectList[name] = object;
 }
 
