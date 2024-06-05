@@ -56,6 +56,9 @@ void SceneManager::AddObjectToScene(Object *object) {
 void SceneManager::AddObjectToReplicate(NetworkObject *object, unsigned int id) {
     m_NetworkManager.AddObjectToReplicate(id, object);
 }
+void SceneManager::AddObjectToListen(NetworkObject *object, unsigned int id) {
+    m_NetworkManager.AddObjectToListen(id, object);
+}
 
 void SceneManager::UnrestrictedTick() {
     float elapsedTime = m_fastClock.restart().asSeconds();

@@ -28,6 +28,7 @@ public:
     void AddUIToScene(UITextElement *object, bool shouldFastTick);
 
     void AddObjectToReplicate(NetworkObject *object, unsigned int id);
+    void AddObjectToListen(NetworkObject *object, unsigned int id);
 
     bool isRunning = true;
 
