@@ -98,7 +98,11 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* por
             // Prepare
             std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
 
-            GetObjectToReplicate(id)->DeserializePayload(payload);
+            auto pObject = GetObjectToListen(id);
+
+            if (pObject){
+                pObject->DeserializePayload(payload);
+            }
         }
     }
     else

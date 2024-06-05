@@ -110,5 +110,5 @@ void Ball::DeserializePayload(std::vector<uint8_t>& payload) {
     size_t floatSize = sizeof(float);
     std::memcpy(&x, &payload[0], floatSize);
     std::memcpy(&y, &payload[floatSize], floatSize);
-    sf::Vector2f newPos = sf::Vector2f(x, y);
+    m_shape->setPosition(x, y);
 }
