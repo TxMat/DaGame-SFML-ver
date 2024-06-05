@@ -35,7 +35,7 @@ bool UDPCommunicator::initSocket() {
     return true;
 }
 
-bool UDPCommunicator::bindSocket(int port) {
+bool UDPCommunicator::bindSocket(int port) const {
     sockaddr_in servaddr;
     std::memset(&servaddr, 0, sizeof(servaddr));
 
@@ -63,7 +63,7 @@ bool UDPCommunicator::sendMessage(const std::vector<char>& message, const std::s
     servaddr.sin_port = htons(port);
     servaddr.sin_addr.s_addr = inet_addr(address.c_str());
 
-    if (sendto(sockfd, message.data(), message.size(), 0, (const struct sockaddr*)&servaddr, sizeof(servaddr)) < 0) {
+    if (sendto(sockfd, message.data(), message.size(), 0, (const sockaddr*)&servaddr, sizeof(servaddr)) < 0) {
         std::cerr << "Erreur lors de l'envoi du message" << std::endl;
         return false;
     }
@@ -77,16 +77,16 @@ bool UDPCommunicator::receiveMessage(std::vector<char>& message, char* ip, int* 
     socklen_t len = sizeof(cliaddr);
 
     // Receive the message
-    size_t n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
-
-    inet_ntop(AF_INET, &cliaddr.sin_addr, ip, INET_ADDRSTRLEN);
-    *port = ntohs(cliaddr.sin_port);
+    long n = recvfrom(sockfd, buffer, 1400 - 1, 0, (sockaddr*)&cliaddr, &len);
 
     // Check for errors during reception
     if (n < 0) {
         std::cerr << "Erreur lors de la reception du message" << std::endl;
         return false;
     }
+
+    inet_ntop(AF_INET, &cliaddr.sin_addr, ip, INET_ADDRSTRLEN);
+    *port = htons(cliaddr.sin_port);
 
     // Ensure buffer is null-terminated if n < bufferSize
     if (n < bufferSize) {

@@ -13,9 +13,10 @@ struct NetworkPacket {
 
     PacketType pt;
     std::chrono::nanoseconds ts{};
+    unsigned int id;
     std::vector<uint8_t> payload;
 
-    NetworkPacket(PacketType pt, const std::vector<uint8_t> &payload) : pt(pt), payload(payload) {
+    NetworkPacket(PacketType pt, unsigned int object_id, const std::vector<uint8_t> &payload) : pt(pt), id(object_id), payload(payload) {
         ts = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch());
     }
 
@@ -29,6 +30,10 @@ struct NetworkPacket {
         // Serialize ts
         const auto* tst = reinterpret_cast<const char*>(&ts);
         p.insert(p.end(), tst, tst + sizeof(ts));
+
+        // Serialize id
+        const auto* idt = reinterpret_cast<const char*>(&id);
+        p.insert(p.end(), idt, idt + sizeof(idt));
 
         // insert payload
         p.insert(p.end(), payload.begin(), payload.end());

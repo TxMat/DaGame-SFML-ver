@@ -102,7 +102,7 @@ NetworkPacket Ball::GetNetworkPacket() {
     const auto* py = reinterpret_cast<const uint8_t*>(&pos.y);
     p.insert(p.end(), py, py + sizeof(pos.y));
 
-    return NetworkPacket{PosSync, p};
+    return NetworkPacket{PosSync, 0, p};
 }
 
 void Ball::DeserializePayload(std::vector<uint8_t>& payload) {

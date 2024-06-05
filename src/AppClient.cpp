@@ -18,6 +18,7 @@ void AppClient::Init() {
     // todo use smart ptr
     NetworkObject *playerOnePaddle = new Paddle(1, 10, 100);
     m_sceneManager.AddObjectToScene(playerOnePaddle);
+    m_sceneManager.AddObjectToReplicate(playerOnePaddle, 1);
 
     NetworkObject *playerTwoPaddle = new Paddle(2, 10, 100);
     m_sceneManager.AddObjectToScene(playerTwoPaddle);

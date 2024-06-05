@@ -15,6 +15,14 @@ NetworkManager::NetworkManager(SceneManager *sm) :
 
 	m_net.start();
     m_playerCount = 0;
+
+    if (IS_CLIENT) {
+        std::vector<uint8_t> a{};
+        NetworkPacket n{PacketType::Conn, 6, a};
+
+        m_net.sendMessages(n.ToVec(), "127.0.0.1", 8080);
+    }
+
 }
 
 
@@ -46,8 +54,8 @@ void NetworkManager::Render(sf::RenderWindow &window) {
 
 }
 
-void NetworkManager::AddObjectToReplicate(NetworkObject *object) {
-
+void NetworkManager::AddObjectToReplicate(unsigned int id, NetworkObject *object) {
+    m_replicatedObjectMap[id] = object;
 }
 
 NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
@@ -55,11 +63,11 @@ NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 }
 
 void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* port) {
-    const auto t = reinterpret_cast<const PacketType*>(bytes[0]);
-    
+    const auto t = static_cast<PacketType>(bytes[0]);
+
     if (IS_CLIENT)
     {
-        if (*t == PacketType::PosSync)
+        if (t == PacketType::PosSync)
         {
             // Skip the message type and timestamp
             int index = 1 + sizeof(std::chrono::nanoseconds);

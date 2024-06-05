@@ -23,7 +23,7 @@ public:
     ~UDPCommunicator();
 
     bool initSocket();
-    bool bindSocket(int port);
+    bool bindSocket(int port) const;
     bool sendMessage(const std::vector<char>& message, const std::string& address, int port);
     bool receiveMessage(std::vector<char>& message, char* ip, int* port, int bufferSize = 1024) const;
 

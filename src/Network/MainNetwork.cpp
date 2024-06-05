@@ -11,9 +11,11 @@ MainNetwork::MainNetwork(NetworkManager *nm) : m_nm(nm) {
         std::cerr << "Erreur lors de l'initialisation du socket" << std::endl;
     }
 
-    // Liaison du socket au port 8080
-    if (!udpComm.bindSocket(8080)) {
-        std::cerr << "Erreur lors de la liaison du socket au port 8080" << std::endl;
+    if (!IS_CLIENT) {
+        // Liaison du socket au port 8080
+        if (!udpComm.bindSocket(8080)) {
+            std::cerr << "Erreur lors de la liaison du socket au port 8080" << std::endl;
+        }
     }
 }
 
@@ -41,7 +43,7 @@ void MainNetwork::start() {
     //    std::cout << "No Bind" << std::endl;
     //}
 
-    std::cout << "En attente de messages UDP sur le port 8080..." << std::endl;
+    std::cout << "En attente de messages UDP" << std::endl;
 
     // Lancement du thread pour la reception de messages
     receiveThread = std::thread(&MainNetwork::receiveMessages, this);
@@ -54,15 +56,14 @@ void MainNetwork::start() {
 }
 
 void MainNetwork::receiveMessages() {
+    std::vector<char> receivedMessage;
+    char ip[23];
+    int port = 0;
     while (true) {
-        std::vector<char> receivedMessage;
-        char *ip = nullptr;
-        int *port = nullptr;
-        if (udpComm.receiveMessage(receivedMessage, ip, port)) {
+        if (udpComm.receiveMessage(receivedMessage, ip, &port)) {
 //            std::cout << "Message recu: " << receivedMessage << std::endl;
             std::vector<char> bytes(receivedMessage.begin(), receivedMessage.end());
-            bytes.push_back('\0');
-            m_nm->ReceiveMessage(bytes, ip, port);
+            m_nm->ReceiveMessage(bytes, ip, &port);
         }
         else {
             std::cerr << "Erreur lors de la reception du message" << std::endl;

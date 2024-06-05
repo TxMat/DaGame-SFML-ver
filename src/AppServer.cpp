@@ -36,7 +36,7 @@ void AppServer::Init() {
     NetworkObject* ball = new Ball(1000, 10);
     ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);
     m_sceneManager.AddObjectToScene(ball);
-    m_sceneManager.AddObjectToReplicate(ball, std::string("Ball"));
+    m_sceneManager.AddObjectToReplicate(ball, 0);
 
 //    Object *ball2 = new Ball(1000, 10);
 //    ball->getMShape()->setPosition(WIDTH / 2, HEIGHT / 2);

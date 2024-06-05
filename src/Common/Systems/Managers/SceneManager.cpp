@@ -53,13 +53,8 @@ void SceneManager::AddObjectToScene(Object *object) {
     m_ObjectManager.AddObject(object);
 }
 
-void SceneManager::AddObjectToReplicate(Object *object, std::basic_string<char> name) {
-    m_ReplicatedObjectList[name] = object;
-}
-
-Object* SceneManager::GetObjectToReplicate(std::string& name)
-{
-    return m_ReplicatedObjectList[name];
+void SceneManager::AddObjectToReplicate(NetworkObject *object, unsigned int id) {
+    m_NetworkManager.AddObjectToReplicate(id, object);
 }
 
 void SceneManager::UnrestrictedTick() {

@@ -18,7 +18,7 @@ public:
 
     void FixedTick(float deltaTime) override;
 
-    void AddObjectToReplicate(NetworkObject *object);
+    void AddObjectToReplicate(unsigned int id, NetworkObject *object);
     NetworkObject* GetObjectToReplicate(unsigned int id);
 
     void UnrestrictedTick(float deltaTime) override;

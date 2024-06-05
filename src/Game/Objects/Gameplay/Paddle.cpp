@@ -88,7 +88,7 @@ void Paddle::MoveHorizontallyClamped(float offsetX)
 
 NetworkPacket Paddle::GetNetworkPacket() {
     std::vector<uint8_t> p = {};
-    return NetworkPacket(PosSync, p);
+    return NetworkPacket(PosSync, 4, p);
 }
 
 void Paddle::DeserializePayload(std::vector<uint8_t> &payload) {
