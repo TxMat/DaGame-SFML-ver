@@ -70,12 +70,12 @@ bool UDPCommunicator::sendMessage(const std::string& message, const std::string&
     return true;
 }
 
-bool UDPCommunicator::receiveMessage(std::string& message, int bufferSize, PSTR ip, int* port) {
-    char buffer[1400];
-    sockaddr_in cliaddr;
+bool UDPCommunicator::receiveMessage(std::string& message, char* ip, int* port, int bufferSize) const {
+    char buffer[bufferSize];
+    sockaddr_in cliaddr{};
     socklen_t len = sizeof(cliaddr);
 
-    int n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
+    ssize_t n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
     inet_ntop(AF_INET, &cliaddr.sin_addr, ip, INET_ADDRSTRLEN);
     *port = htons(cliaddr.sin_port);
     if (n < 0) {

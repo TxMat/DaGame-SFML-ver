@@ -25,7 +25,7 @@ public:
 
     void Render(sf::RenderWindow &window) override;
 
-    void ReceiveMessage(std::vector<char>& bytes, PSTR ip, int* port);
+    void ReceiveMessage(std::vector<char>& bytes, char* ip, int* port);
 
 protected:
 

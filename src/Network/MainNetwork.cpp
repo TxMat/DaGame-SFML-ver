@@ -1,3 +1,4 @@
+#include <cstring>
 #include "MainNetwork.h"
 #include "SFML/System/Vector2.hpp"
 #include "../Common/Systems/Managers/Network/NetworkManager.h"
@@ -55,9 +56,9 @@ void MainNetwork::start() {
 void MainNetwork::receiveMessages() {
     while (true) {
         std::string receivedMessage;
-        PSTR ip;
-        int* port = 0;
-        if (udpComm.receiveMessage(receivedMessage, 1024, ip, port)) {
+        char *ip = nullptr;
+        int *port = nullptr;
+        if (udpComm.receiveMessage(receivedMessage, ip, port)) {
             std::cout << "Message recu: " << receivedMessage << std::endl;
             std::vector<char> bytes(receivedMessage.begin(), receivedMessage.end());
             bytes.push_back('\0');
