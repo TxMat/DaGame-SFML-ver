@@ -1,6 +1,7 @@
 #include "MainNetwork.h"
 #include "SFML/System/Vector2.hpp"
 #include "../Common/Systems/Managers/Network/NetworkManager.h"
+#include "../Common/Globals.h"
 
 MainNetwork::MainNetwork(NetworkManager *nm) : m_nm(nm) {
 
@@ -54,11 +55,13 @@ void MainNetwork::start() {
 void MainNetwork::receiveMessages() {
     while (true) {
         std::string receivedMessage;
-        if (udpComm.receiveMessage(receivedMessage)) {
+        PSTR ip;
+        int* port = 0;
+        if (udpComm.receiveMessage(receivedMessage, 1024, ip, port)) {
             std::cout << "Message recu: " << receivedMessage << std::endl;
             std::vector<char> bytes(receivedMessage.begin(), receivedMessage.end());
             bytes.push_back('\0');
-            m_nm->ReceiveMessage(bytes);
+            m_nm->ReceiveMessage(bytes, ip, port);
         }
         else {
             std::cerr << "Erreur lors de la reception du message" << std::endl;

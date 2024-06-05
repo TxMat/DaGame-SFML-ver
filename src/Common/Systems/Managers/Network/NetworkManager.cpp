@@ -38,7 +38,7 @@ NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 	return m_replicatedObjectMap[id];
 }
 
-void NetworkManager::ReceiveMessage(std::vector<char>& bytes) {
+void NetworkManager::ReceiveMessage(std::vector<char>& bytes, PSTR ip, int* port) {
     const auto t = reinterpret_cast<const PacketType*>(bytes[0]);
     
     if (*t == PacketType::Conn)
