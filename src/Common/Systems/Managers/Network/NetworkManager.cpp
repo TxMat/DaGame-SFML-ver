@@ -39,7 +39,7 @@ NetworkObject* NetworkManager::GetObjectToReplicate(unsigned int id){
 	return m_replicatedObjectMap[id];
 }
 
-void NetworkManager::ReceiveMessage(std::vector<char>& bytes, PSTR ip, int* port) {
+void NetworkManager::ReceiveMessage(std::vector<char>& bytes, char* ip, int* port) {
     const auto t = reinterpret_cast<const PacketType*>(bytes[0]);
     
     if (IS_CLIENT)
@@ -71,7 +71,7 @@ void NetworkManager::ReceiveMessage(std::vector<char>& bytes, PSTR ip, int* port
         std::memcpy(&id, &bytes[index], uintSize);
         index += uintSize;
 
-        // Prepare wtf
+        // Prepare
         std::vector<uint8_t> payload(bytes.begin() + index, bytes.end());
 
         GetObjectToReplicate(id)->DeserializePayload(payload);

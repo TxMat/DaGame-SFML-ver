@@ -90,3 +90,7 @@ NetworkPacket Paddle::GetNetworkPacket() {
     std::vector<uint8_t> p = {};
     return NetworkPacket(PosSync, p);
 }
+
+void Paddle::DeserializePayload(std::vector<uint8_t> &payload) {
+
+}

@@ -16,6 +16,8 @@ public:
 
     void Update(float deltaTime) override;
 
+    void DeserializePayload(std::vector<uint8_t> &payload) override;
+
     NetworkPacket GetNetworkPacket() override;
 
 private:
