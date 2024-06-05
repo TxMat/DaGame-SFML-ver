@@ -12,6 +12,8 @@ typedef int socklen_t;
 #else
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <vector>
+
 typedef int socket_t;
 #endif
 
@@ -22,8 +24,8 @@ public:
 
     bool initSocket();
     bool bindSocket(int port);
-    bool sendMessage(const std::string& message, const std::string& address, int port);
-    bool receiveMessage(std::string& message, char* ip, int* port, int bufferSize = 1024) const;
+    bool sendMessage(const std::vector<char>& message, const std::string& address, int port);
+    bool receiveMessage(std::vector<char>& message, char* ip, int* port, int bufferSize = 1024) const;
 
 private:
     socket_t sockfd;

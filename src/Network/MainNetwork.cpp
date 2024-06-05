@@ -55,11 +55,11 @@ void MainNetwork::start() {
 
 void MainNetwork::receiveMessages() {
     while (true) {
-        std::string receivedMessage;
+        std::vector<char> receivedMessage;
         char *ip = nullptr;
         int *port = nullptr;
         if (udpComm.receiveMessage(receivedMessage, ip, port)) {
-            std::cout << "Message recu: " << receivedMessage << std::endl;
+//            std::cout << "Message recu: " << receivedMessage << std::endl;
             std::vector<char> bytes(receivedMessage.begin(), receivedMessage.end());
             bytes.push_back('\0');
             m_nm->ReceiveMessage(bytes, ip, port);
@@ -70,7 +70,7 @@ void MainNetwork::receiveMessages() {
     }
 }
 
-void MainNetwork::sendMessages(const std::string& msg, const std::string& addr)
+void MainNetwork::sendMessages(const std::vector<char>& msg, const std::string& addr)
 {
     udpComm.sendMessage(msg, addr, 8080);
 }

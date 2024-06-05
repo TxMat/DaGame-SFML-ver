@@ -1,6 +1,7 @@
 #include "UDPCommunicator.h"
 #include <iostream>
 #include <cstring>
+#include <vector>
 
 #ifdef _WIN32
 #pragma comment(lib, "ws2_32.lib")
@@ -55,36 +56,46 @@ bool UDPCommunicator::bindSocket(int port) {
     return true;
 }
 
-bool UDPCommunicator::sendMessage(const std::string& message, const std::string& address, int port) {
-    sockaddr_in servaddr;
+bool UDPCommunicator::sendMessage(const std::vector<char>& message, const std::string& address, int port) {
+    sockaddr_in servaddr{};
     std::memset(&servaddr, 0, sizeof(servaddr));
 
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(port);
     servaddr.sin_addr.s_addr = inet_addr(address.c_str());
 
-    if (sendto(sockfd, message.c_str(), message.length(), 0, (const struct sockaddr*)&servaddr, sizeof(servaddr)) < 0) {
+    if (sendto(sockfd, message.data(), message.size(), 0, (const struct sockaddr*)&servaddr, sizeof(servaddr)) < 0) {
         std::cerr << "Erreur lors de l'envoi du message" << std::endl;
         return false;
     }
     return true;
 }
 
-bool UDPCommunicator::receiveMessage(std::string& message, char* ip, int* port, int bufferSize) const {
+bool UDPCommunicator::receiveMessage(std::vector<char>& message, char* ip, int* port, int bufferSize) const {
+    // Initialize buffer with the given buffer size
     char buffer[bufferSize];
     sockaddr_in cliaddr{};
     socklen_t len = sizeof(cliaddr);
 
+    // Receive the message
     ssize_t n = recvfrom(sockfd, buffer, bufferSize - 1, 0, (struct sockaddr*)&cliaddr, &len);
+
     inet_ntop(AF_INET, &cliaddr.sin_addr, ip, INET_ADDRSTRLEN);
-    *port = htons(cliaddr.sin_port);
+    *port = ntohs(cliaddr.sin_port);
+
+    // Check for errors during reception
     if (n < 0) {
         std::cerr << "Erreur lors de la reception du message" << std::endl;
         return false;
     }
 
-    buffer[n] = '\0';
-    message = std::string(buffer);
-    std::cout << message << std::endl;
+    // Ensure buffer is null-terminated if n < bufferSize
+    if (n < bufferSize) {
+        buffer[n] = '\0';
+    }
+
+    message.clear();
+    message.insert(message.end(), buffer, buffer + n);
+
     return true;
 }
