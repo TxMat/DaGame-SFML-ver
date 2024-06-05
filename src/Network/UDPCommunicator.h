@@ -2,6 +2,7 @@
 #define UDPCOMMUNICATOR_H
 
 #include <string>
+#include <vector>
 
 // Definition des includes et des types pour Windows et Unix/Linux
 #ifdef _WIN32
@@ -12,7 +13,6 @@ typedef int socklen_t;
 #else
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <vector>
 
 typedef int socket_t;
 #endif

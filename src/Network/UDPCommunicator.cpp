@@ -1,7 +1,6 @@
 #include "UDPCommunicator.h"
 #include <iostream>
 #include <cstring>
-#include <vector>
 
 #ifdef _WIN32
 #pragma comment(lib, "ws2_32.lib")
@@ -73,7 +72,7 @@ bool UDPCommunicator::sendMessage(const std::vector<char>& message, const std::s
 
 bool UDPCommunicator::receiveMessage(std::vector<char>& message, char* ip, int* port, int bufferSize) const {
     // Initialize buffer with the given buffer size
-    char buffer[bufferSize];
+    char buffer[1400];
     sockaddr_in cliaddr{};
     socklen_t len = sizeof(cliaddr);
 
